@@ -22,7 +22,7 @@ public abstract class Class16 {
 
 	public static void method63(final DataBuffer var0) {
 		final Class131_Sub24 var1 = new Class131_Sub24();
-		var1.anInt1343 = var0.method595();
+		var1.anInt1343 = var0.readUByte();
 		var1.anInt1344 = var0.readIntV1();
 		var1.anIntArray1345 = new int[var1.anInt1343];
 		var1.anIntArray1350 = new int[var1.anInt1343];
@@ -33,21 +33,21 @@ public abstract class Class16 {
 
 		for (int var2 = 0; var2 < var1.anInt1343; ++var2)
 			try {
-				final int var3 = var0.method595();
+				final int var3 = var0.readUByte();
 				String var4;
 				String var5;
 				int var6;
 				if ((var3 != 0) && (var3 != 1) && (var3 != 2)) {
 					if ((var3 == 3) || (var3 == 4)) {
-						var4 = var0.method638();
-						var5 = var0.method638();
-						var6 = var0.method595();
+						var4 = var0.readString();
+						var5 = var0.readString();
+						var6 = var0.readUByte();
 						final String[] var7 = new String[var6];
 
 						for (int var8 = 0; var8 < var6; ++var8)
-							var7[var8] = var0.method638();
+							var7[var8] = var0.readString();
 
-						final String var9 = var0.method638();
+						final String var9 = var0.readString();
 						final byte[][] var10 = new byte[var6][];
 						int var12;
 						if (var3 == 3)
@@ -91,8 +91,8 @@ public abstract class Class16 {
 						var1.aByteArrayArrayArray1349[var2] = var10;
 					}
 				} else {
-					var4 = var0.method638();
-					var5 = var0.method638();
+					var4 = var0.readString();
+					var5 = var0.readString();
 					var6 = 0;
 					if (var3 == 1)
 						var6 = var0.readIntV1();

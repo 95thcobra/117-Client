@@ -148,7 +148,7 @@ public class Class111 {
 	int method448(final int var1, final int var2) {
 		int var3;
 		if (var2 == 255) {
-			final int var7 = aClass131_Sub14_826.method595();
+			final int var7 = aClass131_Sub14_826.readUByte();
 			var3 = aClass131_Sub14_826.method607();
 			if (var7 == 47) {
 				aClass131_Sub14_826.pos += var3;
@@ -169,10 +169,10 @@ public class Class111 {
 			final byte var4 = aByteArray823[var2 - 128];
 			var3 = var2;
 			if (var4 >= 1)
-				var3 = var2 | (aClass131_Sub14_826.method595() << 8);
+				var3 = var2 | (aClass131_Sub14_826.readUByte() << 8);
 
 			if (var4 >= 2)
-				var3 |= aClass131_Sub14_826.method595() << 16;
+				var3 |= aClass131_Sub14_826.readUByte() << 16;
 
 			return var3;
 		}

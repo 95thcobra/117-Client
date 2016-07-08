@@ -4,7 +4,7 @@ public class Class131_Sub15 extends Class131 {
 
 	Class131_Sub15(final DataBuffer var1) {
 		var1.pos = var1.data.length - 3;
-		final int var21 = var1.method595();
+		final int var21 = var1.readUByte();
 		final int var4 = var1.readUShort();
 		int var19 = 14 + (var21 * 10);
 		var1.pos = 0;
@@ -24,7 +24,7 @@ public class Class131_Sub15 extends Class131 {
 			var20 = -1;
 
 			while (true) {
-				var3 = var1.method595();
+				var3 = var1.readUByte();
 				if (var3 != var20)
 					++var19;
 
@@ -82,7 +82,7 @@ public class Class131_Sub15 extends Class131 {
 
 		int var12;
 		for (var12 = 0; var12 < var7; ++var12) {
-			var14 = (var14 + var1.method595()) & 127;
+			var14 = (var14 + var1.readUByte()) & 127;
 			if ((var14 != 0) && (var14 != 32)) {
 				if (var14 == 1)
 					++var5;

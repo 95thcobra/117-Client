@@ -190,8 +190,8 @@ public class Class131_Sub8 extends Class131 {
 
 	Class131_Sub8(final DataBuffer var1) {
 		anInt1033 = var1.readUShort();
-		aBool1034 = var1.method595() == 1;
-		final int var3 = var1.method595();
+		aBool1034 = var1.readUByte() == 1;
+		final int var3 = var1.readUByte();
 		if ((var3 >= 1) && (var3 <= 4)) {
 			anIntArray1039 = new int[var3];
 
@@ -203,14 +203,14 @@ public class Class131_Sub8 extends Class131 {
 				anIntArray1035 = new int[var3 - 1];
 
 				for (var2 = 0; var2 < (var3 - 1); ++var2)
-					anIntArray1035[var2] = var1.method595();
+					anIntArray1035[var2] = var1.readUByte();
 			}
 
 			if (var3 > 1) {
 				anIntArray1036 = new int[var3 - 1];
 
 				for (var2 = 0; var2 < (var3 - 1); ++var2)
-					anIntArray1036[var2] = var1.method595();
+					anIntArray1036[var2] = var1.readUByte();
 			}
 
 			anIntArray1037 = new int[var3];
@@ -218,8 +218,8 @@ public class Class131_Sub8 extends Class131 {
 			for (var2 = 0; var2 < var3; ++var2)
 				anIntArray1037[var2] = var1.readIntV1();
 
-			anInt1038 = var1.method595();
-			anInt1032 = var1.method595();
+			anInt1038 = var1.readUByte();
+			anInt1032 = var1.readUByte();
 			anIntArray1040 = null;
 		} else
 			throw new RuntimeException();

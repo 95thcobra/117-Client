@@ -3,7 +3,7 @@ public class Class95 {
 
 	public static String method395(final DataBuffer var0, final int var1) {
 		try {
-			int var2 = var0.method606();
+			int var2 = var0.readCompact();
 			if (var2 > var1)
 				var2 = var1;
 

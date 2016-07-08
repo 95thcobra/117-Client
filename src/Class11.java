@@ -72,13 +72,13 @@ public class Class11 {
 	}
 
 	final void method50(final DataBuffer var1, final Class10 var2) {
-		final int var3 = var1.method595();
+		final int var3 = var1.readUByte();
 		anIntArray105[0] = var3 >> 4;
 		anIntArray105[1] = var3 & 15;
 		if (var3 != 0) {
 			anIntArray103[0] = var1.readUShort();
 			anIntArray103[1] = var1.readUShort();
-			final int var7 = var1.method595();
+			final int var7 = var1.readUByte();
 
 			int var4;
 			int var5;

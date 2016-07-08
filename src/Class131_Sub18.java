@@ -148,18 +148,18 @@ public class Class131_Sub18 extends Class131 {
 	public boolean aBool1252;
 
 	Object[] method661(final DataBuffer var1) {
-		final int var2 = var1.method595();
+		final int var2 = var1.readUByte();
 		if (var2 == 0)
 			return null;
 		else {
 			final Object[] var5 = new Object[var2];
 
 			for (int var4 = 0; var4 < var2; ++var4) {
-				final int var3 = var1.method595();
+				final int var3 = var1.readUByte();
 				if (var3 == 0)
 					var5[var4] = new Integer(var1.readIntV1());
 				else if (var3 == 1)
-					var5[var4] = var1.method638();
+					var5[var4] = var1.readString();
 			}
 
 			aBool1238 = true;
@@ -168,9 +168,9 @@ public class Class131_Sub18 extends Class131 {
 	}
 
 	void method662(final DataBuffer var1) {
-		var1.method595();
+		var1.readUByte();
 		aBool1263 = true;
-		anInt1202 = var1.method595();
+		anInt1202 = var1.readUByte();
 		anInt1162 = var1.readUShort();
 		anInt1167 = var1.readShort();
 		anInt1157 = var1.readShort();
@@ -180,32 +180,32 @@ public class Class131_Sub18 extends Class131 {
 		else
 			anInt1266 = var1.readUShort();
 
-		anInt1165 = var1.method584();
-		anInt1166 = var1.method584();
-		anInt1163 = var1.method584();
-		anInt1261 = var1.method584();
+		anInt1165 = var1.readByte();
+		anInt1166 = var1.readByte();
+		anInt1163 = var1.readByte();
+		anInt1261 = var1.readByte();
 		anInt1177 = var1.readUShort();
 		if (anInt1177 == '\uffff')
 			anInt1177 = -1;
 		else
 			anInt1177 += anInt1272 & -65536;
 
-		aBool1178 = var1.method595() == 1;
+		aBool1178 = var1.readUByte() == 1;
 		if (anInt1202 == 0) {
 			anInt1181 = var1.readUShort();
 			anInt1182 = var1.readUShort();
-			aBool1290 = var1.method595() == 1;
+			aBool1290 = var1.readUByte() == 1;
 		}
 
 		if (anInt1202 == 5) {
 			anInt1193 = var1.readIntV1();
 			anInt1280 = var1.readUShort();
-			aBool1196 = var1.method595() == 1;
-			anInt1189 = var1.method595();
-			anInt1197 = var1.method595();
+			aBool1196 = var1.readUByte() == 1;
+			anInt1189 = var1.readUByte();
+			anInt1197 = var1.readUByte();
 			anInt1205 = var1.readIntV1();
-			aBool1158 = var1.method595() == 1;
-			aBool1241 = var1.method595() == 1;
+			aBool1158 = var1.readUByte() == 1;
+			aBool1241 = var1.readUByte() == 1;
 		}
 
 		if (anInt1202 == 6) {
@@ -224,7 +224,7 @@ public class Class131_Sub18 extends Class131 {
 			if (anInt1160 == '\uffff')
 				anInt1160 = -1;
 
-			aBool1215 = var1.method595() == 1;
+			aBool1215 = var1.readUByte() == 1;
 			var1.readUShort();
 			if (anInt1165 != 0)
 				anInt1213 = var1.readUShort();
@@ -238,40 +238,40 @@ public class Class131_Sub18 extends Class131 {
 			if (anInt1217 == '\uffff')
 				anInt1217 = -1;
 
-			aString1218 = var1.method638();
-			anInt1220 = var1.method595();
-			anInt1221 = var1.method595();
-			anInt1222 = var1.method595();
-			aBool1223 = var1.method595() == 1;
+			aString1218 = var1.readString();
+			anInt1220 = var1.readUByte();
+			anInt1221 = var1.readUByte();
+			anInt1222 = var1.readUByte();
+			aBool1223 = var1.readUByte() == 1;
 			anInt1183 = var1.readIntV1();
 		}
 
 		if (anInt1202 == 3) {
 			anInt1183 = var1.readIntV1();
-			aBool1245 = var1.method595() == 1;
-			anInt1189 = var1.method595();
+			aBool1245 = var1.readUByte() == 1;
+			anInt1189 = var1.readUByte();
 		}
 
 		if (anInt1202 == 9) {
-			anInt1191 = var1.method595();
+			anInt1191 = var1.readUByte();
 			anInt1183 = var1.readIntV1();
-			aBool1192 = var1.method595() == 1;
+			aBool1192 = var1.readUByte() == 1;
 		}
 
 		anInt1230 = var1.method598();
-		aString1237 = var1.method638();
-		final int var3 = var1.method595();
+		aString1237 = var1.readString();
+		final int var3 = var1.readUByte();
 		if (var3 > 0) {
 			aStringArray1257 = new String[var3];
 
 			for (int var2 = 0; var2 < var3; ++var2)
-				aStringArray1257[var2] = var1.method638();
+				aStringArray1257[var2] = var1.readString();
 		}
 
-		anInt1234 = var1.method595();
-		anInt1235 = var1.method595();
-		aBool1236 = var1.method595() == 1;
-		aString1199 = var1.method638();
+		anInt1234 = var1.readUByte();
+		anInt1235 = var1.readUByte();
+		aBool1236 = var1.readUByte() == 1;
+		aString1199 = var1.readString();
 		anObjectArray1239 = method661(var1);
 		anObjectArray1244 = method661(var1);
 		anObjectArray1278 = method661(var1);
@@ -296,7 +296,7 @@ public class Class131_Sub18 extends Class131 {
 	}
 
 	int[] method663(final DataBuffer var1) {
-		final int var2 = var1.method595();
+		final int var2 = var1.readUByte();
 		if (var2 == 0)
 			return null;
 		else {
@@ -402,14 +402,14 @@ public class Class131_Sub18 extends Class131 {
 
 	void method667(final DataBuffer var1) {
 		aBool1263 = false;
-		anInt1202 = var1.method595();
-		anInt1161 = var1.method595();
+		anInt1202 = var1.readUByte();
+		anInt1161 = var1.readUByte();
 		anInt1162 = var1.readUShort();
 		anInt1167 = var1.readShort();
 		anInt1157 = var1.readShort();
 		anInt1229 = var1.readUShort();
 		anInt1266 = var1.readUShort();
-		anInt1189 = var1.method595();
+		anInt1189 = var1.readUByte();
 		anInt1177 = var1.readUShort();
 		if (anInt1177 == '\uffff')
 			anInt1177 = -1;
@@ -420,19 +420,19 @@ public class Class131_Sub18 extends Class131 {
 		if (anInt1231 == '\uffff')
 			anInt1231 = -1;
 
-		final int var5 = var1.method595();
+		final int var5 = var1.readUByte();
 		int var7;
 		if (var5 > 0) {
 			anIntArray1270 = new int[var5];
 			anIntArray1271 = new int[var5];
 
 			for (var7 = 0; var7 < var5; ++var7) {
-				anIntArray1270[var7] = var1.method595();
+				anIntArray1270[var7] = var1.readUByte();
 				anIntArray1271[var7] = var1.readUShort();
 			}
 		}
 
-		var7 = var1.method595();
+		var7 = var1.readUByte();
 		int var2;
 		int var3;
 		int var9;
@@ -453,42 +453,42 @@ public class Class131_Sub18 extends Class131 {
 
 		if (anInt1202 == 0) {
 			anInt1182 = var1.readUShort();
-			aBool1178 = var1.method595() == 1;
+			aBool1178 = var1.readUByte() == 1;
 		}
 
 		if (anInt1202 == 1) {
 			var1.readUShort();
-			var1.method595();
+			var1.readUByte();
 		}
 
 		if (anInt1202 == 2) {
 			anIntArray1292 = new int[anInt1229 * anInt1266];
 			anIntArray1154 = new int[anInt1229 * anInt1266];
-			var2 = var1.method595();
+			var2 = var1.readUByte();
 			if (var2 == 1)
 				anInt1230 |= 268435456;
 
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			if (var3 == 1)
 				anInt1230 |= 1073741824;
 
-			var9 = var1.method595();
+			var9 = var1.readUByte();
 			if (var9 == 1)
 				anInt1230 |= Integer.MIN_VALUE;
 
-			final int var10 = var1.method595();
+			final int var10 = var1.readUByte();
 			if (var10 == 1)
 				anInt1230 |= 536870912;
 
-			anInt1224 = var1.method595();
-			anInt1225 = var1.method595();
+			anInt1224 = var1.readUByte();
+			anInt1225 = var1.readUByte();
 			anIntArray1226 = new int[20];
 			anIntArray1227 = new int[20];
 			anIntArray1228 = new int[20];
 
 			int var4;
 			for (var4 = 0; var4 < 20; ++var4) {
-				final int var11 = var1.method595();
+				final int var11 = var1.readUByte();
 				if (var11 == 1) {
 					anIntArray1226[var4] = var1.readShort();
 					anIntArray1227[var4] = var1.readShort();
@@ -500,7 +500,7 @@ public class Class131_Sub18 extends Class131 {
 			aStringArray1200 = new String[5];
 
 			for (var4 = 0; var4 < 5; ++var4) {
-				final String var8 = var1.method638();
+				final String var8 = var1.readString();
 				if (var8.length() > 0) {
 					aStringArray1200[var4] = var8;
 					anInt1230 |= 1 << (23 + var4);
@@ -509,22 +509,22 @@ public class Class131_Sub18 extends Class131 {
 		}
 
 		if (anInt1202 == 3)
-			aBool1245 = var1.method595() == 1;
+			aBool1245 = var1.readUByte() == 1;
 
 		if ((anInt1202 == 4) || (anInt1202 == 1)) {
-			anInt1221 = var1.method595();
-			anInt1222 = var1.method595();
-			anInt1220 = var1.method595();
+			anInt1221 = var1.readUByte();
+			anInt1222 = var1.readUByte();
+			anInt1220 = var1.readUByte();
 			anInt1217 = var1.readUShort();
 			if (anInt1217 == '\uffff')
 				anInt1217 = -1;
 
-			aBool1223 = var1.method595() == 1;
+			aBool1223 = var1.readUByte() == 1;
 		}
 
 		if (anInt1202 == 4) {
-			aString1218 = var1.method638();
-			aString1219 = var1.method638();
+			aString1218 = var1.readString();
+			aString1219 = var1.readString();
 		}
 
 		if ((anInt1202 == 1) || (anInt1202 == 3) || (anInt1202 == 4))
@@ -568,23 +568,23 @@ public class Class131_Sub18 extends Class131 {
 		if (anInt1202 == 7) {
 			anIntArray1292 = new int[anInt1266 * anInt1229];
 			anIntArray1154 = new int[anInt1229 * anInt1266];
-			anInt1221 = var1.method595();
+			anInt1221 = var1.readUByte();
 			anInt1217 = var1.readUShort();
 			if (anInt1217 == '\uffff')
 				anInt1217 = -1;
 
-			aBool1223 = var1.method595() == 1;
+			aBool1223 = var1.readUByte() == 1;
 			anInt1183 = var1.readIntV1();
 			anInt1224 = var1.readShort();
 			anInt1225 = var1.readShort();
-			var2 = var1.method595();
+			var2 = var1.readUByte();
 			if (var2 == 1)
 				anInt1230 |= 1073741824;
 
 			aStringArray1200 = new String[5];
 
 			for (var3 = 0; var3 < 5; ++var3) {
-				final String var6 = var1.method638();
+				final String var6 = var1.readString();
 				if (var6.length() > 0) {
 					aStringArray1200[var3] = var6;
 					anInt1230 |= 1 << (23 + var3);
@@ -593,17 +593,17 @@ public class Class131_Sub18 extends Class131 {
 		}
 
 		if (anInt1202 == 8)
-			aString1218 = var1.method638();
+			aString1218 = var1.readString();
 
 		if ((anInt1161 == 2) || (anInt1202 == 2)) {
-			aString1199 = var1.method638();
-			aString1273 = var1.method638();
+			aString1199 = var1.readString();
+			aString1273 = var1.readString();
 			var2 = var1.readUShort() & 63;
 			anInt1230 |= var2 << 11;
 		}
 
 		if ((anInt1161 == 1) || (anInt1161 == 4) || (anInt1161 == 5) || (anInt1161 == 6)) {
-			aString1274 = var1.method638();
+			aString1274 = var1.readString();
 			if (aString1274.length() == 0) {
 				if (anInt1161 == 1)
 					aString1274 = "Ok";

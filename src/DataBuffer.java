@@ -7,7 +7,7 @@ public class DataBuffer extends Class131 {
 	public static int[] anIntArray1108 = new int[256];
 	static long[] aLongArray1111;
 
-	public byte method584() {
+	public byte readByte() {
 		return data[++pos - 1];
 	}
 
@@ -112,7 +112,7 @@ public class DataBuffer extends Class131 {
 		writeByte(var1 & 127);
 	}
 
-	public int method595() {
+	public int readUByte() {
 		return data[++pos - 1] & 255;
 	}
 
@@ -148,7 +148,7 @@ public class DataBuffer extends Class131 {
 
 	public String method601() {
 		if (data[pos] != 0)
-			return method638();
+			return readString();
 		else {
 			++pos;
 			return null;
@@ -187,12 +187,12 @@ public class DataBuffer extends Class131 {
 
 	public int method605() {
 		final int var1 = data[pos] & 255;
-		return var1 < 128 ? method595() - 64 : readUShort() - '\uc000';
+		return var1 < 128 ? readUByte() - 64 : readUShort() - '\uc000';
 	}
 
-	public int method606() {
+	public int readCompact() {
 		final int var1 = data[pos] & 255;
-		return var1 < 128 ? method595() : readUShort() - '\u8000';
+		return var1 < 128 ? readUByte() : readUShort() - '\u8000';
 	}
 
 	public int method607() {
@@ -320,15 +320,15 @@ public class DataBuffer extends Class131 {
 		data[++pos - 1] = (byte) (128 - var1);
 	}
 
-	public int method614() {
+	public int getUByteA() {
 		return (data[++pos - 1] - 128) & 255;
 	}
 
-	public int method615() {
+	public int getUByteC() {
 		return (0 - data[++pos - 1]) & 255;
 	}
 
-	public int method616() {
+	public int getUByteS() {
 		return (128 - data[++pos - 1]) & 255;
 	}
 
@@ -404,15 +404,17 @@ public class DataBuffer extends Class131 {
 				+ ((data[pos - 1] & 255) << 24) + ((data[pos - 3] & 255) << 8);
 	}
 
-	public int method629() {
+	public int readULEShort() {
 		pos += 2;
 		return (data[pos - 2] & 255) + ((data[pos - 1] & 255) << 8);
 	}
 
-	public int method630() {
+	public int readIntV2() {
 		pos += 4;
-		return ((data[pos - 3] & 255) << 24) + ((data[pos - 4] & 255) << 16)
-				+ ((data[pos - 1] & 255) << 8) + (data[pos - 2] & 255);
+		return ((data[pos - 3] & 255) << 24) + 
+				((data[pos - 4] & 255) << 16) + 
+				((data[pos - 1] & 255) << 8) + 
+				(data[pos - 2] & 255);
 	}
 
 	public void method631(final int var1) {
@@ -517,7 +519,7 @@ public class DataBuffer extends Class131 {
 		return var3;
 	}
 
-	public String method638() {
+	public String readString() {
 		final int var1 = pos;
 
 		while (data[++pos - 1] != 0)
@@ -555,8 +557,10 @@ public class DataBuffer extends Class131 {
 
 	public int readIntV1() {
 		pos += 4;
-		return (data[pos - 1] & 255) + ((data[pos - 3] & 255) << 16)
-				+ ((data[pos - 4] & 255) << 24) + ((data[pos - 2] & 255) << 8);
+		return (data[pos - 1] & 255) + 
+				((data[pos - 3] & 255) << 16) +
+				((data[pos - 4] & 255) << 24) + 
+				((data[pos - 2] & 255) << 8);
 	}
 
 	public int method643() {

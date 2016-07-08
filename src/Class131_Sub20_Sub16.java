@@ -7,7 +7,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 		byte var4 = -1;
 		int var5;
 		if ((var3 & 32) != 0) {
-			var5 = var0.method595();
+			var5 = var0.readUByte();
 			final byte[] var6 = new byte[var5];
 			final DataBuffer var7 = new DataBuffer(var6);
 			var0.method604(var6, 0, var5);
@@ -21,7 +21,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			if (var5 == '\uffff')
 				var5 = -1;
 
-			var10 = var0.method595();
+			var10 = var0.readUByte();
 			Class36.method206(var2, var5, var10);
 		}
 
@@ -32,7 +32,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 		}
 
 		if ((var3 & 4) != 0) {
-			var2.aString1705 = var0.method638();
+			var2.aString1705 = var0.readString();
 			if (var2.aString1705.charAt(0) == 126) {
 				var2.aString1705 = var2.aString1705.substring(1);
 				Class131_Sub20_Sub15.method792(2, var2.aString2004, var2.aString1705);
@@ -47,11 +47,11 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 
 		if ((var3 & 16) != 0) {
 			var5 = var0.readUShort();
-			var10 = var0.method595();
+			var10 = var0.readUByte();
 			var2.method926(var5, var10, client.anInt2038);
 			var2.anInt1723 = client.anInt2038 + 300;
-			var2.anInt1741 = var0.method595();
-			var2.anInt1715 = var0.method595();
+			var2.anInt1741 = var0.readUByte();
+			var2.anInt1715 = var0.readUByte();
 		}
 
 		if ((var3 & 64) != 0) {
@@ -64,9 +64,9 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 
 		if ((var3 & 1) != 0) {
 			var5 = var0.readUShort();
-			final Class82 var17 = (Class82) Class39.method214(Class42.method221(), var0.method595());
-			final boolean var11 = var0.method595() == 1;
-			final int var12 = var0.method595();
+			final Class82 var17 = (Class82) Class39.method214(Class42.method221(), var0.readUByte());
+			final boolean var11 = var0.readUByte() == 1;
+			final int var12 = var0.readUByte();
 			final int var16 = var0.pos;
 			if ((var2.aString2004 != null) && (var2.aClass91_1980 != null)) {
 				boolean var13 = false;
@@ -119,10 +119,10 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 		}
 
 		if ((var3 & 1024) != 0) {
-			var2.anInt1742 = var0.method584();
-			var2.anInt1744 = var0.method584();
-			var2.anInt1719 = var0.method584();
-			var2.anInt1724 = var0.method584();
+			var2.anInt1742 = var0.readByte();
+			var2.anInt1744 = var0.readByte();
+			var2.anInt1719 = var0.readByte();
+			var2.anInt1724 = var0.readByte();
 			var2.anInt1704 = var0.readUShort() + client.anInt2038;
 			var2.anInt1746 = var0.readUShort() + client.anInt2038;
 			var2.anInt1730 = var0.readUShort();
@@ -145,22 +145,22 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 
 		if ((var3 & 2048) != 0) {
 			var5 = var0.readUShort();
-			var10 = var0.method595();
+			var10 = var0.readUByte();
 			var2.method926(var5, var10, client.anInt2038);
 			var2.anInt1723 = 300 + client.anInt2038;
-			var2.anInt1741 = var0.method595();
-			var2.anInt1715 = var0.method595();
+			var2.anInt1741 = var0.readUByte();
+			var2.anInt1715 = var0.readUByte();
 		}
 
 		if ((var3 & 256) != 0)
-			GPI.aByteArray22[var1] = var0.method584();
+			GPI.aByteArray22[var1] = var0.readByte();
 
 		if ((var3 & 512) != 0)
-			var4 = var0.method584();
+			var4 = var0.readByte();
 
 		if ((var3 & 4096) != 0)
 			for (var5 = 0; var5 < 3; ++var5)
-				var2.aStringArray1983[var5] = var0.method638();
+				var2.aStringArray1983[var5] = var0.readString();
 
 		if (var2.aBool2002)
 			if (var4 == 127)

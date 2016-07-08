@@ -40,7 +40,7 @@ public class Class14 {
 		aClass10_142.method42(var1);
 		aClass10_119 = new Class10();
 		aClass10_119.method42(var1);
-		int var3 = var1.method595();
+		int var3 = var1.readUByte();
 		if (var3 != 0) {
 			--var1.pos;
 			aClass10_133 = new Class10();
@@ -49,7 +49,7 @@ public class Class14 {
 			aClass10_121.method42(var1);
 		}
 
-		var3 = var1.method595();
+		var3 = var1.readUByte();
 		if (var3 != 0) {
 			--var1.pos;
 			aClass10_122 = new Class10();
@@ -58,7 +58,7 @@ public class Class14 {
 			aClass10_130.method42(var1);
 		}
 
-		var3 = var1.method595();
+		var3 = var1.readUByte();
 		if (var3 != 0) {
 			--var1.pos;
 			aClass10_124 = new Class10();
@@ -68,17 +68,17 @@ public class Class14 {
 		}
 
 		for (int var2 = 0; var2 < 10; ++var2) {
-			final int var4 = var1.method606();
+			final int var4 = var1.readCompact();
 			if (var4 == 0)
 				break;
 
 			anIntArray126[var2] = var4;
 			anIntArray135[var2] = var1.method605();
-			anIntArray137[var2] = var1.method606();
+			anIntArray137[var2] = var1.readCompact();
 		}
 
-		anInt129 = var1.method606();
-		anInt132 = var1.method606();
+		anInt129 = var1.readCompact();
+		anInt132 = var1.readCompact();
 		anInt138 = var1.readUShort();
 		anInt134 = var1.readUShort();
 		aClass11_131 = new Class11();

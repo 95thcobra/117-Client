@@ -165,7 +165,7 @@ public class Class131_Sub1 extends Class131 {
 
 			int var7;
 			do {
-				var7 = var2.method595();
+				var7 = var2.readUByte();
 				var4 += var7;
 			} while (var7 >= 255);
 

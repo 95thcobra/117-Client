@@ -54,7 +54,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 		int var3;
 		int var4;
 		if (var2 == 1) {
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			if (var3 > 0)
 				if ((anIntArray1507 != null) && !aBool1540)
 					var1.pos += 3 * var3;
@@ -64,13 +64,13 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 
 					for (var4 = 0; var4 < var3; ++var4) {
 						anIntArray1507[var4] = var1.readUShort();
-						anIntArray1505[var4] = var1.method595();
+						anIntArray1505[var4] = var1.readUByte();
 					}
 				}
 		} else if (var2 == 2)
-			aString1528 = var1.method638();
+			aString1528 = var1.readString();
 		else if (var2 == 5) {
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			if (var3 > 0)
 				if ((null != anIntArray1507) && !aBool1540)
 					var1.pos += 2 * var3;
@@ -82,16 +82,16 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 						anIntArray1507[var4] = var1.readUShort();
 				}
 		} else if (var2 == 14)
-			anInt1511 = var1.method595();
+			anInt1511 = var1.readUByte();
 		else if (var2 == 15)
-			anInt1503 = var1.method595();
+			anInt1503 = var1.readUByte();
 		else if (var2 == 17) {
 			anInt1519 = 0;
 			aBool1520 = false;
 		} else if (var2 == 18)
 			aBool1520 = false;
 		else if (var2 == 19)
-			anInt1521 = var1.method595();
+			anInt1521 = var1.readUByte();
 		else if (var2 == 21)
 			anInt1522 = 0;
 		else if (var2 == 22)
@@ -105,17 +105,17 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 		} else if (var2 == 27)
 			anInt1519 = 1;
 		else if (var2 == 28)
-			anInt1526 = var1.method595();
+			anInt1526 = var1.readUByte();
 		else if (var2 == 29)
-			anInt1527 = var1.method584();
+			anInt1527 = var1.readByte();
 		else if (var2 == 39)
-			anInt1510 = var1.method584() * 25;
+			anInt1510 = var1.readByte() * 25;
 		else if ((var2 >= 30) && (var2 < 35)) {
-			aStringArray1529[var2 - 30] = var1.method638();
+			aStringArray1529[var2 - 30] = var1.readString();
 			if (aStringArray1529[var2 - 30].equalsIgnoreCase("Hidden"))
 				aStringArray1529[var2 - 30] = null;
 		} else if (var2 == 40) {
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			aShortArray1541 = new short[var3];
 			aShortArray1514 = new short[var3];
 
@@ -124,7 +124,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 				aShortArray1514[var4] = (short) var1.readUShort();
 			}
 		} else if (var2 == 41) {
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			aShortArray1515 = new short[var3];
 			aShortArray1512 = new short[var3];
 
@@ -147,7 +147,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 		else if (var2 == 68)
 			anInt1531 = var1.readUShort();
 		else if (var2 == 69)
-			var1.method595();
+			var1.readUByte();
 		else if (var2 == 70)
 			anInt1502 = var1.readShort();
 		else if (var2 == 71)
@@ -159,7 +159,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 		else if (var2 == 74)
 			aBool1537 = true;
 		else if (var2 == 75)
-			anInt1542 = var1.method595();
+			anInt1542 = var1.readUByte();
 		else if (var2 == 77) {
 			anInt1544 = var1.readUShort();
 			if (anInt1544 == '\uffff')
@@ -169,7 +169,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 			if (anInt1545 == '\uffff')
 				anInt1545 = -1;
 
-			var3 = var1.method595();
+			var3 = var1.readUByte();
 			anIntArray1513 = new int[var3 + 1];
 
 			for (var4 = 0; var4 <= var3; ++var4) {
@@ -179,18 +179,18 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 			}
 		} else if (var2 == 78) {
 			anInt1547 = var1.readUShort();
-			anInt1501 = var1.method595();
+			anInt1501 = var1.readUByte();
 		} else if (var2 == 79) {
 			anInt1548 = var1.readUShort();
 			anInt1549 = var1.readUShort();
-			anInt1501 = var1.method595();
-			var3 = var1.method595();
+			anInt1501 = var1.readUByte();
+			var3 = var1.readUByte();
 			anIntArray1550 = new int[var3];
 
 			for (var4 = 0; var4 < var3; ++var4)
 				anIntArray1550[var4] = var1.readUShort();
 		} else if (var2 == 81)
-			anInt1522 = var1.method595() * 256;
+			anInt1522 = var1.readUByte() * 256;
 
 	}
 
@@ -406,7 +406,7 @@ public class Class131_Sub20_Sub9 extends Class131_Sub20 {
 
 	void method757(final DataBuffer var1) {
 		while (true) {
-			final int var2 = var1.method595();
+			final int var2 = var1.readUByte();
 			if (var2 == 0)
 				return;
 

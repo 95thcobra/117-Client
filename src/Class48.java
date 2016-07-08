@@ -66,7 +66,7 @@ public class Class48 {
 						return;
 					}
 
-					final int var7 = var5.method595();
+					final int var7 = var5.readUByte();
 					if ((var7 < 0) || (var7 > 1)) {
 						try {
 							var1.method521();
@@ -93,7 +93,7 @@ public class Class48 {
 
 					for (var11 = 0; var11 < var10; ++var11) {
 						var12 = var5.readUShort();
-						final String var13 = var5.method638();
+						final String var13 = var5.readString();
 						if (aBoolArray471[var12])
 							aStringArray474[var12] = var13;
 					}

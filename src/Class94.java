@@ -50,11 +50,11 @@ public class Class94 {
 						- 12); var1.anIntArray1635[var3++] = var4) {
 					var4 = var2.readUShort();
 					if (var4 == 3)
-						var1.aStringArray1642[var3] = var2.method638();
+						var1.aStringArray1642[var3] = var2.readString();
 					else if ((var4 < 100) && (var4 != 21) && (var4 != 38) && (var4 != 39))
 						var1.anIntArray1636[var3] = var2.readIntV1();
 					else
-						var1.anIntArray1636[var3] = var2.method595();
+						var1.anIntArray1636[var3] = var2.readUByte();
 				}
 
 				Class131_Sub20_Sub18.aClass121_1641.method479(var1, var0);

@@ -486,7 +486,7 @@ public final class client extends Applet_Sub1 {
 											var14 = -1;
 
 											while (true) {
-												var15 = var61.method606();
+												var15 = var61.readCompact();
 												if (var15 == 0)
 													break;
 
@@ -494,7 +494,7 @@ public final class client extends Applet_Sub1 {
 												var16 = 0;
 
 												while (true) {
-													var18 = var61.method606();
+													var18 = var61.readCompact();
 													if (var18 == 0)
 														break;
 
@@ -502,7 +502,7 @@ public final class client extends Applet_Sub1 {
 													var22 = var16 & 63;
 													var23 = (var16 >> 6) & 63;
 													var24 = var16 >> 12;
-													var25 = var61.method595();
+													var25 = var61.readUByte();
 													final int var26 = var25 >> 2;
 													final int var27 = var25 & 3;
 													final int var28 = var8 + var23;
@@ -617,7 +617,7 @@ public final class client extends Applet_Sub1 {
 															var29 = -1;
 
 															while (true) {
-																var30 = var36.method606();
+																var30 = var36.readCompact();
 																if (var30 == 0)
 																	continue label373;
 
@@ -625,7 +625,7 @@ public final class client extends Applet_Sub1 {
 																int var37 = 0;
 
 																while (true) {
-																	final int var38 = var36.method606();
+																	final int var38 = var36.readCompact();
 																	if (var38 == 0)
 																		break;
 
@@ -633,7 +633,7 @@ public final class client extends Applet_Sub1 {
 																	final int var39 = var37 & 63;
 																	final int var40 = (var37 >> 6) & 63;
 																	final int var41 = var37 >> 12;
-																	final int var42 = var36.method595();
+																	final int var42 = var36.readUByte();
 																	final int var43 = var42 >> 2;
 																	final int var44 = var42 & 3;
 																	if ((var11 == var41) && (var40 >= var24)
@@ -1512,13 +1512,13 @@ public final class client extends Applet_Sub1 {
 							}
 
 							var12.pos = 0;
-							var13 = var12.method595();
+							var13 = var12.readUByte();
 							if ((var13 < 1) || (var13 > 3))
 								throw new IOException("" + var13);
 
 							int var14 = 0;
 							if (var13 > 1)
-								var14 = var12.method595();
+								var14 = var12.readUByte();
 
 							if (var13 <= 2) {
 								var40 = var12.method602();
@@ -1843,9 +1843,9 @@ public final class client extends Applet_Sub1 {
 
 								if (null == Class89.aClass131_Sub20_Sub20_725) {
 									Class94.aClass131_Sub14_755.pos = 0;
-									var11 = Class94.aClass131_Sub14_755.method595();
+									var11 = Class94.aClass131_Sub14_755.readUByte();
 									var12 = Class94.aClass131_Sub14_755.readUShort();
-									final int var13 = Class94.aClass131_Sub14_755.method595();
+									final int var13 = Class94.aClass131_Sub14_755.readUByte();
 									var14 = Class94.aClass131_Sub14_755.readIntV1();
 									final long var15 = (var11 << 16) + var12;
 									Class131_Sub20_Sub20 var17 = (Class131_Sub20_Sub20) Class94.aClass114_747

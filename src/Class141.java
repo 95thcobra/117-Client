@@ -12,7 +12,7 @@ public class Class141 {
 
 	public Class141(final DataBuffer var1, final boolean var2) {
 		final int var4 = var1.readUShort();
-		final boolean var3 = var1.method595() == 1;
+		final boolean var3 = var1.readUByte() == 1;
 		byte var6;
 		if (var3)
 			var6 = 1;

@@ -15,7 +15,7 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 
 	public void method710(final DataBuffer var1, final int var2) {
 		while (true) {
-			final int var3 = var1.method595();
+			final int var3 = var1.readUByte();
 			if (var3 == 0)
 				return;
 
@@ -27,7 +27,7 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 		if (var2 == 1)
 			anInt1430 = var1.method598();
 		else if (var2 == 2)
-			anInt1433 = var1.method595();
+			anInt1433 = var1.readUByte();
 		else if (var2 == 5)
 			aBool1434 = false;
 		else if (var2 == 7)

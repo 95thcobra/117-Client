@@ -377,9 +377,9 @@ public class LoginEncoder {
 						Class131_Sub20_Sub20.loginConnection.read(client.gameBuffer.data, 0,
 								Class58.anInt565);
 						client.gameBuffer.pos = 0;
-						final String var15 = client.gameBuffer.method638();
-						final String var10 = client.gameBuffer.method638();
-						final String var9 = client.gameBuffer.method638();
+						final String var15 = client.gameBuffer.readString();
+						final String var10 = client.gameBuffer.readString();
+						final String var9 = client.gameBuffer.readString();
 						Class64.method306(var15, var10, var9);
 						Class32.method142(10);
 					}

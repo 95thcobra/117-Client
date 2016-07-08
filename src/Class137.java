@@ -6,8 +6,8 @@ public class Class137 {
 	public GrandExchangeOffer aClass129_910;
 
 	Class137(final DataBuffer var1, final byte var2, final int var3) {
-		aString909 = var1.method638();
-		aString913 = var1.method638();
+		aString909 = var1.readString();
+		aString913 = var1.readString();
 		anInt912 = var1.readUShort();
 		aLong911 = var1.method600();
 		final int var4 = var1.readIntV1();

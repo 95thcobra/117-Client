@@ -48,7 +48,7 @@ public class Class49 {
 	}
 
 	static int method254(final Class131_Sub18 var0) {
-		final Class131_Sub21 var1 = (Class131_Sub21) client.aClass114_2225
+		final InterfaceSetting var1 = (InterfaceSetting) client.aClass114_2225
 				.method457(var0.anInt1159 + ((long) var0.anInt1272 << 32));
 		return null == var1 ? var0.anInt1230 : var1.anInt1320;
 	}

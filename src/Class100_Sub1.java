@@ -85,7 +85,7 @@ public class Class100_Sub1 extends Class100 {
 			aCRC32_1132.update(var3, 0, var3.length);
 			var5 = (int) aCRC32_1132.getValue();
 			final DataBuffer var6 = new DataBuffer(Class131_Sub4_Sub4.method914(var3));
-			final int var7 = var6.method595();
+			final int var7 = var6.readUByte();
 			if ((var7 != 5) && (var7 != 6))
 				throw new RuntimeException(var7 + "," + anInt1129 + "," + var2);
 

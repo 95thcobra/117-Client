@@ -146,7 +146,7 @@ public class Class84 {
 		var1.pos = var0.length - 7 - (Class13.anInt116 * 8);
 		Class13.anInt113 = var1.readUShort();
 		Class13.anInt115 = var1.readUShort();
-		final int var5 = (var1.method595() & 255) + 1;
+		final int var5 = (var1.readUByte() & 255) + 1;
 
 		int var4;
 		for (var4 = 0; var4 < Class13.anInt116; ++var4)
@@ -178,15 +178,15 @@ public class Class84 {
 			final int var6 = var7 * var8;
 			final byte[] var2 = new byte[var6];
 			Class13.aByteArrayArray117[var4] = var2;
-			final int var10 = var1.method595();
+			final int var10 = var1.readUByte();
 			int var3;
 			if (var10 == 0)
 				for (var3 = 0; var3 < var6; ++var3)
-					var2[var3] = var1.method584();
+					var2[var3] = var1.readByte();
 			else if (var10 == 1)
 				for (var3 = 0; var3 < var7; ++var3)
 					for (int var9 = 0; var9 < var8; ++var9)
-						var2[var3 + (var7 * var9)] = var1.method584();
+						var2[var3 + (var7 * var9)] = var1.readByte();
 		}
 
 	}

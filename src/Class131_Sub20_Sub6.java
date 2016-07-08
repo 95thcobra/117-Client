@@ -41,7 +41,7 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 
 	void method728(final DataBuffer var1) {
 		while (true) {
-			final int var2 = var1.method595();
+			final int var2 = var1.readUByte();
 			if (var2 == 0)
 				return;
 
@@ -219,15 +219,15 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 		int var3;
 		int var4;
 		if (var2 == 1) {
-			var4 = var1.method595();
+			var4 = var1.readUByte();
 			anIntArray1458 = new int[var4];
 
 			for (var3 = 0; var3 < var4; ++var3)
 				anIntArray1458[var3] = var1.readUShort();
 		} else if (var2 == 2)
-			aString1463 = var1.method638();
+			aString1463 = var1.readString();
 		else if (var2 == 12)
-			anInt1465 = var1.method595();
+			anInt1465 = var1.readUByte();
 		else if (var2 == 13)
 			anInt1460 = var1.readUShort();
 		else if (var2 == 14)
@@ -242,11 +242,11 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 			anInt1484 = var1.readUShort();
 			anInt1466 = var1.readUShort();
 		} else if ((var2 >= 30) && (var2 < 35)) {
-			aStringArray1452[var2 - 30] = var1.method638();
+			aStringArray1452[var2 - 30] = var1.readString();
 			if (aStringArray1452[var2 - 30].equalsIgnoreCase("Hidden"))
 				aStringArray1452[var2 - 30] = null;
 		} else if (var2 == 40) {
-			var4 = var1.method595();
+			var4 = var1.readUByte();
 			aShortArray1467 = new short[var4];
 			aShortArray1475 = new short[var4];
 
@@ -256,7 +256,7 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 			}
 		} else if (var2 != 41) {
 			if (var2 == 60) {
-				var4 = var1.method595();
+				var4 = var1.readUByte();
 				anIntArray1459 = new int[var4];
 
 				for (var3 = 0; var3 < var4; ++var3)
@@ -272,9 +272,9 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 			else if (var2 == 99)
 				aBool1456 = true;
 			else if (var2 == 100)
-				anInt1476 = var1.method584();
+				anInt1476 = var1.readByte();
 			else if (var2 == 101)
-				anInt1477 = var1.method584() * 5;
+				anInt1477 = var1.readByte() * 5;
 			else if (var2 == 102)
 				anInt1478 = var1.readUShort();
 			else if (var2 == 103)
@@ -288,7 +288,7 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 				if (anInt1482 == '\uffff')
 					anInt1482 = -1;
 
-				var4 = var1.method595();
+				var4 = var1.readUByte();
 				anIntArray1468 = new int[1 + var4];
 
 				for (var3 = 0; var3 <= var4; ++var3) {
@@ -303,9 +303,9 @@ public class Class131_Sub20_Sub6 extends Class131_Sub20 {
 			else if (var2 == 111)
 				aBool1485 = true;
 			else if (var2 == 112)
-				anInt1472 = var1.method595();
+				anInt1472 = var1.readUByte();
 		} else {
-			var4 = var1.method595();
+			var4 = var1.readUByte();
 			aShortArray1469 = new short[var4];
 			aShortArray1470 = new short[var4];
 

@@ -72,7 +72,7 @@ public class Class35 implements Interface3 {
 			Class26.aByteArrayArrayArray225[var1][var2][var3] = 0;
 
 			while (true) {
-				var8 = var0.method595();
+				var8 = var0.readUByte();
 				if (var8 == 0) {
 					if (var1 == 0)
 						Class26.anIntArrayArrayArray239[0][var2][var3] = -Class106.method430(var4 + var2 + 932731,
@@ -84,7 +84,7 @@ public class Class35 implements Interface3 {
 				}
 
 				if (var8 == 1) {
-					int var7 = var0.method595();
+					int var7 = var0.readUByte();
 					if (var7 == 1)
 						var7 = 0;
 
@@ -97,7 +97,7 @@ public class Class35 implements Interface3 {
 				}
 
 				if (var8 <= 49) {
-					Class136.aByteArrayArrayArray907[var1][var2][var3] = var0.method584();
+					Class136.aByteArrayArrayArray907[var1][var2][var3] = var0.readByte();
 					Class26.aByteArrayArrayArray224[var1][var2][var3] = (byte) ((var8 - 2) / 4);
 					Class26.aByteArrayArrayArray229[var1][var2][var3] = (byte) (((var8 - 2) + var6) & 3);
 				} else if (var8 <= 81)
@@ -107,17 +107,17 @@ public class Class35 implements Interface3 {
 			}
 		} else
 			while (true) {
-				var8 = var0.method595();
+				var8 = var0.readUByte();
 				if (var8 == 0)
 					break;
 
 				if (var8 == 1) {
-					var0.method595();
+					var0.readUByte();
 					break;
 				}
 
 				if (var8 <= 49)
-					var0.method595();
+					var0.readUByte();
 			}
 
 	}

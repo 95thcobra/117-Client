@@ -16,14 +16,14 @@ public class Class43 {
 		final DataBuffer var4 = new DataBuffer(var1);
 		final DataBuffer var7 = new DataBuffer(var1);
 		var4.pos = 2;
-		final int var8 = var4.method595();
+		final int var8 = var4.readUByte();
 		int var10 = -1;
 		int var6 = 0;
 		var7.pos = var4.pos + var8;
 
 		int var9;
 		for (var9 = 0; var9 < var8; ++var9) {
-			final int var5 = var4.method595();
+			final int var5 = var4.readUByte();
 			if (var5 > 0) {
 				if (aClass131_Sub5_426.anIntArray1007[var9] != 0)
 					for (int var3 = var9 - 1; var3 > var10; --var3)

@@ -48,7 +48,7 @@ public final class PacketDecoder {
       if(Class131_Sub20_Sub20.loginConnection == null)
 		return false;
 	else {
-         int var3;
+         int xp;
          String var4;
          try {
             int var0 = Class131_Sub20_Sub20.loginConnection.available();
@@ -91,10 +91,10 @@ public final class PacketDecoder {
             client.anInt2154 = client.anInt2219;
             client.anInt2219 = client.anInt2041 * -1;
             client.anInt2041 = client.incomingPacket * -1;
-            int var1;
+            int skillId;
             if(client.incomingPacket == 43) {
-               var1 = client.gameBuffer.readIntV1();
-               final Class131_Sub7 var65 = (Class131_Sub7)client.aClass114_2184.method457(var1);
+               skillId = client.gameBuffer.readIntV1();
+               final Class131_Sub7 var65 = (Class131_Sub7)client.aClass114_2184.method457(skillId);
                if(null != var65)
 				Class131_Sub6.method553(var65, true);
 
@@ -109,11 +109,11 @@ public final class PacketDecoder {
 
             if(client.incomingPacket == 250) {
                client.aBool2271 = true;
-               client.anInt2305 = client.gameBuffer.method595();
-               Class31.anInt296 = client.gameBuffer.method595();
+               client.anInt2305 = client.gameBuffer.readUByte();
+               Class31.anInt296 = client.gameBuffer.readUByte();
                Class131_Sub20_Sub7.anInt1493 = client.gameBuffer.readUShort();
-               Class72.anInt618 = client.gameBuffer.method595();
-               Class131_Sub10.anInt1067 = client.gameBuffer.method595();
+               Class72.anInt618 = client.gameBuffer.readUByte();
+               Class131_Sub10.anInt1067 = client.gameBuffer.readUByte();
                if(Class131_Sub10.anInt1067 >= 100) {
                   Class139.anInt917 = 64 + (client.anInt2305 * 128);
                   Class1.anInt1 = 64 + (Class31.anInt296 * 128);
@@ -125,15 +125,15 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 32) {// set root pane / window pane
-               var1 = client.gameBuffer.readUshortA();
-               System.out.println("rootpane id: " + var1);
-               client.anInt2128 = var1;
+               skillId = client.gameBuffer.readUshortA();
+               System.out.println("rootpane id: " + skillId);
+               client.anInt2128 = skillId;
                Class131_Sub20_Sub19_Sub2.method925(false);
-               Class40.method216(var1);
+               Class40.method216(skillId);
                Class93.method391(client.anInt2128);
 
-               for(var3 = 0; var3 < 100; ++var3)
-				client.aBoolArray2252[var3] = true;
+               for(xp = 0; xp < 100; ++xp)
+				client.aBoolArray2252[xp] = true;
 
                client.incomingPacket = -1;
                return true;
@@ -146,13 +146,13 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 73) {
-               var1 = client.gameBuffer.method595();
-               if(client.gameBuffer.method595() == 0) {
-                  client.grandExchangeOffers[var1] = new GrandExchangeOffer();
+               skillId = client.gameBuffer.readUByte();
+               if(client.gameBuffer.readUByte() == 0) {
+                  client.grandExchangeOffers[skillId] = new GrandExchangeOffer();
                   client.gameBuffer.pos += 18;
                } else {
                   --client.gameBuffer.pos;
-                  client.grandExchangeOffers[var1] = new GrandExchangeOffer(client.gameBuffer, false);
+                  client.grandExchangeOffers[skillId] = new GrandExchangeOffer(client.gameBuffer, false);
                }
 
                client.anInt2297 = client.anInt2298;
@@ -166,9 +166,9 @@ public final class PacketDecoder {
             boolean var64;
             boolean var97;
             if(client.incomingPacket == 137) {
-               var4 = client.gameBuffer.method638();
-               var3 = client.gameBuffer.readUShort();
-               final byte var78 = client.gameBuffer.method584();
+               var4 = client.gameBuffer.readString();
+               xp = client.gameBuffer.readUShort();
+               final byte var78 = client.gameBuffer.readByte();
                var64 = false;
                if(var78 == -128)
 				var64 = true;
@@ -181,7 +181,7 @@ public final class PacketDecoder {
 
                   var97 = false;
 
-                  for(var7 = 0; (var7 < Class23.anInt210) && (!Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].aString1106.equals(var4) || (var3 != Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].anInt1102)); ++var7)
+                  for(var7 = 0; (var7 < Class23.anInt210) && (!Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].aString1106.equals(var4) || (xp != Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].anInt1102)); ++var7)
 					;
 
                   if(var7 < Class23.anInt210) {
@@ -194,17 +194,17 @@ public final class PacketDecoder {
                      Class131_Sub20_Sub8.aClass131_Sub13Array1498[Class23.anInt210] = null;
                   }
                } else {
-                  client.gameBuffer.method638();
+                  client.gameBuffer.readString();
                   final Class131_Sub13 var72 = new Class131_Sub13();
                   var72.aString1106 = var4;
                   var72.aString1104 = Class85.method371(var72.aString1106, client.aClass142_2031);
-                  var72.anInt1102 = var3;
+                  var72.anInt1102 = xp;
                   var72.aByte1103 = var78;
 
                   for(var9 = Class23.anInt210 - 1; var9 >= 0; --var9) {
                      var10 = Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].aString1104.compareTo(var72.aString1104);
                      if(var10 == 0) {
-                        Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].anInt1102 = var3;
+                        Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].anInt1102 = xp;
                         Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].aByte1103 = var78;
                         if(var4.equals(Class131_Sub11.myPlayer.aString2004))
 							Class28.aByte259 = var78;
@@ -242,7 +242,7 @@ public final class PacketDecoder {
 
             boolean var80;
             if(client.incomingPacket == 231) {
-               var80 = client.gameBuffer.method595() == 1;
+               var80 = client.gameBuffer.readUByte() == 1;
                if(var80) {
                   Class28.aLong256 = Class84.method366(780546663) - client.gameBuffer.method600();
                   Class78.aClass141_646 = new Class141(client.gameBuffer, true);
@@ -256,18 +256,18 @@ public final class PacketDecoder {
 
             Class131_Sub18 var11;
             if(client.incomingPacket == 232) {
-               var1 = client.gameBuffer.readUShort();
-               var3 = client.gameBuffer.method630();
-               var11 = Class88.method377(var3);
+               skillId = client.gameBuffer.readUShort();
+               xp = client.gameBuffer.readIntV2();
+               var11 = Class88.method377(xp);
                if((var11 != null) && (var11.anInt1202 == 0)) {
-                  if(var1 > (var11.anInt1182 - var11.anInt1291))
-					var1 = var11.anInt1182 - var11.anInt1291;
+                  if(skillId > (var11.anInt1182 - var11.anInt1291))
+					skillId = var11.anInt1182 - var11.anInt1291;
 
-                  if(var1 < 0)
-					var1 = 0;
+                  if(skillId < 0)
+					skillId = 0;
 
-                  if(var1 != var11.anInt1180) {
-                     var11.anInt1180 = var1;
+                  if(skillId != var11.anInt1180) {
+                     var11.anInt1180 = skillId;
                      Class131_Sub20_Sub6.method734(var11);
                   }
                }
@@ -279,22 +279,22 @@ public final class PacketDecoder {
             if(client.incomingPacket == 69) {
                GPI.anInt11 = 0;
 
-               for(var1 = 0; var1 < 2048; ++var1) {
-                  GPI.cachedAppearances[var1] = null;
-                  GPI.aByteArray22[var1] = 1;
+               for(skillId = 0; skillId < 2048; ++skillId) {
+                  GPI.cachedAppearances[skillId] = null;
+                  GPI.aByteArray22[skillId] = 1;
                }
 
-               for(var1 = 0; var1 < 2048; ++var1)
-				client.playerArray[var1] = null;
+               for(skillId = 0; skillId < 2048; ++skillId)
+				client.playerArray[skillId] = null;
 
                Class36.initializeGPI(client.gameBuffer);
                client.incomingPacket = -1;
                return true;
             }
 
-            if(client.incomingPacket == 34) {
-               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.method614();
-               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.method615();
+            if(client.incomingPacket == 34) { // possibly map base
+               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.getUByteA();
+               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.getUByteC();
                client.incomingPacket = -1;
                return true;
             }
@@ -305,22 +305,22 @@ public final class PacketDecoder {
                return true;
             }
 
-            int var5;
+            int currentLevel;
             Class131_Sub18 var74;
             if(client.incomingPacket == 131) {
-               var1 = client.gameBuffer.method621();
-               var3 = client.gameBuffer.method644();
-               var5 = client.gameBuffer.method639();
-               var74 = Class88.method377(var3);
-               if((var74.anInt1167 != var5) || (var1 != var74.anInt1157) || (var74.anInt1163 != 0) || (var74.anInt1261 != 0)) {
-                  var74.anInt1167 = var5;
-                  var74.anInt1157 = var1;
+               skillId = client.gameBuffer.method621();
+               xp = client.gameBuffer.method644();
+               currentLevel = client.gameBuffer.method639();
+               var74 = Class88.method377(xp);
+               if((var74.anInt1167 != currentLevel) || (skillId != var74.anInt1157) || (var74.anInt1163 != 0) || (var74.anInt1261 != 0)) {
+                  var74.anInt1167 = currentLevel;
+                  var74.anInt1157 = skillId;
                   var74.anInt1163 = 0;
                   var74.anInt1261 = 0;
                   Class131_Sub20_Sub6.method734(var74);
                   Class131_Sub20_Sub3.method706(var74);
                   if(var74.anInt1202 == 0)
-					Class16_Sub1.method547(Class131_Sub18.aClass131_Sub18ArrayArray1174[var3 >> 16], var74, false);
+					Class16_Sub1.method547(Class131_Sub18.aClass131_Sub18ArrayArray1174[xp >> 16], var74, false);
                }
 
                client.incomingPacket = -1;
@@ -329,7 +329,7 @@ public final class PacketDecoder {
 
             int var6;
             if(client.incomingPacket == 106) {
-               var3 = client.gameBuffer.method595();
+               xp = client.gameBuffer.readUByte();
                final Class84[] var92 = Class60.method295(-1747730515);
                var6 = 0;
 
@@ -341,7 +341,7 @@ public final class PacketDecoder {
                   }
 
                   final Class84 var71 = var92[var6];
-                  if(var3 == var71.anInt698) {
+                  if(xp == var71.anInt698) {
                      var67 = var71;
                      break;
                   }
@@ -355,11 +355,11 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 36) {
-               client.anInt2218 = client.gameBuffer.method595();
+               client.anInt2218 = client.gameBuffer.readUByte();
                if(client.anInt2218 == 255)
 				client.anInt2218 = 0;
 
-               client.anInt2258 = client.gameBuffer.method595();
+               client.anInt2258 = client.gameBuffer.readUByte();
                if(client.anInt2258 == 255)
 				client.anInt2258 = 0;
 
@@ -368,13 +368,13 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 37) {
-               for(var1 = 0; var1 < client.playerArray.length; ++var1)
-				if(client.playerArray[var1] != null)
-					client.playerArray[var1].anInt1703 = -1;
+               for(skillId = 0; skillId < client.playerArray.length; ++skillId)
+				if(client.playerArray[skillId] != null)
+					client.playerArray[skillId].anInt1703 = -1;
 
-               for(var1 = 0; var1 < client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065.length; ++var1)
-				if(null != client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[var1])
-					client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[var1].anInt1703 = -1;
+               for(skillId = 0; skillId < client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065.length; ++skillId)
+				if(null != client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[skillId])
+					client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[skillId].anInt1703 = -1;
 
                client.incomingPacket = -1;
                return true;
@@ -392,26 +392,26 @@ public final class PacketDecoder {
                   return true;
                }
 
-               client.aString2251 = client.gameBuffer.method638();
+               client.aString2251 = client.gameBuffer.readString();
                final long var13 = client.gameBuffer.method600();
                client.aString2250 = Class52.method271(var13);
-               Class113.aByte836 = client.gameBuffer.method584();
-               var5 = client.gameBuffer.method595();
-               if(var5 == 255) {
+               Class113.aByte836 = client.gameBuffer.readByte();
+               currentLevel = client.gameBuffer.readUByte();
+               if(currentLevel == 255) {
                   client.incomingPacket = -1;
                   return true;
                }
 
-               Class23.anInt210 = var5;
+               Class23.anInt210 = currentLevel;
                final Class131_Sub13[] var81 = new Class131_Sub13[100];
 
                for(var7 = 0; var7 < Class23.anInt210; ++var7) {
                   var81[var7] = new Class131_Sub13();
-                  var81[var7].aString1106 = client.gameBuffer.method638();
+                  var81[var7].aString1106 = client.gameBuffer.readString();
                   var81[var7].aString1104 = Class85.method371(var81[var7].aString1106, client.aClass142_2031);
                   var81[var7].anInt1102 = client.gameBuffer.readUShort();
-                  var81[var7].aByte1103 = client.gameBuffer.method584();
-                  client.gameBuffer.method638();
+                  var81[var7].aByte1103 = client.gameBuffer.readByte();
+                  client.gameBuffer.readString();
                   if(var81[var7].aString1106.equals(Class131_Sub11.myPlayer.aString2004))
 					Class28.aByte259 = var81[var7].aByte1103;
                }
@@ -441,11 +441,11 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 183) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.method621();
-               var11 = Class88.method377(var1);
-               if((var3 != var11.anInt1160) || (var3 == -1)) {
-                  var11.anInt1160 = var3;
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.method621();
+               var11 = Class88.method377(skillId);
+               if((xp != var11.anInt1160) || (xp == -1)) {
+                  var11.anInt1160 = xp;
                   var11.anInt1279 = 0;
                   var11.anInt1147 = 0;
                   Class131_Sub20_Sub6.method734(var11);
@@ -458,7 +458,7 @@ public final class PacketDecoder {
             String var2;
             String var76;
             if(client.incomingPacket == 174) {
-               var4 = client.gameBuffer.method638();
+               var4 = client.gameBuffer.readString();
                final Class131_Sub14_Sub1 var89 = client.gameBuffer;
                var2 = Class95.method395(var89, 32767);
                var76 = Class131_Sub20_Sub17_Sub4.method1054(Class131_Sub11.method575(var2));
@@ -471,8 +471,8 @@ public final class PacketDecoder {
             Player var84;
             if(client.incomingPacket == 64) {
                var60 = client.gameBuffer;
-               var3 = client.messageSize;
-               var5 = var60.pos;
+               xp = client.messageSize;
+               currentLevel = var60.pos;
                GPI.anInt21 = 0;
                var6 = 0;
                var60.bitAccess();
@@ -578,15 +578,15 @@ public final class PacketDecoder {
                for(var6 = 0; var6 < GPI.anInt21; ++var6) {
                   var7 = GPI.anIntArray23[var6];
                   var84 = client.playerArray[var7];
-                  var10 = var60.method595();
+                  var10 = var60.readUByte();
                   if((var10 & 8) != 0)
-					var10 += var60.method595() << 8;
+					var10 += var60.readUByte() << 8;
 
                   Class131_Sub20_Sub16.method840(var60, var7, var84, var10);
                }
 
-               if(var3 != (var60.pos - var5))
-				throw new RuntimeException((var60.pos - var5) + " " + var3);
+               if(xp != (var60.pos - currentLevel))
+				throw new RuntimeException((var60.pos - currentLevel) + " " + xp);
 
                client.incomingPacket = -1;
                return true;
@@ -602,11 +602,11 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 23) {
-               for(var1 = 0; var1 < Class65.anInt594; ++var1) {
-                  final Class131_Sub20_Sub15 var63 = Class99.method399(var1);
+               for(skillId = 0; skillId < Class65.anInt594; ++skillId) {
+                  final Class131_Sub20_Sub15 var63 = Class99.method399(skillId);
                   if(var63 != null) {
-                     Class96.anIntArray764[var1] = 0;
-                     Class96.anIntArray766[var1] = 0;
+                     Class96.anIntArray764[skillId] = 0;
+                     Class96.anIntArray766[skillId] = 0;
                   }
                }
 
@@ -616,10 +616,11 @@ public final class PacketDecoder {
                return true;
             }
 
+            // Interface text
             if(client.incomingPacket == 55) {
-               var4 = client.gameBuffer.method638();
-               var3 = client.gameBuffer.method630();
-               var11 = Class88.method377(var3);
+               var4 = client.gameBuffer.readString();
+               xp = client.gameBuffer.readIntV2();
+               var11 = Class88.method377(xp);
                if(!var4.equals(var11.aString1218)) {
                   var11.aString1218 = var4;
                   Class131_Sub20_Sub6.method734(var11);
@@ -633,21 +634,21 @@ public final class PacketDecoder {
             String var73;
             if(client.incomingPacket == 48) {
                while(client.gameBuffer.pos < client.messageSize) {
-                  var80 = client.gameBuffer.method595() == 1;
-                  var2 = client.gameBuffer.method638();
-                  var73 = client.gameBuffer.method638();
+                  var80 = client.gameBuffer.readUByte() == 1;
+                  var2 = client.gameBuffer.readString();
+                  var73 = client.gameBuffer.readString();
                   var6 = client.gameBuffer.readUShort();
-                  var7 = client.gameBuffer.method595();
-                  var9 = client.gameBuffer.method595();
+                  var7 = client.gameBuffer.readUByte();
+                  var9 = client.gameBuffer.readUByte();
                   final boolean var85 = (var9 & 2) != 0;
                   final boolean var82 = (var9 & 1) != 0;
                   if(var6 > 0) {
-                     client.gameBuffer.method638();
-                     client.gameBuffer.method595();
+                     client.gameBuffer.readString();
+                     client.gameBuffer.readUByte();
                      client.gameBuffer.readIntV1();
                   }
 
-                  client.gameBuffer.method638();
+                  client.gameBuffer.readString();
 
                   for(int var90 = 0; var90 < client.anInt2290; ++var90) {
                      final Class44 var91 = client.aClass44Array2292[var90];
@@ -703,16 +704,16 @@ public final class PacketDecoder {
                client.anInt2134 = 2;
                client.anInt2216 = client.anInt2298;
                var80 = false;
-               var3 = client.anInt2290;
+               xp = client.anInt2290;
 
-               while(var3 > 0) {
+               while(xp > 0) {
                   var80 = true;
-                  --var3;
+                  --xp;
 
-                  for(var5 = 0; var5 < var3; ++var5) {
+                  for(currentLevel = 0; currentLevel < xp; ++currentLevel) {
                      var64 = false;
-                     final Class44 var70 = client.aClass44Array2292[var5];
-                     final Class44 var88 = client.aClass44Array2292[var5 + 1];
+                     final Class44 var70 = client.aClass44Array2292[currentLevel];
+                     final Class44 var88 = client.aClass44Array2292[currentLevel + 1];
                      if((var70.anInt438 != client.anInt2123) && (var88.anInt438 == client.anInt2123))
 						var64 = true;
 
@@ -726,9 +727,9 @@ public final class PacketDecoder {
 						var64 = true;
 
                      if(var64) {
-                        final Class44 var96 = client.aClass44Array2292[var5];
-                        client.aClass44Array2292[var5] = client.aClass44Array2292[var5 + 1];
-                        client.aClass44Array2292[1 + var5] = var96;
+                        final Class44 var96 = client.aClass44Array2292[currentLevel];
+                        client.aClass44Array2292[currentLevel] = client.aClass44Array2292[currentLevel + 1];
+                        client.aClass44Array2292[1 + currentLevel] = var96;
                         var80 = false;
                      }
                   }
@@ -750,12 +751,12 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 20) {
-               var1 = client.gameBuffer.method630();
-               var3 = client.gameBuffer.readULEShortA();
-               var11 = Class88.method377(var1);
-               if((var11.anInt1201 != 2) || (var11.anInt1172 != var3)) {
+               skillId = client.gameBuffer.readIntV2();
+               xp = client.gameBuffer.readULEShortA();
+               var11 = Class88.method377(skillId);
+               if((var11.anInt1201 != 2) || (var11.anInt1172 != xp)) {
                   var11.anInt1201 = 2;
-                  var11.anInt1172 = var3;
+                  var11.anInt1172 = xp;
                   Class131_Sub20_Sub6.method734(var11);
                }
 
@@ -780,15 +781,15 @@ public final class PacketDecoder {
 
             Class131_Sub18 var69;
             if(client.incomingPacket == 214) {
-               var1 = client.gameBuffer.readUShort();
-               var3 = client.gameBuffer.readUShort();
-               var5 = client.gameBuffer.method630();
+               skillId = client.gameBuffer.readUShort();
+               xp = client.gameBuffer.readUShort();
+               currentLevel = client.gameBuffer.readIntV2();
                var6 = client.gameBuffer.readULEShortA();
-               var69 = Class88.method377(var5);
-               if((var6 != var69.anInt1209) || (var69.anInt1210 != var1) || (var69.anInt1277 != var3)) {
+               var69 = Class88.method377(currentLevel);
+               if((var6 != var69.anInt1209) || (var69.anInt1210 != skillId) || (var69.anInt1277 != xp)) {
                   var69.anInt1209 = var6;
-                  var69.anInt1210 = var1;
-                  var69.anInt1277 = var3;
+                  var69.anInt1210 = skillId;
+                  var69.anInt1277 = xp;
                   Class131_Sub20_Sub6.method734(var69);
                }
 
@@ -798,8 +799,8 @@ public final class PacketDecoder {
 
             Class131_Sub18 var55;
             if(client.incomingPacket == 14) {
-               var1 = client.gameBuffer.method628();
-               var55 = Class88.method377(var1);
+               skillId = client.gameBuffer.method628();
+               var55 = Class88.method377(skillId);
                var55.anInt1201 = 3;
                var55.anInt1172 = Class131_Sub11.myPlayer.aClass91_1980.method385();
                Class131_Sub20_Sub6.method734(var55);
@@ -814,14 +815,14 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 96) {
-               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.method614();
-               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.method616();
+               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.getUByteA();
+               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.getUByteS();
 
-               for(var1 = Class131_Sub20_Sub19_Sub5.anInt1832; var1 < (8 + Class131_Sub20_Sub19_Sub5.anInt1832); ++var1)
-				for(var3 = Class131_Sub20_Sub16.anInt1625; var3 < (8 + Class131_Sub20_Sub16.anInt1625); ++var3)
-					if(client.aClass115ArrayArrayArray2306[Class39.anInt410][var1][var3] != null) {
-                        client.aClass115ArrayArrayArray2306[Class39.anInt410][var1][var3] = null;
-                        Class131_Sub19.method676(var1, var3);
+               for(skillId = Class131_Sub20_Sub19_Sub5.anInt1832; skillId < (8 + Class131_Sub20_Sub19_Sub5.anInt1832); ++skillId)
+				for(xp = Class131_Sub20_Sub16.anInt1625; xp < (8 + Class131_Sub20_Sub16.anInt1625); ++xp)
+					if(client.aClass115ArrayArrayArray2306[Class39.anInt410][skillId][xp] != null) {
+                        client.aClass115ArrayArrayArray2306[Class39.anInt410][skillId][xp] = null;
+                        Class131_Sub19.method676(skillId, xp);
                      }
 
                for(Class131_Sub9 var62 = (Class131_Sub9)client.aClass115_2158.method465(); null != var62; var62 = (Class131_Sub9)client.aClass115_2158.method468())
@@ -836,11 +837,11 @@ public final class PacketDecoder {
                client.gameBuffer.pos += 28;
                if(client.gameBuffer.method611()) {
                   var60 = client.gameBuffer;
-                  var3 = client.gameBuffer.pos - 28;
+                  xp = client.gameBuffer.pos - 28;
                   if(Class72.aClass140_617 != null)
 					try {
                         Class72.aClass140_617.method510(0L);
-                        Class72.aClass140_617.method516(var60.data, var3, 24);
+                        Class72.aClass140_617.method516(var60.data, xp, 24);
                      } catch (final Exception var50) {
                         ;
                      }
@@ -854,9 +855,9 @@ public final class PacketDecoder {
             if(client.incomingPacket == 33) {
                GPI.thisIsActuallyMapRegion(true);
                client.gameBuffer.readOpcode();
-               var1 = client.gameBuffer.readUShort();
+               skillId = client.gameBuffer.readUShort();
                var58 = client.gameBuffer;
-               var5 = var58.pos;
+               currentLevel = var58.pos;
                GPI.anInt21 = 0;
                var6 = 0;
                var58.bitAccess();
@@ -962,15 +963,15 @@ public final class PacketDecoder {
                for(var6 = 0; var6 < GPI.anInt21; ++var6) {
                   var7 = GPI.anIntArray23[var6];
                   var84 = client.playerArray[var7];
-                  var10 = var58.method595();
+                  var10 = var58.readUByte();
                   if((var10 & 8) != 0)
-					var10 += var58.method595() << 8;
+					var10 += var58.readUByte() << 8;
 
                   Class131_Sub20_Sub16.method840(var58, var7, var84, var10);
                }
 
-               if(var1 != (var58.pos - var5))
-				throw new RuntimeException((var58.pos - var5) + " " + var1);
+               if(skillId != (var58.pos - currentLevel))
+				throw new RuntimeException((var58.pos - currentLevel) + " " + skillId);
 
                client.incomingPacket = -1;
                return true;
@@ -982,10 +983,10 @@ public final class PacketDecoder {
             int var33;
             String var34;
             if(client.incomingPacket == 132) {
-               var4 = client.gameBuffer.method638();
+               var4 = client.gameBuffer.readString();
                var23 = client.gameBuffer.readUShort();
                var25 = client.gameBuffer.method598();
-               final Class82 var87 = (Class82)Class39.method214(Class42.method221(), client.gameBuffer.method595());
+               final Class82 var87 = (Class82)Class39.method214(Class42.method221(), client.gameBuffer.readUByte());
                final long var27 = var25 + (var23 << 32);
                boolean var17 = false;
 
@@ -1030,24 +1031,24 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 66) {
-               Class32.method140(client.gameBuffer.method638());
+               Class32.method140(client.gameBuffer.readString());
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 82) {
-               client.anInt2259 = client.gameBuffer.method595();
+               client.anInt2259 = client.gameBuffer.readUByte();
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 113) {
-               var1 = client.gameBuffer.readUshortA();
-               var3 = client.gameBuffer.method628();
-               var11 = Class88.method377(var3);
-               if((var11.anInt1201 != 1) || (var1 != var11.anInt1172)) {
+               skillId = client.gameBuffer.readUshortA();
+               xp = client.gameBuffer.method628();
+               var11 = Class88.method377(xp);
+               if((var11.anInt1201 != 1) || (skillId != var11.anInt1172)) {
                   var11.anInt1201 = 1;
-                  var11.anInt1172 = var1;
+                  var11.anInt1172 = skillId;
                   Class131_Sub20_Sub6.method734(var11);
                }
 
@@ -1057,10 +1058,10 @@ public final class PacketDecoder {
 
             if(client.incomingPacket == 180) {
                final Class30 var59 = new Class30();
-               var59.aString281 = client.gameBuffer.method638();
+               var59.aString281 = client.gameBuffer.readString();
                var59.anInt278 = client.gameBuffer.readUShort();
-               var3 = client.gameBuffer.readIntV1();
-               var59.anInt279 = var3;
+               xp = client.gameBuffer.readIntV1();
+               var59.anInt279 = xp;
                Class32.method142(45);
                Class131_Sub20_Sub20.loginConnection.method373();
                Class131_Sub20_Sub20.loginConnection = null;
@@ -1069,25 +1070,25 @@ public final class PacketDecoder {
                return false;
             }
 
-            Class131_Sub7 var12;
+            Class131_Sub7 target;
             if(client.incomingPacket == 147) {
-               var1 = client.gameBuffer.method630();
-               var3 = client.gameBuffer.method628();
-               final Class131_Sub7 var86 = (Class131_Sub7)client.aClass114_2184.method457(var3);
-               var12 = (Class131_Sub7)client.aClass114_2184.method457(var1);
-               if(var12 != null)
-				Class131_Sub6.method553(var12, (null == var86) || (var12.anInt1025 != var86.anInt1025));
+               skillId = client.gameBuffer.readIntV2();
+               xp = client.gameBuffer.method628();
+               final Class131_Sub7 var86 = (Class131_Sub7)client.aClass114_2184.method457(xp);
+               target = (Class131_Sub7)client.aClass114_2184.method457(skillId);
+               if(target != null)
+				Class131_Sub6.method553(target, (null == var86) || (target.anInt1025 != var86.anInt1025));
 
                if(var86 != null) {
                   var86.method501();
-                  client.aClass114_2184.method461(var86, var1);
+                  client.aClass114_2184.method461(var86, skillId);
                }
 
-               var69 = Class88.method377(var3);
+               var69 = Class88.method377(xp);
                if(var69 != null)
 				Class131_Sub20_Sub6.method734(var69);
 
-               var69 = Class88.method377(var1);
+               var69 = Class88.method377(skillId);
                if(var69 != null) {
                   Class131_Sub20_Sub6.method734(var69);
                   Class16_Sub1.method547(Class131_Sub18.aClass131_Sub18ArrayArray1174[var69.anInt1272 >>> 16], var69, true);
@@ -1100,28 +1101,29 @@ public final class PacketDecoder {
                return true;
             }
 
+            // Update skill
             if(client.incomingPacket == 56) {
                Class84.method367();
-               var1 = client.gameBuffer.method614();
-               var3 = client.gameBuffer.method630();
-               var5 = client.gameBuffer.method615();
-               client.anIntArray2163[var1] = var3;
-               client.anIntArray2161[var1] = var5;
-               client.anIntArray2162[var1] = 1;
+               skillId = client.gameBuffer.getUByteA();
+               xp = client.gameBuffer.readIntV2();
+               currentLevel = client.gameBuffer.getUByteC();
+               client.anIntArray2163[skillId] = xp;
+               client.anIntArray2161[skillId] = currentLevel;
+               client.anIntArray2162[skillId] = 1;
 
                for(var6 = 0; var6 < 98; ++var6)
-				if(var3 >= Class90.anIntArray728[var6])
-					client.anIntArray2162[var1] = var6 + 2;
+				if(xp >= Class90.anIntArray728[var6])
+					client.anIntArray2162[skillId] = var6 + 2;
 
-               client.anIntArray2213[(++client.anInt2214 - 1) & 31] = var1;
+               client.anIntArray2213[(++client.anInt2214 - 1) & 31] = skillId;
                client.incomingPacket = -1;
                return true;
             }
 
-            long var37;
+            long key;
             if(client.incomingPacket == 125) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readIntV1();
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readIntV1();
                if((null == Class117.aGarbageCollectorMXBean846) || !Class117.aGarbageCollectorMXBean846.isValid())
 				try {
                      final Iterator var83 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
@@ -1141,22 +1143,22 @@ public final class PacketDecoder {
                final long var35 = Class84.method366(780546663);
                var7 = -1;
                if(null != Class117.aGarbageCollectorMXBean846) {
-                  var37 = Class117.aGarbageCollectorMXBean846.getCollectionTime();
+                  key = Class117.aGarbageCollectorMXBean846.getCollectionTime();
                   if(-1L != client.aLong2102) {
-                     final long var39 = var37 - client.aLong2102;
+                     final long var39 = key - client.aLong2102;
                      final long var41 = var35 - client.aLong2220;
                      if(0L != var41)
 						var7 = (int)((100L * var39) / var41);
                   }
 
-                  client.aLong2102 = var37;
+                  client.aLong2102 = key;
                   client.aLong2220 = var35;
                }
 
                client.secureBuffer.method871(184);
                client.secureBuffer.writeByte(var7);
-               client.secureBuffer.writeInt(var1);
-               client.secureBuffer.method625(var3);
+               client.secureBuffer.writeInt(skillId);
+               client.secureBuffer.method625(xp);
                client.secureBuffer.method613(Applet_Sub1.anInt2009);
                client.incomingPacket = -1;
                return true;
@@ -1165,21 +1167,21 @@ public final class PacketDecoder {
             if(client.incomingPacket == 104) {
                client.aBool2271 = false;
 
-               for(var1 = 0; var1 < 5; ++var1)
-				client.aBoolArray2261[var1] = false;
+               for(skillId = 0; skillId < 5; ++skillId)
+				client.aBoolArray2261[skillId] = false;
 
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 177) {
-               var1 = client.gameBuffer.method630();
-               var3 = client.gameBuffer.readUShort();
-               var5 = (var3 >> 10) & 31;
-               var6 = (var3 >> 5) & 31;
-               var7 = var3 & 31;
-               var9 = (var5 << 19) + (var6 << 11) + (var7 << 3);
-               final Class131_Sub18 var95 = Class88.method377(var1);
+               skillId = client.gameBuffer.readIntV2();
+               xp = client.gameBuffer.readUShort();
+               currentLevel = (xp >> 10) & 31;
+               var6 = (xp >> 5) & 31;
+               var7 = xp & 31;
+               var9 = (currentLevel << 19) + (var6 << 11) + (var7 << 3);
+               final Class131_Sub18 var95 = Class88.method377(skillId);
                if(var9 != var95.anInt1183) {
                   var95.anInt1183 = var9;
                   Class131_Sub20_Sub6.method734(var95);
@@ -1190,11 +1192,11 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 249) {
-               for(var1 = 0; var1 < Class96.anIntArray766.length; ++var1)
-				if(Class96.anIntArray764[var1] != Class96.anIntArray766[var1]) {
-                     Class96.anIntArray766[var1] = Class96.anIntArray764[var1];
-                     Class24.method117(var1);
-                     client.anIntArray2145[(++client.anInt2027 - 1) & 31] = var1;
+               for(skillId = 0; skillId < Class96.anIntArray766.length; ++skillId)
+				if(Class96.anIntArray764[skillId] != Class96.anIntArray766[skillId]) {
+                     Class96.anIntArray766[skillId] = Class96.anIntArray764[skillId];
+                     Class24.method117(skillId);
+                     client.anIntArray2145[(++client.anInt2027 - 1) & 31] = skillId;
                   }
 
                client.incomingPacket = -1;
@@ -1202,32 +1204,32 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 195) {
-               var1 = client.gameBuffer.readUShort();
-               if(var1 == '\uffff')
-				var1 = -1;
+               skillId = client.gameBuffer.readUShort();
+               if(skillId == '\uffff')
+				skillId = -1;
 
-               var3 = client.gameBuffer.method628();
-               var5 = client.gameBuffer.method630();
-               var74 = Class88.method377(var3);
+               xp = client.gameBuffer.method628();
+               currentLevel = client.gameBuffer.readIntV2();
+               var74 = Class88.method377(xp);
                Class131_Sub20_Sub2 var68;
                if(!var74.aBool1263) {
-                  if(var1 == -1) {
+                  if(skillId == -1) {
                      var74.anInt1201 = 0;
                      client.incomingPacket = -1;
                      return true;
                   }
 
-                  var68 = Class79_Sub1.method645(var1, (short)10850);
+                  var68 = Class79_Sub1.method645(skillId, (short)10850);
                   var74.anInt1201 = 4;
-                  var74.anInt1172 = var1;
+                  var74.anInt1172 = skillId;
                   var74.anInt1209 = var68.anInt1376;
                   var74.anInt1210 = var68.anInt1386;
-                  var74.anInt1277 = (var68.anInt1384 * 100) / var5;
+                  var74.anInt1277 = (var68.anInt1384 * 100) / currentLevel;
                   Class131_Sub20_Sub6.method734(var74);
                } else {
-                  var74.anInt1168 = var1;
-                  var74.anInt1198 = var5;
-                  var68 = Class79_Sub1.method645(var1, (short)32211);
+                  var74.anInt1168 = skillId;
+                  var74.anInt1198 = currentLevel;
+                  var68 = Class79_Sub1.method645(skillId, (short)32211);
                   var74.anInt1209 = var68.anInt1376;
                   var74.anInt1210 = var68.anInt1386;
                   var74.anInt1150 = var68.anInt1388;
@@ -1260,11 +1262,11 @@ public final class PacketDecoder {
 
             long var43;
             if(client.incomingPacket == 84) {
-               var1 = client.gameBuffer.pos + client.messageSize;
-               var3 = client.gameBuffer.readUShort();
-               var5 = client.gameBuffer.readUShort();
-               if(var3 != client.anInt2128) {
-                  client.anInt2128 = var3;
+               skillId = client.gameBuffer.pos + client.messageSize;
+               xp = client.gameBuffer.readUShort();
+               currentLevel = client.gameBuffer.readUShort();
+               if(xp != client.anInt2128) {
+                  client.anInt2128 = xp;
                   Class131_Sub20_Sub19_Sub2.method925(false);
                   Class40.method216(client.anInt2128);
                   Class93.method391(client.anInt2128);
@@ -1274,10 +1276,10 @@ public final class PacketDecoder {
                }
 
                Class131_Sub7 var22;
-               for(; var5-- > 0; var22.aBool1029 = true) {
+               for(; currentLevel-- > 0; var22.aBool1029 = true) {
                   var6 = client.gameBuffer.readIntV1();
                   var7 = client.gameBuffer.readUShort();
-                  var9 = client.gameBuffer.method595();
+                  var9 = client.gameBuffer.readUByte();
                   var22 = (Class131_Sub7)client.aClass114_2184.method457(var6);
                   if((null != var22) && (var22.anInt1025 != var7)) {
                      Class131_Sub6.method553(var22, true);
@@ -1288,15 +1290,15 @@ public final class PacketDecoder {
 					var22 = Class131_Sub10.method572(var6, var7, var9);
                }
 
-               for(var12 = (Class131_Sub7)client.aClass114_2184.method460(); var12 != null; var12 = (Class131_Sub7)client.aClass114_2184.method458())
-				if(var12.aBool1029)
-					var12.aBool1029 = false;
+               for(target = (Class131_Sub7)client.aClass114_2184.method460(); target != null; target = (Class131_Sub7)client.aClass114_2184.method458())
+				if(target.aBool1029)
+					target.aBool1029 = false;
 				else
-					Class131_Sub6.method553(var12, true);
+					Class131_Sub6.method553(target, true);
 
                client.aClass114_2225 = new Class114(512);
 
-               while(client.gameBuffer.pos < var1) {
+               while(client.gameBuffer.pos < skillId) {
                   var6 = client.gameBuffer.readIntV1();
                   var7 = client.gameBuffer.readUShort();
                   var9 = client.gameBuffer.readUShort();
@@ -1304,7 +1306,7 @@ public final class PacketDecoder {
 
                   for(var15 = var7; var15 <= var9; ++var15) {
                      var43 = var15 + ((long)var6 << 32);
-                     client.aClass114_2225.method461(new Class131_Sub21(var10), var43);
+                     client.aClass114_2225.method461(new InterfaceSetting(var10), var43);
                   }
                }
 
@@ -1317,9 +1319,9 @@ public final class PacketDecoder {
             	System.out.println("packet is 42");
                GPI.thisIsActuallyMapRegion(false);
                client.gameBuffer.readOpcode();
-               var1 = client.gameBuffer.readUShort();
+               skillId = client.gameBuffer.readUShort();
                var58 = client.gameBuffer;
-               var5 = var58.pos;
+               currentLevel = var58.pos;
                GPI.anInt21 = 0;
                var6 = 0;
                var58.bitAccess();
@@ -1425,27 +1427,27 @@ public final class PacketDecoder {
                for(var6 = 0; var6 < GPI.anInt21; ++var6) {
                   var7 = GPI.anIntArray23[var6];
                   var84 = client.playerArray[var7];
-                  var10 = var58.method595();
+                  var10 = var58.readUByte();
                   if((var10 & 8) != 0)
-					var10 += var58.method595() << 8;
+					var10 += var58.readUByte() << 8;
 
                   Class131_Sub20_Sub16.method840(var58, var7, var84, var10);
                }
 
-               if((var58.pos - var5) != var1)
-				throw new RuntimeException((var58.pos - var5) + " " + var1);
+               if((var58.pos - currentLevel) != skillId)
+				throw new RuntimeException((var58.pos - currentLevel) + " " + skillId);
 
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 171) {
-               var1 = client.gameBuffer.readULEShortA();
-               final Class131_Sub11 var57 = (Class131_Sub11)Class131_Sub11.aClass114_1074.method457(var1);
+               skillId = client.gameBuffer.readULEShortA();
+               final Class131_Sub11 var57 = (Class131_Sub11)Class131_Sub11.aClass114_1074.method457(skillId);
                if(var57 != null)
 				var57.method501();
 
-               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = var1 & 32767;
+               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = skillId & 32767;
                client.incomingPacket = -1;
                return true;
             }
@@ -1453,11 +1455,11 @@ public final class PacketDecoder {
             boolean var61;
             if(client.incomingPacket == 81) {
                for(; client.gameBuffer.pos < client.messageSize;) {
-                  var1 = client.gameBuffer.method595();
-                  var61 = (var1 & 1) == 1;
-                  var73 = client.gameBuffer.method638();
-                  var76 = client.gameBuffer.method638();
-                  client.gameBuffer.method638();
+                  skillId = client.gameBuffer.readUByte();
+                  var61 = (skillId & 1) == 1;
+                  var73 = client.gameBuffer.readString();
+                  var76 = client.gameBuffer.readString();
+                  client.gameBuffer.readString();
 
                   for(var7 = 0; var7 < client.anInt2294; ++var7) {
                      final Class36 var16 = client.aClass36Array2295[var7];
@@ -1483,37 +1485,37 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 3) {
-               var1 = client.gameBuffer.readUshortA();
-               if(var1 == '\uffff')
-				var1 = -1;
+               skillId = client.gameBuffer.readUshortA();
+               if(skillId == '\uffff')
+				skillId = -1;
 
-               if((var1 == -1) && !client.aBool2262)
+               if((skillId == -1) && !client.aBool2262)
 				Class126_Sub1.method524();
-			else if((var1 != -1) && (var1 != client.anInt2052) && (client.anInt2260 != 0) && !client.aBool2262) {
+			else if((skillId != -1) && (skillId != client.anInt2052) && (client.anInt2260 != 0) && !client.aBool2262) {
                   final Class100_Sub1 var56 = Class44.aClass100_Sub1_446;
-                  var5 = client.anInt2260;
+                  currentLevel = client.anInt2260;
                   Class113.anInt830 = 1;
                   Class50.aClass100_495 = var56;
-                  Class24.anInt213 = var1;
+                  Class24.anInt213 = skillId;
                   Class130.anInt901 = 0;
-                  Class113.anInt833 = var5;
+                  Class113.anInt833 = currentLevel;
                   Class50.aBool496 = false;
                   Class113.anInt834 = 2;
                }
 
-               client.anInt2052 = var1;
+               client.anInt2052 = skillId;
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 167) {
-               var1 = client.gameBuffer.method598();
-               var3 = client.gameBuffer.readUshortA();
-               if(var3 == '\uffff')
-				var3 = -1;
+               skillId = client.gameBuffer.method598();
+               xp = client.gameBuffer.readUshortA();
+               if(xp == '\uffff')
+				xp = -1;
 
-               if((client.anInt2260 != 0) && (var3 != -1)) {
-                  Class23.method108(Class82.aClass100_Sub1_686, var3, 0, client.anInt2260, false);
+               if((client.anInt2260 != 0) && (xp != -1)) {
+                  Class23.method108(Class82.aClass100_Sub1_686, xp, 0, client.anInt2260, false);
                   client.aBool2262 = true;
                }
 
@@ -1522,12 +1524,12 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 178) {
-               var1 = client.gameBuffer.method630();
-               var55 = Class88.method377(var1);
+               skillId = client.gameBuffer.readIntV2();
+               var55 = Class88.method377(skillId);
 
-               for(var5 = 0; var5 < var55.anIntArray1292.length; ++var5) {
-                  var55.anIntArray1292[var5] = -1;
-                  var55.anIntArray1292[var5] = 0;
+               for(currentLevel = 0; currentLevel < var55.anIntArray1292.length; ++currentLevel) {
+                  var55.anIntArray1292[currentLevel] = -1;
+                  var55.anIntArray1292[currentLevel] = 0;
                }
 
                Class131_Sub20_Sub6.method734(var55);
@@ -1536,17 +1538,17 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 74) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readUShort();
-               if(var1 < -70000)
-				var3 += '\u8000';
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readUShort();
+               if(skillId < -70000)
+				xp += '\u8000';
 
-               if(var1 >= 0)
-				var11 = Class88.method377(var1);
+               if(skillId >= 0)
+				var11 = Class88.method377(skillId);
 			else
 				var11 = null;
 
-               final Class131_Sub11 var75 = (Class131_Sub11)Class131_Sub11.aClass114_1074.method457(var3);
+               final Class131_Sub11 var75 = (Class131_Sub11)Class131_Sub11.aClass114_1074.method457(xp);
                if(null != var75)
 				for(var7 = 0; var7 < var75.anIntArray1070.length; ++var7) {
                      var75.anIntArray1070[var7] = -1;
@@ -1557,87 +1559,88 @@ public final class PacketDecoder {
 
                for(var7 = 0; var7 < var6; ++var7) {
                   var9 = client.gameBuffer.readULEShortA();
-                  var10 = client.gameBuffer.method614();
+                  var10 = client.gameBuffer.getUByteA();
                   if(var10 == 255)
-					var10 = client.gameBuffer.method630();
+					var10 = client.gameBuffer.readIntV2();
 
                   if((var11 != null) && (var7 < var11.anIntArray1292.length)) {
                      var11.anIntArray1292[var7] = var9;
                      var11.anIntArray1154[var7] = var10;
                   }
 
-                  Class1.method17(var3, var7, var9 - 1, var10);
+                  Class1.method17(xp, var7, var9 - 1, var10);
                }
 
                if(null != var11)
 				Class131_Sub20_Sub6.method734(var11);
 
                Class84.method367();
-               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = var3 & 32767;
+               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = xp & 32767;
                client.incomingPacket = -1;
                return true;
             }
 
+            // Interface setting
             if(client.incomingPacket == 8) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readIntV1();
-               var5 = client.gameBuffer.readUShort();
-               if(var5 == '\uffff')
-				var5 = -1;
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readIntV1();
+               currentLevel = client.gameBuffer.readUShort();
+               if(currentLevel == '\uffff')
+				currentLevel = -1;
 
                var6 = client.gameBuffer.readUshortA();
                if(var6 == '\uffff')
 				var6 = -1;
 
-               for(var7 = var5; var7 <= var6; ++var7) {
-                  var37 = ((long)var1 << 32) + var7;
-                  final Class131 var98 = client.aClass114_2225.method457(var37);
+               for(var7 = currentLevel; var7 <= var6; ++var7) {
+                  key = ((long)skillId << 32) + var7;
+                  final Class131 var98 = client.aClass114_2225.method457(key);
                   if(null != var98)
 					var98.method501();
 
-                  client.aClass114_2225.method461(new Class131_Sub21(var3), var37);
+                  client.aClass114_2225.method461(new InterfaceSetting(xp), key);
                }
 
                client.incomingPacket = -1;
                return true;
             }
 
-            if(client.incomingPacket == 47) {
-               var1 = client.gameBuffer.readUshortA();
-               final byte var66 = client.gameBuffer.method584();
-               Class96.anIntArray764[var1] = var66;
-               if(Class96.anIntArray766[var1] != var66)
-				Class96.anIntArray766[var1] = var66;
+            if(client.incomingPacket == 47) { // Varp
+               skillId = client.gameBuffer.readUshortA();
+               final byte var66 = client.gameBuffer.readByte();
+               Class96.anIntArray764[skillId] = var66;
+               if(Class96.anIntArray766[skillId] != var66)
+				Class96.anIntArray766[skillId] = var66;
 
-               Class24.method117(var1);
-               client.anIntArray2145[(++client.anInt2027 - 1) & 31] = var1;
+               Class24.method117(skillId);
+               client.anIntArray2145[(++client.anInt2027 - 1) & 31] = skillId;
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 241) {
-               var1 = client.gameBuffer.method595();
-               var3 = client.gameBuffer.method595();
-               var5 = client.gameBuffer.method595();
-               var6 = client.gameBuffer.method595();
-               client.aBoolArray2261[var1] = true;
-               client.anIntArray2273[var1] = var3;
-               client.anIntArray2274[var1] = var5;
-               client.anIntArray2275[var1] = var6;
-               client.anIntArray2276[var1] = 0;
+               skillId = client.gameBuffer.readUByte();
+               xp = client.gameBuffer.readUByte();
+               currentLevel = client.gameBuffer.readUByte();
+               var6 = client.gameBuffer.readUByte();
+               client.aBoolArray2261[skillId] = true;
+               client.anIntArray2273[skillId] = xp;
+               client.anIntArray2274[skillId] = currentLevel;
+               client.anIntArray2275[skillId] = var6;
+               client.anIntArray2276[skillId] = 0;
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 126) {
-               var4 = client.gameBuffer.method638();
+               var4 = client.gameBuffer.readString();
                final Object[] var54 = new Object[var4.length() + 1];
 
-               for(var5 = var4.length() - 1; var5 >= 0; --var5)
-				if(var4.charAt(var5) == 115)
-					var54[1 + var5] = client.gameBuffer.method638();
+               for(currentLevel = var4.length() - 1; currentLevel >= 0; --currentLevel)
+				if(var4.charAt(currentLevel) == 115)
+					var54[1 + currentLevel] = client.gameBuffer.readString();
 				else
-					var54[var5 + 1] = new Integer(client.gameBuffer.readIntV1());
+					var54[currentLevel + 1] = new Integer(client.gameBuffer.readIntV1());
 
                var54[0] = new Integer(client.gameBuffer.readIntV1());
                final Class131_Sub10 var77 = new Class131_Sub10();
@@ -1648,7 +1651,7 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 135) {
-               client.anInt2193 = client.gameBuffer.method595();
+               client.anInt2193 = client.gameBuffer.readUByte();
                if(client.anInt2193 == 1)
 				client.anInt2048 = client.gameBuffer.readUShort();
 
@@ -1681,7 +1684,7 @@ public final class PacketDecoder {
                   client.anInt2193 = 2;
                   client.anInt2050 = client.gameBuffer.readUShort();
                   client.anInt2051 = client.gameBuffer.readUShort();
-                  client.anInt2176 = client.gameBuffer.method595();
+                  client.anInt2176 = client.gameBuffer.readUByte();
                }
 
                if(client.anInt2193 == 10)
@@ -1692,18 +1695,18 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 99) {
-               var1 = client.gameBuffer.method644();
-               Class118.aClass87_856 = Class36.aClass78_371.method351(var1);
+               skillId = client.gameBuffer.method644();
+               Class118.aClass87_856 = Class36.aClass78_371.method351(skillId);
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 44) {
-               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.method616();
-               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.method614();
+               Class131_Sub20_Sub16.anInt1625 = client.gameBuffer.getUByteS();
+               Class131_Sub20_Sub19_Sub5.anInt1832 = client.gameBuffer.getUByteA();
 
                while(client.gameBuffer.pos < client.messageSize) {
-                  client.incomingPacket = client.gameBuffer.method595();
+                  client.incomingPacket = client.gameBuffer.readUByte();
                   Class46.method231();
                }
 
@@ -1712,9 +1715,9 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 162) {
-               var1 = client.gameBuffer.readIntV1();
-               var61 = client.gameBuffer.method614() == 1;
-               var11 = Class88.method377(var1);
+               skillId = client.gameBuffer.readIntV1();
+               var61 = client.gameBuffer.getUByteA() == 1;
+               var11 = Class88.method377(skillId);
                if(var11.aBool1178 != var61) {
                   var11.aBool1178 = var61;
                   Class131_Sub20_Sub6.method734(var11);
@@ -1725,54 +1728,56 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 166) {
-               var1 = client.gameBuffer.readUShort();
-               var3 = client.gameBuffer.method629();
-               var5 = client.gameBuffer.method628();
-               var74 = Class88.method377(var5);
-               var74.anInt1214 = var1 + (var3 << 16);
+               skillId = client.gameBuffer.readUShort();
+               xp = client.gameBuffer.readULEShort();
+               currentLevel = client.gameBuffer.method628();
+               var74 = Class88.method377(currentLevel);
+               var74.anInt1214 = skillId + (xp << 16);
                client.incomingPacket = -1;
                return true;
             }
 
+            // other varp
             if(client.incomingPacket == 95) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readULEShortA();
-               Class96.anIntArray764[var3] = var1;
-               if(var1 != Class96.anIntArray766[var3])
-				Class96.anIntArray766[var3] = var1;
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readULEShortA();
+               Class96.anIntArray764[xp] = skillId;
+               if(skillId != Class96.anIntArray766[xp])
+				Class96.anIntArray766[xp] = skillId;
 
-               Class24.method117(var3);
-               client.anIntArray2145[(++client.anInt2027 - 1) & 31] = var3;
+               Class24.method117(xp);
+               client.anIntArray2145[(++client.anInt2027 - 1) & 31] = xp;
                client.incomingPacket = -1;
                return true;
             }
 
+            // Send message
             if(client.incomingPacket == 221) {
-               var1 = client.gameBuffer.method606();
-               var61 = client.gameBuffer.method595() == 1;
+               skillId = client.gameBuffer.readCompact();
+               var61 = client.gameBuffer.readUByte() == 1;
                var73 = "";
                var64 = false;
                if(var61) {
-                  var73 = client.gameBuffer.method638();
+                  var73 = client.gameBuffer.readString();
                   if(Player.method1075(var73))
 					var64 = true;
                }
 
-               final String var8 = client.gameBuffer.method638();
+               final String var8 = client.gameBuffer.readString();
                if(!var64)
-				Class131_Sub20_Sub15.method792(var1, var73, var8);
+				Class131_Sub20_Sub15.method792(skillId, var73, var8);
 
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 200) {
-               var4 = client.gameBuffer.method638();
+               var4 = client.gameBuffer.readString();
                var23 = client.gameBuffer.method600();
                var25 = client.gameBuffer.readUShort();
-               var37 = client.gameBuffer.method598();
-               final Class82 var45 = (Class82)Class39.method214(Class42.method221(), client.gameBuffer.method595());
-               var43 = (var25 << 32) + var37;
+               key = client.gameBuffer.method598();
+               final Class82 var45 = (Class82)Class39.method214(Class42.method221(), client.gameBuffer.readUByte());
+               var43 = (var25 << 32) + key;
                var19 = false;
 
                for(int var46 = 0; var46 < 100; ++var46)
@@ -1803,56 +1808,56 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 10) {
-               var1 = client.gameBuffer.readUShort();
-               var3 = client.gameBuffer.method595();
-               var5 = client.gameBuffer.readUShort();
-               Class25.method120(var1, var3, var5);
+               skillId = client.gameBuffer.readUShort();
+               xp = client.gameBuffer.readUByte();
+               currentLevel = client.gameBuffer.readUShort();
+               Class25.method120(skillId, xp, currentLevel);
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 31) {
                Class84.method367();
-               client.anInt2188 = client.gameBuffer.method595();
+               client.anInt2188 = client.gameBuffer.readUByte();
                client.anInt2263 = client.anInt2298;
                client.incomingPacket = -1;
                return true;
             }
 
-            if(client.incomingPacket == 92) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readUShort();
-               var5 = client.gameBuffer.method616();
-               var12 = (Class131_Sub7)client.aClass114_2184.method457(var1);
-               if(null != var12)
-				Class131_Sub6.method553(var12, var12.anInt1025 != var3);
+            if(client.incomingPacket == 92) { // interface
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readUShort();
+               currentLevel = client.gameBuffer.getUByteS();
+               target = (Class131_Sub7)client.aClass114_2184.method457(skillId);
+               if(null != target)
+				Class131_Sub6.method553(target, target.anInt1025 != xp);
 
-               Class131_Sub10.method572(var1, var3, var5);
+               Class131_Sub10.method572(skillId, xp, currentLevel);
                client.incomingPacket = -1;
                return true;
             }
 
-            if(client.incomingPacket == 71) {
-               client.anInt2241 = client.gameBuffer.method595();
-               client.anInt2242 = client.gameBuffer.method595();
+            if(client.incomingPacket == 71) { // possibly map base
+               client.anInt2241 = client.gameBuffer.readUByte();
+               client.anInt2242 = client.gameBuffer.readUByte();
                client.incomingPacket = -1;
                return true;
             }
 
             if(client.incomingPacket == 140) {
                client.aBool2271 = true;
-               Class78.anInt640 = client.gameBuffer.method595();
-               Class131_Sub20_Sub13.anInt1577 = client.gameBuffer.method595();
+               Class78.anInt640 = client.gameBuffer.readUByte();
+               Class131_Sub20_Sub13.anInt1577 = client.gameBuffer.readUByte();
                Class80.anInt664 = client.gameBuffer.readUShort();
-               Class90.anInt729 = client.gameBuffer.method595();
-               Class29.anInt263 = client.gameBuffer.method595();
+               Class90.anInt729 = client.gameBuffer.readUByte();
+               Class29.anInt263 = client.gameBuffer.readUByte();
                if(Class29.anInt263 >= 100) {
-                  var1 = (Class78.anInt640 * 128) + 64;
-                  var3 = 64 + (Class131_Sub20_Sub13.anInt1577 * 128);
-                  var5 = Class18.method88(var1, var3, Class39.anInt410) - Class80.anInt664;
-                  var6 = var1 - Class139.anInt917;
-                  var7 = var5 - Class46.anInt452;
-                  var9 = var3 - Class1.anInt1;
+                  skillId = (Class78.anInt640 * 128) + 64;
+                  xp = 64 + (Class131_Sub20_Sub13.anInt1577 * 128);
+                  currentLevel = Class18.method88(skillId, xp, Class39.anInt410) - Class80.anInt664;
+                  var6 = skillId - Class139.anInt917;
+                  var7 = currentLevel - Class46.anInt452;
+                  var9 = xp - Class1.anInt1;
                   var10 = (int)Math.sqrt((var9 * var9) + (var6 * var6));
                   Class75.anInt633 = (int)(Math.atan2(var7, var10) * 325.949D) & 2047;
                   Class131_Sub20_Sub1.anInt1371 = (int)(Math.atan2(var6, var9) * -325.949D) & 2047;
@@ -1868,22 +1873,22 @@ public final class PacketDecoder {
             }
 
             if(client.incomingPacket == 189) {
-               var1 = client.gameBuffer.readIntV1();
-               var3 = client.gameBuffer.readUShort();
-               if(var1 < -70000)
-				var3 += '\u8000';
+               skillId = client.gameBuffer.readIntV1();
+               xp = client.gameBuffer.readUShort();
+               if(skillId < -70000)
+				xp += '\u8000';
 
-               if(var1 >= 0)
-				var11 = Class88.method377(var1);
+               if(skillId >= 0)
+				var11 = Class88.method377(skillId);
 			else
 				var11 = null;
 
-               for(; client.gameBuffer.pos < client.messageSize; Class1.method17(var3, var6, var7 - 1, var9)) {
-                  var6 = client.gameBuffer.method606();
+               for(; client.gameBuffer.pos < client.messageSize; Class1.method17(xp, var6, var7 - 1, var9)) {
+                  var6 = client.gameBuffer.readCompact();
                   var7 = client.gameBuffer.readUShort();
                   var9 = 0;
                   if(var7 != 0) {
-                     var9 = client.gameBuffer.method595();
+                     var9 = client.gameBuffer.readUByte();
                      if(var9 == 255)
 						var9 = client.gameBuffer.readIntV1();
                   }
@@ -1898,21 +1903,22 @@ public final class PacketDecoder {
 				Class131_Sub20_Sub6.method734(var11);
 
                Class84.method367();
-               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = var3 & 32767;
+               client.anIntArray2211[(++client.anInt2212 - 1) & 31] = xp & 32767;
                client.incomingPacket = -1;
                return true;
             }
 
+            // Player option
             if(client.incomingPacket == 30) {
-               var1 = client.gameBuffer.method595();
-               var2 = client.gameBuffer.method638();
-               var5 = client.gameBuffer.method614();
-               if((var1 >= 1) && (var1 <= 8)) {
+               skillId = client.gameBuffer.readUByte();
+               var2 = client.gameBuffer.readString();
+               currentLevel = client.gameBuffer.getUByteA();
+               if((skillId >= 1) && (skillId <= 8)) {
                   if(var2.equalsIgnoreCase("null"))
 					var2 = null;
 
-                  client.aStringArray2153[var1 - 1] = var2;
-                  client.aBoolArray2113[var1 - 1] = var5 == 0;
+                  client.aStringArray2153[skillId - 1] = var2;
+                  client.aBoolArray2113[skillId - 1] = currentLevel == 0;
                }
 
                client.incomingPacket = -1;
@@ -1932,8 +1938,8 @@ public final class PacketDecoder {
          } catch (final Exception var53) {
             var4 = "" + client.incomingPacket + "," + client.anInt2219 + "," + client.anInt2154 + "," + client.messageSize + "," + (Class131_Sub20_Sub20.anInt1649 + Class131_Sub11.myPlayer.anIntArray1755[0]) + "," + (Class50.anInt491 + Class131_Sub11.myPlayer.anIntArray1756[0]) + ",";
 
-            for(var3 = 0; (var3 < client.messageSize) && (var3 < 50); ++var3)
-				var4 = var4 + client.gameBuffer.data[var3] + ",";
+            for(xp = 0; (xp < client.messageSize) && (xp < 50); ++xp)
+				var4 = var4 + client.gameBuffer.data[xp] + ",";
 
             Class131_Sub20_Sub7.method740(var4, var53);
             Class26.method121();

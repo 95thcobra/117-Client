@@ -59,7 +59,7 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 
 	void method691(final DataBuffer var1) {
 		while (true) {
-			final int var2 = var1.method595();
+			final int var2 = var1.readUByte();
 			if (var2 == 0)
 				return;
 
@@ -71,7 +71,7 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 		if (var2 == 1)
 			anInt1378 = var1.readUShort();
 		else if (var2 == 2)
-			aString1385 = var1.method638();
+			aString1385 = var1.readString();
 		else if (var2 == 4)
 			anInt1384 = var1.readUShort();
 		else if (var2 == 5)
@@ -94,25 +94,25 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 			aBool1403 = true;
 		else if (var2 == 23) {
 			anInt1392 = var1.readUShort();
-			anInt1397 = var1.method595();
+			anInt1397 = var1.readUByte();
 		} else if (var2 == 24)
 			anInt1396 = var1.readUShort();
 		else if (var2 == 25) {
 			anInt1373 = var1.readUShort();
-			anInt1383 = var1.method595();
+			anInt1383 = var1.readUByte();
 		} else if (var2 == 26)
 			anInt1399 = var1.readUShort();
 		else if ((var2 >= 30) && (var2 < 35)) {
-			aStringArray1393[var2 - 30] = var1.method638();
+			aStringArray1393[var2 - 30] = var1.readString();
 			if (aStringArray1393[var2 - 30].equalsIgnoreCase("Hidden"))
 				aStringArray1393[var2 - 30] = null;
 		} else if ((var2 >= 35) && (var2 < 40))
-			aStringArray1406[var2 - 35] = var1.method638();
+			aStringArray1406[var2 - 35] = var1.readString();
 		else {
 			int var3;
 			int var4;
 			if (var2 == 40) {
-				var4 = var1.method595();
+				var4 = var1.readUByte();
 				aShortArray1413 = new short[var4];
 				aShortArray1387 = new short[var4];
 
@@ -121,7 +121,7 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 					aShortArray1387[var3] = (short) var1.readUShort();
 				}
 			} else if (var2 == 41) {
-				var4 = var1.method595();
+				var4 = var1.readUByte();
 				aShortArray1382 = new short[var4];
 				aShortArray1381 = new short[var4];
 
@@ -164,11 +164,11 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 			else if (var2 == 112)
 				anInt1398 = var1.readUShort();
 			else if (var2 == 113)
-				anInt1414 = var1.method584();
+				anInt1414 = var1.readByte();
 			else if (var2 == 114)
-				anInt1415 = var1.method584() * 5;
+				anInt1415 = var1.readByte() * 5;
 			else if (var2 == 115)
-				anInt1416 = var1.method595();
+				anInt1416 = var1.readUByte();
 			else if (var2 == 139)
 				anInt1418 = var1.readUShort();
 			else if (var2 == 140)

@@ -9,8 +9,8 @@ public class Class131_Sub20_Sub3 extends Class131_Sub20 {
 	void method705(final DataBuffer var1, final int var2) {
 		if (var2 == 1) {
 			anInt1429 = var1.readUShort();
-			anInt1426 = var1.method595();
-			anInt1427 = var1.method595();
+			anInt1426 = var1.readUByte();
+			anInt1427 = var1.readUByte();
 		}
 
 	}
@@ -273,7 +273,7 @@ public class Class131_Sub20_Sub3 extends Class131_Sub20 {
 
 	void method709(final DataBuffer var1) {
 		while (true) {
-			final int var2 = var1.method595();
+			final int var2 = var1.readUByte();
 			if (var2 == 0)
 				return;
 

@@ -28,9 +28,9 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 
 	final void method1068(final DataBuffer var1) {
 		var1.pos = 0;
-		final int var8 = var1.method595();
-		anInt2000 = var1.method584();
-		anInt1982 = var1.method584();
+		final int var8 = var1.readUByte();
+		anInt2000 = var1.readByte();
+		anInt1982 = var1.readByte();
 		int var2 = -1;
 		anInt2001 = 0;
 		final int[] var4 = new int[12];
@@ -38,11 +38,11 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 		int var6;
 		int var7;
 		for (int var5 = 0; var5 < 12; ++var5) {
-			var6 = var1.method595();
+			var6 = var1.readUByte();
 			if (var6 == 0)
 				var4[var5] = 0;
 			else {
-				var7 = var1.method595();
+				var7 = var1.readUByte();
 				var4[var5] = (var6 << 8) + var7;
 				if ((var5 == 0) && (var4[0] == '\uffff')) {
 					var2 = var1.readUShort();
@@ -60,7 +60,7 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 		final int[] var3 = new int[5];
 
 		for (var6 = 0; var6 < 5; ++var6) {
-			var7 = var1.method595();
+			var7 = var1.readUByte();
 			if ((var7 < 0) || (var7 >= Class131_Sub17.aShortArrayArray1146[var6].length))
 				var7 = 0;
 
@@ -96,13 +96,13 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 		if (anInt1714 == '\uffff')
 			anInt1714 = -1;
 
-		aString2004 = var1.method638();
+		aString2004 = var1.readString();
 		if (this == Class131_Sub11.myPlayer)
 			RuntimeException_Sub1.aString1951 = aString2004;
 
-		anInt1984 = var1.method595();
+		anInt1984 = var1.readUByte();
 		anInt1985 = var1.readUShort();
-		aBool1990 = var1.method595() == 1;
+		aBool1990 = var1.readUByte() == 1;
 		if ((client.anInt2030 == 0) && (client.playerRights >= 2))
 			aBool1990 = false;
 

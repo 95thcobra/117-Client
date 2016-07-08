@@ -64,19 +64,19 @@ public class Class28 {
 
 	Class28(final DataBuffer var1) {
 		if ((var1 != null) && (null != var1.data)) {
-			final int var4 = var1.method595();
+			final int var4 = var1.readUByte();
 			if ((var4 >= 0) && (var4 <= anInt260)) {
-				if (var1.method595() == 1)
+				if (var1.readUByte() == 1)
 					aBool251 = true;
 
 				if (var4 > 1)
-					aBool252 = var1.method595() == 1;
+					aBool252 = var1.readUByte() == 1;
 
 				if (var4 > 3)
-					anInt253 = var1.method595();
+					anInt253 = var1.readUByte();
 
 				if (var4 > 2) {
-					final int var3 = var1.method595();
+					final int var3 = var1.readUByte();
 
 					for (int var2 = 0; var2 < var3; ++var2) {
 						final int var5 = var1.readIntV1();

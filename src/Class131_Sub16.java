@@ -23,7 +23,7 @@ public class Class131_Sub16 extends Class131 {
 
 		int var6;
 		for (var6 = 0; var6 < var4; ++var6)
-			var5[var6] = var3.method584();
+			var5[var6] = var3.readByte();
 
 		++var3.pos;
 		++var4;
@@ -38,7 +38,7 @@ public class Class131_Sub16 extends Class131 {
 
 		int var13;
 		for (var13 = 0; var13 < var7; ++var13)
-			var12[var13] = var3.method584();
+			var12[var13] = var3.readByte();
 
 		++var3.pos;
 		++var7;
@@ -52,7 +52,7 @@ public class Class131_Sub16 extends Class131 {
 		final byte[] var10 = new byte[var18];
 
 		for (int var11 = 0; var11 < var18; ++var11)
-			var10[var11] = var3.method584();
+			var10[var11] = var3.readByte();
 
 		++var3.pos;
 		++var18;
@@ -65,7 +65,7 @@ public class Class131_Sub16 extends Class131 {
 			var23 = 2;
 
 			for (var24 = 2; var24 < var18; ++var24) {
-				int var25 = var3.method595();
+				int var25 = var3.readUByte();
 				if (var25 == 0)
 					var28 = var23++;
 				else {
@@ -85,20 +85,20 @@ public class Class131_Sub16 extends Class131 {
 		Class118 var19;
 		for (var24 = 0; var24 < var29.length; ++var24) {
 			var19 = var29[var24] = new Class118();
-			int var30 = var3.method595();
+			int var30 = var3.readUByte();
 			if (var30 > 0)
 				var19.aByteArray855 = new byte[var30 * 2];
 
-			var30 = var3.method595();
+			var30 = var3.readUByte();
 			if (var30 > 0) {
 				var19.aByteArray847 = new byte[(var30 * 2) + 2];
 				var19.aByteArray847[1] = 64;
 			}
 		}
 
-		var24 = var3.method595();
+		var24 = var3.readUByte();
 		final byte[] var44 = var24 > 0 ? new byte[2 * var24] : null;
-		var24 = var3.method595();
+		var24 = var3.readUByte();
 		final byte[] var31 = var24 > 0 ? new byte[var24 * 2] : null;
 
 		int var32;
@@ -109,7 +109,7 @@ public class Class131_Sub16 extends Class131 {
 
 		int var2;
 		for (var2 = 0; var2 < var32; ++var2)
-			var33[var2] = var3.method584();
+			var33[var2] = var3.readByte();
 
 		++var3.pos;
 		++var32;
@@ -117,14 +117,14 @@ public class Class131_Sub16 extends Class131 {
 
 		int var34;
 		for (var34 = 0; var34 < 128; ++var34) {
-			var2 += var3.method595();
+			var2 += var3.readUByte();
 			aShortArray1138[var34] = (short) var2;
 		}
 
 		var2 = 0;
 
 		for (var34 = 0; var34 < 128; ++var34) {
-			var2 += var3.method595();
+			var2 += var3.readUByte();
 			aShortArray1138[var34] = (short) (aShortArray1138[var34] + (var2 << 8));
 		}
 
@@ -219,14 +219,14 @@ public class Class131_Sub16 extends Class131 {
 					var34 = -1;
 
 				if (anIntArray1140[var20] > 0)
-					var8 = var3.method595() + 1;
+					var8 = var3.readUByte() + 1;
 			}
 
 			aByteArray1136[var20] = (byte) var8;
 			--var34;
 		}
 
-		anInt1139 = var3.method595() + 1;
+		anInt1139 = var3.readUByte() + 1;
 
 		int var14;
 		Class118 var15;
@@ -234,20 +234,20 @@ public class Class131_Sub16 extends Class131 {
 			var15 = var29[var20];
 			if (var15.aByteArray855 != null)
 				for (var14 = 1; var14 < var15.aByteArray855.length; var14 += 2)
-					var15.aByteArray855[var14] = var3.method584();
+					var15.aByteArray855[var14] = var3.readByte();
 
 			if (var15.aByteArray847 != null)
 				for (var14 = 3; var14 < (var15.aByteArray847.length - 2); var14 += 2)
-					var15.aByteArray847[var14] = var3.method584();
+					var15.aByteArray847[var14] = var3.readByte();
 		}
 
 		if (null != var44)
 			for (var20 = 1; var20 < var44.length; var20 += 2)
-				var44[var20] = var3.method584();
+				var44[var20] = var3.readByte();
 
 		if (null != var31)
 			for (var20 = 1; var20 < var31.length; var20 += 2)
-				var31[var20] = var3.method584();
+				var31[var20] = var3.readByte();
 
 		for (var20 = 0; var20 < var23; ++var20) {
 			var15 = var29[var20];
@@ -255,7 +255,7 @@ public class Class131_Sub16 extends Class131 {
 				var2 = 0;
 
 				for (var14 = 2; var14 < var15.aByteArray847.length; var14 += 2) {
-					var2 = var2 + 1 + var3.method595();
+					var2 = var2 + 1 + var3.readUByte();
 					var15.aByteArray847[var14] = (byte) var2;
 				}
 			}
@@ -267,7 +267,7 @@ public class Class131_Sub16 extends Class131 {
 				var2 = 0;
 
 				for (var14 = 2; var14 < var15.aByteArray855.length; var14 += 2) {
-					var2 = var2 + 1 + var3.method595();
+					var2 = var2 + 1 + var3.readUByte();
 					var15.aByteArray855[var14] = (byte) var2;
 				}
 			}
@@ -282,11 +282,11 @@ public class Class131_Sub16 extends Class131 {
 		byte var45;
 		int var46;
 		if (null != var44) {
-			var2 = var3.method595();
+			var2 = var3.readUByte();
 			var44[0] = (byte) var2;
 
 			for (var20 = 2; var20 < var44.length; var20 += 2) {
-				var2 = 1 + var2 + var3.method595();
+				var2 = 1 + var2 + var3.readUByte();
 				var44[var20] = (byte) var2;
 			}
 
@@ -320,11 +320,11 @@ public class Class131_Sub16 extends Class131 {
 		}
 
 		if (var31 != null) {
-			var2 = var3.method595();
+			var2 = var3.readUByte();
 			var31[0] = (byte) var2;
 
 			for (var20 = 2; var20 < var31.length; var20 += 2) {
-				var2 = 1 + var2 + var3.method595();
+				var2 = 1 + var2 + var3.readUByte();
 				var31[var20] = (byte) var2;
 			}
 
@@ -380,33 +380,33 @@ public class Class131_Sub16 extends Class131 {
 		}
 
 		for (var20 = 0; var20 < var23; ++var20)
-			var29[var20].anInt848 = var3.method595();
+			var29[var20].anInt848 = var3.readUByte();
 
 		for (var20 = 0; var20 < var23; ++var20) {
 			var15 = var29[var20];
 			if (null != var15.aByteArray855)
-				var15.anInt849 = var3.method595();
+				var15.anInt849 = var3.readUByte();
 
 			if (null != var15.aByteArray847)
-				var15.anInt850 = var3.method595();
+				var15.anInt850 = var3.readUByte();
 
 			if (var15.anInt848 > 0)
-				var15.anInt851 = var3.method595();
+				var15.anInt851 = var3.readUByte();
 		}
 
 		for (var20 = 0; var20 < var23; ++var20)
-			var29[var20].anInt853 = var3.method595();
+			var29[var20].anInt853 = var3.readUByte();
 
 		for (var20 = 0; var20 < var23; ++var20) {
 			var15 = var29[var20];
 			if (var15.anInt853 > 0)
-				var15.anInt852 = var3.method595();
+				var15.anInt852 = var3.readUByte();
 		}
 
 		for (var20 = 0; var20 < var23; ++var20) {
 			var15 = var29[var20];
 			if (var15.anInt852 > 0)
-				var15.anInt854 = var3.method595();
+				var15.anInt854 = var3.readUByte();
 		}
 
 	}

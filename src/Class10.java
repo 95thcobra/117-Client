@@ -19,7 +19,7 @@ public class Class10 {
 	}
 
 	final void method42(final DataBuffer var1) {
-		anInt89 = var1.method595();
+		anInt89 = var1.readUByte();
 		anInt92 = var1.readIntV1();
 		anInt93 = var1.readIntV1();
 		method45(var1);
@@ -50,7 +50,7 @@ public class Class10 {
 	}
 
 	final void method45(final DataBuffer var1) {
-		anInt98 = var1.method595();
+		anInt98 = var1.readUByte();
 		anIntArray90 = new int[anInt98];
 		anIntArray99 = new int[anInt98];
 

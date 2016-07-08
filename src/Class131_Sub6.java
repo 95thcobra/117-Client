@@ -34,9 +34,9 @@ public final class Class131_Sub6 extends Class131 {
 						var3 = Class30.aClass30Array273[var2] = new Class30();
 						var3.anInt278 = var1.readUShort();
 						var3.anInt279 = var1.readIntV1();
-						var3.aString281 = var1.method638();
-						var3.aString272 = var1.method638();
-						var3.anInt286 = var1.method595();
+						var3.aString281 = var1.readString();
+						var3.aString272 = var1.readString();
+						var3.anInt286 = var1.readUByte();
 						var3.anInt276 = var1.readShort();
 					}
 
@@ -130,8 +130,8 @@ public final class Class131_Sub6 extends Class131 {
 			}
 		}
 
-		for (Class131_Sub21 var4 = (Class131_Sub21) client.aClass114_2225
-				.method460(); var4 != null; var4 = (Class131_Sub21) client.aClass114_2225.method458())
+		for (InterfaceSetting var4 = (InterfaceSetting) client.aClass114_2225
+				.method460(); var4 != null; var4 = (InterfaceSetting) client.aClass114_2225.method458())
 			if (var2 == ((var4.aLong902 >> 48) & 65535L))
 				var4.method501();
 

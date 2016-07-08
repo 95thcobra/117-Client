@@ -18,7 +18,7 @@ public class Class131_Sub20_Sub5 extends Class131_Sub20 {
 
 	public void method721(final DataBuffer var1, final int var2) {
 		while (true) {
-			final int var3 = var1.method595();
+			final int var3 = var1.readUByte();
 			if (var3 == 0)
 				return;
 

@@ -260,7 +260,7 @@ public class Class78 implements Runnable {
 			for (var5 = 0; var5 < client.anInt2068; ++var5) {
 				var4 = client.anIntArray2025[var5];
 				var2 = client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[var4];
-				var1 = client.gameBuffer.method595();
+				var1 = client.gameBuffer.readUByte();
 				if ((var1 & 16) != 0) {
 					var2.aClass131_Sub20_Sub6_1978 = Class131_Sub20_Sub20
 							.method879(client.gameBuffer.readULEShortA());
@@ -296,11 +296,11 @@ public class Class78 implements Runnable {
 				}
 
 				if ((var1 & 32) != 0) {
-					var3 = client.gameBuffer.method629();
+					var3 = client.gameBuffer.readULEShort();
 					if (var3 == '\uffff')
 						var3 = -1;
 
-					var9 = client.gameBuffer.method614();
+					var9 = client.gameBuffer.getUByteA();
 					if ((var2.anInt1703 == var3) && (var3 != -1)) {
 						var8 = Class131_Sub20_Sub19_Sub2_Sub1.method1066(var3).anInt1369;
 						if (var8 == 1) {
@@ -324,25 +324,25 @@ public class Class78 implements Runnable {
 				}
 
 				if ((var1 & 128) != 0) {
-					var3 = client.gameBuffer.method614();
-					var9 = client.gameBuffer.method615();
+					var3 = client.gameBuffer.getUByteA();
+					var9 = client.gameBuffer.getUByteC();
 					var2.method926(var3, var9, client.anInt2038);
 					var2.anInt1723 = 300 + client.anInt2038;
 					var2.anInt1741 = client.gameBuffer.readUshortA();
-					var2.anInt1715 = client.gameBuffer.method629();
+					var2.anInt1715 = client.gameBuffer.readULEShort();
 				}
 
 				if ((var1 & 1) != 0) {
-					var3 = client.gameBuffer.method615();
-					var9 = client.gameBuffer.method615();
+					var3 = client.gameBuffer.getUByteC();
+					var9 = client.gameBuffer.getUByteC();
 					var2.method926(var3, var9, client.anInt2038);
 					var2.anInt1723 = client.anInt2038 + 300;
-					var2.anInt1741 = client.gameBuffer.method629();
+					var2.anInt1741 = client.gameBuffer.readULEShort();
 					var2.anInt1715 = client.gameBuffer.readULEShortA();
 				}
 
 				if ((var1 & 2) != 0) {
-					var2.aString1705 = client.gameBuffer.method638();
+					var2.aString1705 = client.gameBuffer.readString();
 					var2.anInt1761 = 100;
 				}
 

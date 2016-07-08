@@ -12,7 +12,7 @@ public class Class131_Sub20_Sub12 extends Class131_Sub20 {
 
 	public void method772(final DataBuffer var1) {
 		while (true) {
-			final int var2 = var1.method595();
+			final int var2 = var1.readUByte();
 			if (var2 == 0)
 				return;
 
@@ -22,11 +22,11 @@ public class Class131_Sub20_Sub12 extends Class131_Sub20 {
 
 	void method773(final DataBuffer var1, final int var2) {
 		if (var2 == 1)
-			aChar1558 = (char) var1.method595();
+			aChar1558 = (char) var1.readUByte();
 		else if (var2 == 2)
-			aChar1559 = (char) var1.method595();
+			aChar1559 = (char) var1.readUByte();
 		else if (var2 == 3)
-			aString1566 = var1.method638();
+			aString1566 = var1.readString();
 		else if (var2 == 4)
 			anInt1564 = var1.readIntV1();
 		else {
@@ -38,7 +38,7 @@ public class Class131_Sub20_Sub12 extends Class131_Sub20 {
 
 				for (var3 = 0; var3 < anInt1562; ++var3) {
 					anIntArray1563[var3] = var1.readIntV1();
-					aStringArray1565[var3] = var1.method638();
+					aStringArray1565[var3] = var1.readString();
 				}
 			} else if (var2 == 6) {
 				anInt1562 = var1.readUShort();

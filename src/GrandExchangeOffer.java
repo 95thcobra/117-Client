@@ -20,7 +20,7 @@ public class GrandExchangeOffer {
 	}
 
 	public GrandExchangeOffer(final DataBuffer var1, final boolean var2) {
-		aByte893 = var1.method584();
+		aByte893 = var1.readByte();
 		anInt894 = var1.readUShort();
 		anInt895 = var1.readIntV1();
 		anInt898 = var1.readIntV1();

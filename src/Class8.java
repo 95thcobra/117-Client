@@ -5,7 +5,7 @@ public class Class8 {
 
 	Class8(final DataBuffer var1) {
 		for (int var2 = 0; var2 < 10; ++var2) {
-			final int var3 = var1.method595();
+			final int var3 = var1.readUByte();
 			if (var3 != 0) {
 				--var1.pos;
 				aClass14Array82[var2] = new Class14();

@@ -290,12 +290,12 @@ public abstract class Class100 {
 		var10 = ~var10;
 		anInt789 = var10;
 		final DataBuffer var4 = new DataBuffer(Class131_Sub4_Sub4.method914(var1));
-		var10 = var4.method595();
+		var10 = var4.readUByte();
 		if ((var10 >= 5) && (var10 <= 7)) {
 			if (var10 >= 6)
 				var4.readIntV1();
 
-			var7 = var4.method595();
+			var7 = var4.readUByte();
 			if (var10 >= 7)
 				anInt793 = var4.method643();
 			else

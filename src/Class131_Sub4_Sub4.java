@@ -91,7 +91,7 @@ public class Class131_Sub4_Sub4 extends Class131_Sub4 {
 
 	static final byte[] method914(final byte[] var0) {
 		final DataBuffer var1 = new DataBuffer(var0);
-		final int var3 = var1.method595();
+		final int var3 = var1.readUByte();
 		final int var2 = var1.readIntV1();
 		if ((var2 >= 0) && ((Class100.anInt792 == 0) || (var2 <= Class100.anInt792))) {
 			if (var3 == 0) {
