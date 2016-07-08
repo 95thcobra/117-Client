@@ -357,7 +357,7 @@ public class LoginEncoder {
 						Class36.initializeGPI(client.gameBuffer);
 						
 						Class105.anInt808 = -1;
-						GPI.thisIsActuallyMapRegion(false); // seems like map region lol
+						GPI.drawMapRegion(false); // seems like map region lol
 						
 						client.incomingPacket = -1;
 					}

@@ -37,11 +37,11 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 	}
 
 	static void method866(final Class131_Sub14_Sub1 var0, final int var1) {
-		final boolean var3 = var0.getBits(1) == 1;
+		final boolean var3 = var0.readBits(1) == 1;
 		if (var3)
 			GPI.anIntArray23[++GPI.anInt21 - 1] = var1;
 
-		final int var2 = var0.getBits(2);
+		final int var2 = var0.readBits(2);
 		final Player var4 = client.playerArray[var1];
 		if (var2 == 0) {
 			if (var3)
@@ -58,7 +58,7 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 
 				GPI.cachedIndices[var1] = var4.anInt1726;
 				client.playerArray[var1] = null;
-				if (var0.getBits(1) != 0)
+				if (var0.readBits(1) != 0)
 					Class61.method297(var0, var1);
 
 			}
@@ -67,7 +67,7 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 			int var8;
 			int var10;
 			if (var2 == 1) {
-				var5 = var0.getBits(3);
+				var5 = var0.readBits(3);
 				var8 = var4.anIntArray1755[0];
 				var10 = var4.anIntArray1756[0];
 				if (var5 == 0) {
@@ -106,7 +106,7 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 				}
 
 			} else if (var2 == 2) {
-				var5 = var0.getBits(4);
+				var5 = var0.readBits(4);
 				var8 = var4.anIntArray1755[0];
 				var10 = var4.anIntArray1756[0];
 				if (var5 == 0) {
@@ -171,13 +171,13 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 				}
 
 			} else {
-				var5 = var0.getBits(1);
+				var5 = var0.readBits(1);
 				int var6;
 				int var7;
 				int var9;
 				int var11;
 				if (var5 == 0) {
-					var8 = var0.getBits(12);
+					var8 = var0.readBits(12);
 					var10 = var8 >> 10;
 					var11 = (var8 >> 5) & 31;
 					if (var11 > 15)
@@ -207,7 +207,7 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 						Class39.anInt410 = var4.anInt1979;
 
 				} else {
-					var8 = var0.getBits(30);
+					var8 = var0.readBits(30);
 					var10 = var8 >> 28;
 					var11 = (var8 >> 14) & 16383;
 					var6 = var8 & 16383;

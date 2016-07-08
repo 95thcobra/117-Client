@@ -44,10 +44,10 @@ public class Class36 {
 
 	static final void initializeGPI(final Class131_Sub14_Sub1 var0) {
 		var0.bitAccess();
-		final int var3 = client.myPlayerIndex;
-		final Player player = Class131_Sub11.myPlayer = client.playerArray[var3] = new Player();
-		player.anInt1981 = var3;
-		final int var6 = var0.getBits(30);
+		final int myPlayerIndex = client.myPlayerIndex;
+		final Player player = Class131_Sub11.myPlayer = client.playerArray[myPlayerIndex] = new Player();
+		player.anInt1981 = myPlayerIndex;
+		final int var6 = var0.readBits(30);
 		final byte var9 = (byte) (var6 >> 28);
 		final int var7 = (var6 >> 14) & 16383;
 		final int var5 = var6 & 16383;
@@ -57,26 +57,29 @@ public class Class36 {
 		player.anInt1759 = (player.anIntArray1756[0] << 7) + (player.getSize() << 6);
 		player.anInt1979 = var9 * 1840261741;
 		Class39.anInt410 = var9;
-		if (GPI.cachedAppearances[var3] != null)
-			player.method1068(GPI.cachedAppearances[var3]);
+		if (GPI.cachedAppearances[myPlayerIndex] != null)
+			player.method1068(GPI.cachedAppearances[myPlayerIndex]);
 
 		GPI.anInt11 = 0;
-		GPI.anIntArray17[++GPI.anInt11 - 1] = var3;
-		GPI.skipFlags[var3] = 0;
+		GPI.anIntArray17[++GPI.anInt11 - 1] = myPlayerIndex;
+		GPI.skipFlags[myPlayerIndex] = 0;
 		GPI.globalPlayerCount = 0;
 
-		for (int var8 = 1; var8 < 2048; ++var8)
-			if (var3 != var8) {
-				final int var1 = var0.getBits(18);
+		for (int playerIndex = 1; playerIndex < 2048; ++playerIndex) {
+			System.out.println(myPlayerIndex + " is not equal to ? " + playerIndex);
+			if (myPlayerIndex != playerIndex) {
+				final int var1 = var0.readBits(18);
 				final int var10 = var1 >> 16;
 				final int var11 = (var1 >> 8) & 255;
 				final int var2 = var1 & 255;
-				GPI.cachedRegions[var8] = var2 + (var11 << 14) + (var10 << 28);
-				GPI.cachedDirections[var8] = 0;
-				GPI.cachedIndices[var8] = -1;
-				GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = var8;
-				GPI.skipFlags[var8] = 0;
+				GPI.cachedRegions[playerIndex] = var2 + (var11 << 14) + (var10 << 28);
+				GPI.cachedDirections[playerIndex] = 0;
+				GPI.cachedIndices[playerIndex] = -1;
+				GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = playerIndex;
+				GPI.skipFlags[playerIndex] = 0;
+				System.out.println("global player count incremented.");
 			}
+		}
 
 		var0.method876();
 	}

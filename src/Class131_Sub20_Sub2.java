@@ -435,16 +435,16 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 	}
 
 	static int method702(final Class131_Sub14_Sub1 var0) {
-		final int var1 = var0.getBits(2);
+		final int var1 = var0.readBits(2);
 		int var2;
 		if (var1 == 0)
 			var2 = 0;
 		else if (var1 == 1)
-			var2 = var0.getBits(5);
+			var2 = var0.readBits(5);
 		else if (var1 == 2)
-			var2 = var0.getBits(8);
+			var2 = var0.readBits(8);
 		else
-			var2 = var0.getBits(11);
+			var2 = var0.readBits(11);
 
 		return var2;
 	}

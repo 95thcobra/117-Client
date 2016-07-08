@@ -53,7 +53,7 @@ public class GPI {
 
 	}
 
-	static final void thisIsActuallyMapRegion(final boolean instance) {
+	static final void drawMapRegion(final boolean instance) {
 		client.aBool2088 = instance;
 		int xteaCount;
 		int var2;
@@ -117,9 +117,9 @@ public class GPI {
 			for (var6 = 0; var6 < 4; ++var6)
 				for (var2 = 0; var2 < 13; ++var2)
 					for (var3 = 0; var3 < 13; ++var3) {
-						var8 = client.gameBuffer.getBits(1);
+						var8 = client.gameBuffer.readBits(1);
 						if (var8 == 1)
-							client.anIntArrayArrayArray2089[var6][var2][var3] = client.gameBuffer.getBits(26);
+							client.anIntArrayArrayArray2089[var6][var2][var3] = client.gameBuffer.readBits(26);
 						else
 							client.anIntArrayArrayArray2089[var6][var2][var3] = -1;
 					}

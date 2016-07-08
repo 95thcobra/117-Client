@@ -133,12 +133,11 @@ public class Class78 implements Runnable {
 	}
 
 	// Map region
-	static final void drawMapRegion(final boolean instanced) {
-		System.out.println("gothere");
+	static final void playerSyncMaybe(final boolean notsureyet) {
 		client.anInt2061 = 0;
 		client.anInt2068 = 0;
 		client.gameBuffer.bitAccess();
-		int var5 = client.gameBuffer.getBits(8);
+		int var5 = client.gameBuffer.readBits(8);
 		System.out.println("var5:"+var5);
 		int var4;
 		if (var5 < client.anInt2230)
@@ -157,12 +156,12 @@ public class Class78 implements Runnable {
 			for (var4 = 0; var4 < var5; ++var4) {
 				final int var6 = client.anIntArray2067[var4];
 				final Class131_Sub20_Sub19_Sub2_Sub1 var7 = client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[var6];
-				var3 = client.gameBuffer.getBits(1);
+				var3 = client.gameBuffer.readBits(1);
 				if (var3 == 0) {
 					client.anIntArray2067[++client.anInt2230 - 1] = var6;
 					var7.anInt1747 = client.anInt2038;
 				} else {
-					var9 = client.gameBuffer.getBits(2);
+					var9 = client.gameBuffer.readBits(2);
 					if (var9 == 0) {
 						client.anIntArray2067[++client.anInt2230 - 1] = var6;
 						var7.anInt1747 = client.anInt2038;
@@ -170,19 +169,19 @@ public class Class78 implements Runnable {
 					} else if (var9 == 1) {
 						client.anIntArray2067[++client.anInt2230 - 1] = var6;
 						var7.anInt1747 = client.anInt2038;
-						var8 = client.gameBuffer.getBits(3);
+						var8 = client.gameBuffer.readBits(3);
 						var7.method1062(var8, (byte) 1);
-						var10 = client.gameBuffer.getBits(1);
+						var10 = client.gameBuffer.readBits(1);
 						if (var10 == 1)
 							client.anIntArray2025[++client.anInt2068 - 1] = var6;
 					} else if (var9 == 2) {
 						client.anIntArray2067[++client.anInt2230 - 1] = var6;
 						var7.anInt1747 = client.anInt2038;
-						var8 = client.gameBuffer.getBits(3);
+						var8 = client.gameBuffer.readBits(3);
 						var7.method1062(var8, (byte) 2);
-						var10 = client.gameBuffer.getBits(3);
+						var10 = client.gameBuffer.readBits(3);
 						var7.method1062(var10, (byte) 2);
-						final int var11 = client.gameBuffer.getBits(1);
+						final int var11 = client.gameBuffer.readBits(1);
 						if (var11 == 1)
 							client.anIntArray2025[++client.anInt2068 - 1] = var6;
 					} else if (var9 == 3)
@@ -193,7 +192,7 @@ public class Class78 implements Runnable {
 			int var1;
 			Class131_Sub20_Sub19_Sub2_Sub1 var2;
 			while (client.gameBuffer.method874(client.messageSize) >= 27) {
-				var5 = client.gameBuffer.getBits(15);
+				var5 = client.gameBuffer.readBits(15);
 				if (var5 == 32767)
 					break;
 
@@ -206,36 +205,36 @@ public class Class78 implements Runnable {
 				var2 = client.aClass131_Sub20_Sub19_Sub2_Sub1Array2065[var5];
 				client.anIntArray2067[++client.anInt2230 - 1] = var5;
 				var2.anInt1747 = client.anInt2038;
-				if (instanced) {
-					var1 = client.gameBuffer.getBits(8);
+				if (notsureyet) {
+					var1 = client.gameBuffer.readBits(8);
 					if (var1 > 127)
 						var1 -= 256;
 				} else {
-					var1 = client.gameBuffer.getBits(5);
+					var1 = client.gameBuffer.readBits(5);
 					if (var1 > 15)
 						var1 -= 32;
 				}
 
-				var3 = client.anIntArray2155[client.gameBuffer.getBits(3)];
+				var3 = client.anIntArray2155[client.gameBuffer.readBits(3)];
 				if (var12) {
 					var2.anInt1762 = var3 * 762366543;
 					var2.anInt1751 = var3;
 				}
 
-				if (instanced) {
-					var9 = client.gameBuffer.getBits(8);
+				if (notsureyet) {
+					var9 = client.gameBuffer.readBits(8);
 					if (var9 > 127)
 						var9 -= 256;
 				} else {
-					var9 = client.gameBuffer.getBits(5);
+					var9 = client.gameBuffer.readBits(5);
 					if (var9 > 15)
 						var9 -= 32;
 				}
 
 				var2.aClass131_Sub20_Sub6_1978 = Class131_Sub20_Sub20
-						.method879(client.gameBuffer.getBits(14));
-				var8 = client.gameBuffer.getBits(1);
-				var10 = client.gameBuffer.getBits(1);
+						.method879(client.gameBuffer.readBits(14));
+				var8 = client.gameBuffer.readBits(1);
+				var10 = client.gameBuffer.readBits(1);
 				if (var10 == 1)
 					client.anIntArray2025[++client.anInt2068 - 1] = var5;
 

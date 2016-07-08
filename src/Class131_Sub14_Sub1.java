@@ -18,7 +18,7 @@ public final class Class131_Sub14_Sub1 extends DataBuffer {
 		anInt1646 = pos * 8;
 	}
 
-	public int getBits(int var1) {
+	public int readBits(int var1) {
 		int var2 = anInt1646 >> 3;
 		int var3 = 8 - (anInt1646 & 7);
 		int var4 = 0;

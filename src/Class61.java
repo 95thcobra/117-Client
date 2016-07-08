@@ -29,7 +29,7 @@ public class Class61 {
 	}
 
 	static boolean method297(final Class131_Sub14_Sub1 var0, final int var1) {
-		final int var2 = var0.getBits(2);
+		final int var2 = var0.readBits(2);
 		int var4;
 		int var5;
 		int var6;
@@ -37,12 +37,12 @@ public class Class61 {
 		int var9;
 		int var10;
 		if (var2 == 0) {
-			if (var0.getBits(1) != 0)
+			if (var0.readBits(1) != 0)
 				method297(var0, var1);
 
-			var5 = var0.getBits(6);
-			var6 = var0.getBits(6);
-			final boolean var12 = var0.getBits(1) == 1;
+			var5 = var0.readBits(6);
+			var6 = var0.readBits(6);
+			final boolean var12 = var0.readBits(1) == 1;
 			if (var12)
 				GPI.anIntArray23[++GPI.anInt21 - 1] = var1;
 
@@ -68,7 +68,7 @@ public class Class61 {
 				return true;
 			}
 		} else if (var2 == 1) {
-			var5 = var0.getBits(2);
+			var5 = var0.readBits(2);
 			var6 = GPI.cachedRegions[var1];
 			GPI.cachedRegions[var1] = ((((var6 >> 28) + var5) & 3) << 28) + (var6 & 268435455);
 			return false;
@@ -76,7 +76,7 @@ public class Class61 {
 			int var8;
 			int var11;
 			if (var2 == 2) {
-				var5 = var0.getBits(5);
+				var5 = var0.readBits(5);
 				var6 = var5 >> 3;
 				var8 = var5 & 7;
 				var11 = GPI.cachedRegions[var1];
@@ -118,7 +118,7 @@ public class Class61 {
 				GPI.cachedRegions[var1] = (var4 << 14) + (var9 << 28) + var7;
 				return false;
 			} else {
-				var5 = var0.getBits(18);
+				var5 = var0.readBits(18);
 				var6 = var5 >> 16;
 				var8 = (var5 >> 8) & 255;
 				var11 = var5 & 255;
