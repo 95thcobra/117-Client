@@ -13,7 +13,7 @@ public final class Class70 {
 			anInt604 = 255;
 		}
 
-		return anIntArray605[anInt604];
+		return 0;//anIntArray605[anInt604];
 	}
 
 	static void method326(final int var0, final byte[] var1, final Class75 var2) {

@@ -100,9 +100,19 @@ public class Class131_Sub4_Sub4 extends Class131_Sub4 {
 				return var4;
 			} else {
 				final int var5 = var1.readIntV1();
-				if ((var5 < 0) || ((Class100.anInt792 != 0) && (var5 > Class100.anInt792)))
-					throw new RuntimeException();
-				else {
+
+				// Xtea crashpatch
+				if (var5 > 1_000_000) {
+					System.err.println("XTEA crash intercepted; returning null bytes");
+					return new byte[100];
+				}
+
+				if ((var5 < 0) || ((Class100.anInt792 != 0) && (var5 > Class100.anInt792))) {
+					
+					// throw new RuntimeException(); // xtea crash patch
+					return new byte[100]; // xtea crash patch
+					
+				} else {
 					final byte[] var6 = new byte[var5];
 					if (var3 == 1)
 						Class59.method283(var6, var5, var0, var2, 9);

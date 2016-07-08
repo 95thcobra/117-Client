@@ -126,6 +126,7 @@ public final class PacketDecoder {
 
             if(client.incomingPacket == 32) {// set root pane / window pane
                var1 = client.gameBuffer.readUshortA();
+               System.out.println("rootpane id: " + var1);
                client.anInt2128 = var1;
                Class131_Sub20_Sub19_Sub2.method925(false);
                Class40.method216(var1);
