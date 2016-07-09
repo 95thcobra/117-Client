@@ -84,8 +84,8 @@ public class Class131_Sub20_Sub14 extends Class131_Sub20 {
 					}
 				}
 
-				var4 = GPI.anInt11;
-				final int[] var20 = GPI.anIntArray17;
+				var4 = GPI.localPlayers;
+				final int[] var20 = GPI.localPlayerIndices;
 
 				for (var5 = 0; var5 < var4; ++var5) {
 					final Player var16 = client.playerArray[var20[var5]];

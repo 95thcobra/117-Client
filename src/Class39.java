@@ -3,7 +3,7 @@ public class Class39 {
 	String[] aStringArray408;
 	static Class131_Sub20_Sub17_Sub2[] aClass131_Sub20_Sub17_Sub2Array409;
 	static int anInt410;
-	Class131_Sub20_Sub18 aClass131_Sub20_Sub18_411;
+	Player1 aClass131_Sub20_Sub18_411;
 	static int anInt412;
 	int anInt406 = -1;
 

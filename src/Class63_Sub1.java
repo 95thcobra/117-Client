@@ -142,8 +142,8 @@ public class Class63_Sub1 extends Class63 {
 										var11);
 						}
 
-						var20 = GPI.anInt11;
-						var26 = GPI.anIntArray17;
+						var20 = GPI.localPlayers;
+						var26 = GPI.localPlayerIndices;
 
 						for (var23 = 0; var23 < var20; ++var23) {
 							var15 = client.playerArray[var26[var23]];
@@ -170,8 +170,8 @@ public class Class63_Sub1 extends Class63 {
 										var11);
 						}
 
-						var20 = GPI.anInt11;
-						var26 = GPI.anIntArray17;
+						var20 = GPI.localPlayers;
+						var26 = GPI.localPlayerIndices;
 
 						for (var23 = 0; var23 < var20; ++var23) {
 							var15 = client.playerArray[var26[var23]];

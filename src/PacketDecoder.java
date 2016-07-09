@@ -161,8 +161,8 @@ public final class PacketDecoder {
 					return true;
 				}
 
-				int var7;
-				int var9;
+				int index;
+				int playerIndex;
 				int var10;
 				boolean var64;
 				boolean var97;
@@ -182,16 +182,16 @@ public final class PacketDecoder {
 
 						var97 = false;
 
-						for (var7 = 0; (var7 < Class23.anInt210)
-								&& (!Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].aString1106.equals(var4)
-										|| (xp != Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7].anInt1102)); ++var7)
+						for (index = 0; (index < Class23.anInt210)
+								&& (!Class131_Sub20_Sub8.aClass131_Sub13Array1498[index].aString1106.equals(var4)
+										|| (xp != Class131_Sub20_Sub8.aClass131_Sub13Array1498[index].anInt1102)); ++index)
 							;
 
-						if (var7 < Class23.anInt210) {
-							while (var7 < (Class23.anInt210 - 1)) {
-								Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7] = Class131_Sub20_Sub8.aClass131_Sub13Array1498[var7
+						if (index < Class23.anInt210) {
+							while (index < (Class23.anInt210 - 1)) {
+								Class131_Sub20_Sub8.aClass131_Sub13Array1498[index] = Class131_Sub20_Sub8.aClass131_Sub13Array1498[index
 										+ 1];
-								++var7;
+								++index;
 							}
 
 							--Class23.anInt210;
@@ -205,12 +205,12 @@ public final class PacketDecoder {
 						var72.anInt1102 = xp;
 						var72.aByte1103 = var78;
 
-						for (var9 = Class23.anInt210 - 1; var9 >= 0; --var9) {
-							var10 = Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].aString1104
+						for (playerIndex = Class23.anInt210 - 1; playerIndex >= 0; --playerIndex) {
+							var10 = Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].aString1104
 									.compareTo(var72.aString1104);
 							if (var10 == 0) {
-								Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].anInt1102 = xp;
-								Class131_Sub20_Sub8.aClass131_Sub13Array1498[var9].aByte1103 = var78;
+								Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].anInt1102 = xp;
+								Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].aByte1103 = var78;
 								if (var4.equals(Class131_Sub11.myPlayer.aString2004))
 									Class28.aByte259 = var78;
 
@@ -228,14 +228,14 @@ public final class PacketDecoder {
 							return true;
 						}
 
-						for (var10 = Class23.anInt210 - 1; var10 > var9; --var10)
+						for (var10 = Class23.anInt210 - 1; var10 > playerIndex; --var10)
 							Class131_Sub20_Sub8.aClass131_Sub13Array1498[var10
 									+ 1] = Class131_Sub20_Sub8.aClass131_Sub13Array1498[var10];
 
 						if (Class23.anInt210 == 0)
 							Class131_Sub20_Sub8.aClass131_Sub13Array1498 = new Class131_Sub13[100];
 
-						Class131_Sub20_Sub8.aClass131_Sub13Array1498[1 + var9] = var72;
+						Class131_Sub20_Sub8.aClass131_Sub13Array1498[1 + playerIndex] = var72;
 						++Class23.anInt210;
 						if (var4.equals(Class131_Sub11.myPlayer.aString2004))
 							Class28.aByte259 = var78;
@@ -283,7 +283,7 @@ public final class PacketDecoder {
 				}
 
 				if (client.incomingPacket == 69) {
-					GPI.anInt11 = 0;
+					GPI.localPlayers = 0;
 
 					for (skillId = 0; skillId < 2048; ++skillId) {
 						GPI.cachedAppearances[skillId] = null;
@@ -315,16 +315,16 @@ public final class PacketDecoder {
 					return true;
 				}
 
-				int currentLevel;
+				int pos;
 				Class131_Sub18 var74;
 				if (client.incomingPacket == 131) {
 					skillId = client.gameBuffer.method621();
 					xp = client.gameBuffer.method644();
-					currentLevel = client.gameBuffer.method639();
+					pos = client.gameBuffer.method639();
 					var74 = Class88.method377(xp);
-					if ((var74.anInt1167 != currentLevel) || (skillId != var74.anInt1157) || (var74.anInt1163 != 0)
+					if ((var74.anInt1167 != pos) || (skillId != var74.anInt1157) || (var74.anInt1163 != 0)
 							|| (var74.anInt1261 != 0)) {
-						var74.anInt1167 = currentLevel;
+						var74.anInt1167 = pos;
 						var74.anInt1157 = skillId;
 						var74.anInt1163 = 0;
 						var74.anInt1261 = 0;
@@ -339,26 +339,26 @@ public final class PacketDecoder {
 					return true;
 				}
 
-				int var6;
+				int skipCount;
 				if (client.incomingPacket == 106) {
 					xp = client.gameBuffer.readUByte();
 					final Class84[] var92 = Class60.method295(-1747730515);
-					var6 = 0;
+					skipCount = 0;
 
 					Class84 var67;
 					while (true) {
-						if (var6 >= var92.length) {
+						if (skipCount >= var92.length) {
 							var67 = null;
 							break;
 						}
 
-						final Class84 var71 = var92[var6];
+						final Class84 var71 = var92[skipCount];
 						if (xp == var71.anInt698) {
 							var67 = var71;
 							break;
 						}
 
-						++var6;
+						++skipCount;
 					}
 
 					Class131_Sub20_Sub3.aClass84_1424 = var67;
@@ -408,24 +408,24 @@ public final class PacketDecoder {
 					final long var13 = client.gameBuffer.method600();
 					client.aString2250 = Class52.method271(var13);
 					Class113.aByte836 = client.gameBuffer.readByte();
-					currentLevel = client.gameBuffer.readUByte();
-					if (currentLevel == 255) {
+					pos = client.gameBuffer.readUByte();
+					if (pos == 255) {
 						client.incomingPacket = -1;
 						return true;
 					}
 
-					Class23.anInt210 = currentLevel;
+					Class23.anInt210 = pos;
 					final Class131_Sub13[] var81 = new Class131_Sub13[100];
 
-					for (var7 = 0; var7 < Class23.anInt210; ++var7) {
-						var81[var7] = new Class131_Sub13();
-						var81[var7].aString1106 = client.gameBuffer.readString();
-						var81[var7].aString1104 = Class85.method371(var81[var7].aString1106, client.aClass142_2031);
-						var81[var7].anInt1102 = client.gameBuffer.readUShort();
-						var81[var7].aByte1103 = client.gameBuffer.readByte();
+					for (index = 0; index < Class23.anInt210; ++index) {
+						var81[index] = new Class131_Sub13();
+						var81[index].aString1106 = client.gameBuffer.readString();
+						var81[index].aString1104 = Class85.method371(var81[index].aString1106, client.aClass142_2031);
+						var81[index].anInt1102 = client.gameBuffer.readUShort();
+						var81[index].aByte1103 = client.gameBuffer.readByte();
 						client.gameBuffer.readString();
-						if (var81[var7].aString1106.equals(Class131_Sub11.myPlayer.aString2004))
-							Class28.aByte259 = var81[var7].aByte1103;
+						if (var81[index].aString1106.equals(Class131_Sub11.myPlayer.aString2004))
+							Class28.aByte259 = var81[index].aByte1103;
 					}
 
 					var97 = false;
@@ -479,136 +479,162 @@ public final class PacketDecoder {
 					return true;
 				}
 
-				Class131_Sub14_Sub1 var60;
+				Class131_Sub14_Sub1 buf;
 				Player var84;
+				
 				// PLAYER SYNC
 				if (client.incomingPacket == 64) {
 					
-					System.out.println("PACKET 64 PLAYER COUNT: " + GPI.globalPlayerCount);
-					
-					var60 = client.gameBuffer;
+					System.out.println("PACKET 64 PLAYER COUNT: " + GPI.otherPlayers);
+				
+					buf = client.gameBuffer;
 					xp = client.messageSize;
-					currentLevel = var60.pos;
+					pos = buf.pos;
 					GPI.anInt21 = 0;
-					var6 = 0;
-					var60.bitAccess();
+					skipCount = 0;
+					buf.bitAccess();
 
 					// START ENCODE CONTEXT PLAYER
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0) {
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					
+					for (index = 0; index < GPI.localPlayers; ++index) { // localplayers = players the player can view.
+						playerIndex = GPI.localPlayerIndices[index];
+						
+						System.out.println("is this 0?"+(GPI.skipFlags[playerIndex] & 1));
+						
+						// Movement?
+						if ((GPI.skipFlags[playerIndex] & 1) == 0) {
+							System.out.println("var6:"+skipCount);
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var60.readBits(1);
-								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var60);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+								var10 = buf.readBits(1);// This is 1 if player is moving, 0 if not.
+								System.out.println("The var 10:"+var10);
+								
+								if (var10 == 0) { // Skip flag
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf); // 0
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var60, var9);
+									Player1.decodeMovement(buf, playerIndex);
 							}
 						}
 					}
 
-					var60.method876();
-					if (var6 != 0)
+					buf.byteAccess();
+					if (skipCount != 0) {
+						System.out.println("crashes here 26.");
 						throw new RuntimeException();
+					}
+					buf.bitAccess();
 
-					var60.bitAccess();
-
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-							} else {
-								var10 = var60.readBits(1);
+					for (index = 0; index < GPI.localPlayers; ++index) {
+						playerIndex = GPI.localPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+							} else {	
+								var10 = buf.readBits(1);						
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var60);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var60, var9);
+									Player1.decodeMovement(buf, playerIndex);
 							}
 					}
 
-					var60.method876();
-					if (var6 != 0)
+					buf.byteAccess();
+					if (skipCount != 0) {
+						System.out.println("crashes here 27.");
 						throw new RuntimeException();
+					}
+					buf.bitAccess();
 
-					var60.bitAccess();
-
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+		               int countOther1 = 0;
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var60.readBits(1);
+							   	 countOther1++;
+								//System.out.println("EXPECTING1 var10");
+								var10 = buf.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var60);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var60, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(buf, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
-					}
+					}  System.out.println("total1: " + countOther1);
 
-					var60.method876();
-					if (var6 != 0)
+					buf.byteAccess();
+					if (skipCount != 0) {
+						System.out.println("crashes here 28.");
 						throw new RuntimeException();
+					}
+					buf.bitAccess();
 
-					var60.bitAccess();
-
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+				      int countOther2 = 0;
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var60.readBits(1);
+								countOther2++;
+								//System.out.println("EXPECTING2 var10");
+								var10 = buf.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var60);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var60, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(buf, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
+					  System.out.println("total2:"+countOther2);
 
-					var60.method876();
-					if (var6 != 0)
+					buf.byteAccess();
+					if (skipCount != 0) {
+						System.out.println("crashes here 29.");
 						throw new RuntimeException();
+					}
+					GPI.localPlayers = 0;
+					GPI.otherPlayers = 0;
 
-					GPI.anInt11 = 0;
-					GPI.globalPlayerCount = 0;
-
-					for (var7 = 1; var7 < 2048; ++var7) {
-						GPI.skipFlags[var7] = (byte) (GPI.skipFlags[var7] >> 1);
-						var84 = client.playerArray[var7];
+					for (index = 1; index < 2048; ++index) {
+						GPI.skipFlags[index] = (byte) (GPI.skipFlags[index] >> 1);
+						var84 = client.playerArray[index];
 						if (var84 != null)
-							GPI.anIntArray17[++GPI.anInt11 - 1] = var7;
+							GPI.localPlayerIndices[++GPI.localPlayers - 1] = index;
 						else
-							GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = var7;
+							GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = index;
 					}
 
-					for (var6 = 0; var6 < GPI.anInt21; ++var6) {
-						var7 = GPI.anIntArray23[var6];
-						var84 = client.playerArray[var7];
-						var10 = var60.readUByte();
+					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
+						index = GPI.anIntArray23[skipCount];
+						var84 = client.playerArray[index];
+						var10 = buf.readUByte();
 						if ((var10 & 8) != 0)
-							var10 += var60.readUByte() << 8;
+							var10 += buf.readUByte() << 8;
 
-						Class131_Sub20_Sub16.method840(var60, var7, var84, var10);
+						Class131_Sub20_Sub16.method840(buf, index, var84, var10);
 					}
 
-					if (xp != (var60.pos - currentLevel))
-						throw new RuntimeException((var60.pos - currentLevel) + " " + xp);
-
+					System.out.println("xp:"+xp);
+					System.out.println("(var60.pos - currentLevel))" +(buf.pos - pos));
+					if (xp != (buf.pos - pos)) {
+						System.out.println("crashes here 30.");
+						throw new RuntimeException((buf.pos - pos) + " " + xp);
+					}
+					
 					client.incomingPacket = -1;
 					return true;
 				}
+				
+				// END OF PLAYER UPDATING
 
 				System.out.println("Incoming packet: " + client.incomingPacket);
 
@@ -655,12 +681,12 @@ public final class PacketDecoder {
 						var80 = client.gameBuffer.readUByte() == 1;
 						var2 = client.gameBuffer.readString();
 						var73 = client.gameBuffer.readString();
-						var6 = client.gameBuffer.readUShort();
-						var7 = client.gameBuffer.readUByte();
-						var9 = client.gameBuffer.readUByte();
-						final boolean var85 = (var9 & 2) != 0;
-						final boolean var82 = (var9 & 1) != 0;
-						if (var6 > 0) {
+						skipCount = client.gameBuffer.readUShort();
+						index = client.gameBuffer.readUByte();
+						playerIndex = client.gameBuffer.readUByte();
+						final boolean var85 = (playerIndex & 2) != 0;
+						final boolean var82 = (playerIndex & 1) != 0;
+						if (skipCount > 0) {
 							client.gameBuffer.readString();
 							client.gameBuffer.readUByte();
 							client.gameBuffer.readIntV1();
@@ -672,29 +698,29 @@ public final class PacketDecoder {
 							final Class44 var91 = client.aClass44Array2292[var90];
 							if (!var80) {
 								if (var2.equals(var91.aString442)) {
-									if (var91.anInt438 != var6) {
+									if (var91.anInt438 != skipCount) {
 										var19 = true;
 
 										for (Class126_Sub1 var94 = (Class126_Sub1) client.aClass112_2293
 												.method453(); var94 != null; var94 = (Class126_Sub1) client.aClass112_2293
 														.method454())
 											if (var94.aString949.equals(var2))
-												if ((var6 != 0) && (var94.aShort950 == 0)) {
+												if ((skipCount != 0) && (var94.aShort950 == 0)) {
 													var94.method490();
 													var19 = false;
-												} else if ((var6 == 0) && (var94.aShort950 != 0)) {
+												} else if ((skipCount == 0) && (var94.aShort950 != 0)) {
 													var94.method490();
 													var19 = false;
 												}
 
 										if (var19)
-											client.aClass112_2293.method452(new Class126_Sub1(var2, var6));
+											client.aClass112_2293.method452(new Class126_Sub1(var2, skipCount));
 
-										var91.anInt438 = var6;
+										var91.anInt438 = skipCount;
 									}
 
 									var91.aString437 = var73;
-									var91.anInt445 = var7;
+									var91.anInt445 = index;
 									var91.aBool439 = var85;
 									var91.aBool440 = var82;
 									var2 = null;
@@ -713,8 +739,8 @@ public final class PacketDecoder {
 							client.aClass44Array2292[client.anInt2290] = var21;
 							var21.aString442 = var2;
 							var21.aString437 = var73;
-							var21.anInt438 = var6;
-							var21.anInt445 = var7;
+							var21.anInt438 = skipCount;
+							var21.anInt445 = index;
 							var21.aBool439 = var85;
 							var21.aBool440 = var82;
 							++client.anInt2290;
@@ -730,10 +756,10 @@ public final class PacketDecoder {
 						var80 = true;
 						--xp;
 
-						for (currentLevel = 0; currentLevel < xp; ++currentLevel) {
+						for (pos = 0; pos < xp; ++pos) {
 							var64 = false;
-							final Class44 var70 = client.aClass44Array2292[currentLevel];
-							final Class44 var88 = client.aClass44Array2292[currentLevel + 1];
+							final Class44 var70 = client.aClass44Array2292[pos];
+							final Class44 var88 = client.aClass44Array2292[pos + 1];
 							if ((var70.anInt438 != client.anInt2123) && (var88.anInt438 == client.anInt2123))
 								var64 = true;
 
@@ -747,9 +773,9 @@ public final class PacketDecoder {
 								var64 = true;
 
 							if (var64) {
-								final Class44 var96 = client.aClass44Array2292[currentLevel];
-								client.aClass44Array2292[currentLevel] = client.aClass44Array2292[currentLevel + 1];
-								client.aClass44Array2292[1 + currentLevel] = var96;
+								final Class44 var96 = client.aClass44Array2292[pos];
+								client.aClass44Array2292[pos] = client.aClass44Array2292[pos + 1];
+								client.aClass44Array2292[1 + pos] = var96;
 								var80 = false;
 							}
 						}
@@ -803,11 +829,11 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 214) {
 					skillId = client.gameBuffer.readUShort();
 					xp = client.gameBuffer.readUShort();
-					currentLevel = client.gameBuffer.readIntV2();
-					var6 = client.gameBuffer.readULEShortA();
-					var69 = Class88.method377(currentLevel);
-					if ((var6 != var69.anInt1209) || (var69.anInt1210 != skillId) || (var69.anInt1277 != xp)) {
-						var69.anInt1209 = var6;
+					pos = client.gameBuffer.readIntV2();
+					skipCount = client.gameBuffer.readULEShortA();
+					var69 = Class88.method377(pos);
+					if ((skipCount != var69.anInt1209) || (var69.anInt1210 != skillId) || (var69.anInt1277 != xp)) {
+						var69.anInt1209 = skipCount;
 						var69.anInt1210 = skillId;
 						var69.anInt1277 = xp;
 						Class131_Sub20_Sub6.method734(var69);
@@ -862,12 +888,12 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 211) {
 					client.gameBuffer.pos += 28;
 					if (client.gameBuffer.method611()) {
-						var60 = client.gameBuffer;
+						buf = client.gameBuffer;
 						xp = client.gameBuffer.pos - 28;
 						if (Class72.aClass140_617 != null)
 							try {
 								Class72.aClass140_617.method510(0L);
-								Class72.aClass140_617.method516(var60.data, xp, 24);
+								Class72.aClass140_617.method516(buf.data, xp, 24);
 							} catch (final Exception var50) {
 								;
 							}
@@ -884,121 +910,121 @@ public final class PacketDecoder {
 					client.gameBuffer.readOpcode();
 					skillId = client.gameBuffer.readUShort();
 					var58 = client.gameBuffer;
-					currentLevel = var58.pos;
+					pos = var58.pos;
 					GPI.anInt21 = 0;
-					var6 = 0;
+					skipCount = 0;
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.localPlayers; ++index) {
+						playerIndex = GPI.localPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var58, var9);
+									Player1.decodeMovement(var58, playerIndex);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.localPlayers; ++index) {
+						playerIndex = GPI.localPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var58, var9);
+									Player1.decodeMovement(var58, playerIndex);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var58, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(var58, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var58, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(var58, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
-					GPI.anInt11 = 0;
-					GPI.globalPlayerCount = 0;
+					GPI.localPlayers = 0;
+					GPI.otherPlayers = 0;
 
-					for (var7 = 1; var7 < 2048; ++var7) {
-						GPI.skipFlags[var7] = (byte) (GPI.skipFlags[var7] >> 1);
-						var84 = client.playerArray[var7];
+					for (index = 1; index < 2048; ++index) {
+						GPI.skipFlags[index] = (byte) (GPI.skipFlags[index] >> 1);
+						var84 = client.playerArray[index];
 						if (var84 != null)
-							GPI.anIntArray17[++GPI.anInt11 - 1] = var7;
+							GPI.localPlayerIndices[++GPI.localPlayers - 1] = index;
 						else
-							GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = var7;
+							GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = index;
 					}
 
-					for (var6 = 0; var6 < GPI.anInt21; ++var6) {
-						var7 = GPI.anIntArray23[var6];
-						var84 = client.playerArray[var7];
+					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
+						index = GPI.anIntArray23[skipCount];
+						var84 = client.playerArray[index];
 						var10 = var58.readUByte();
 						if ((var10 & 8) != 0)
 							var10 += var58.readUByte() << 8;
 
-						Class131_Sub20_Sub16.method840(var58, var7, var84, var10);
+						Class131_Sub20_Sub16.method840(var58, index, var84, var10);
 					}
 
-					if (skillId != (var58.pos - currentLevel))
-						throw new RuntimeException((var58.pos - currentLevel) + " " + skillId);
+					if (skillId != (var58.pos - pos))
+						throw new RuntimeException((var58.pos - pos) + " " + skillId);
 
 					client.incomingPacket = -1;
 					return true;
@@ -1135,14 +1161,14 @@ public final class PacketDecoder {
 					Class84.method367();
 					skillId = client.gameBuffer.getUByteA();
 					xp = client.gameBuffer.readIntV2();
-					currentLevel = client.gameBuffer.getUByteC();
+					pos = client.gameBuffer.getUByteC();
 					client.anIntArray2163[skillId] = xp;
-					client.anIntArray2161[skillId] = currentLevel;
+					client.anIntArray2161[skillId] = pos;
 					client.anIntArray2162[skillId] = 1;
 
-					for (var6 = 0; var6 < 98; ++var6)
-						if (xp >= Class90.anIntArray728[var6])
-							client.anIntArray2162[skillId] = var6 + 2;
+					for (skipCount = 0; skipCount < 98; ++skipCount)
+						if (xp >= Class90.anIntArray728[skipCount])
+							client.anIntArray2162[skillId] = skipCount + 2;
 
 					client.anIntArray2213[(++client.anInt2214 - 1) & 31] = skillId;
 					client.incomingPacket = -1;
@@ -1170,14 +1196,14 @@ public final class PacketDecoder {
 						}
 
 					final long var35 = Class84.method366(780546663);
-					var7 = -1;
+					index = -1;
 					if (null != Class117.aGarbageCollectorMXBean846) {
 						key = Class117.aGarbageCollectorMXBean846.getCollectionTime();
 						if (-1L != client.aLong2102) {
 							final long var39 = key - client.aLong2102;
 							final long var41 = var35 - client.aLong2220;
 							if (0L != var41)
-								var7 = (int) ((100L * var39) / var41);
+								index = (int) ((100L * var39) / var41);
 						}
 
 						client.aLong2102 = key;
@@ -1185,7 +1211,7 @@ public final class PacketDecoder {
 					}
 
 					client.secureBuffer.method871(184);
-					client.secureBuffer.writeByte(var7);
+					client.secureBuffer.writeByte(index);
 					client.secureBuffer.writeInt(skillId);
 					client.secureBuffer.method625(xp);
 					client.secureBuffer.method613(Applet_Sub1.anInt2009);
@@ -1206,13 +1232,13 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 177) {
 					skillId = client.gameBuffer.readIntV2();
 					xp = client.gameBuffer.readUShort();
-					currentLevel = (xp >> 10) & 31;
-					var6 = (xp >> 5) & 31;
-					var7 = xp & 31;
-					var9 = (currentLevel << 19) + (var6 << 11) + (var7 << 3);
+					pos = (xp >> 10) & 31;
+					skipCount = (xp >> 5) & 31;
+					index = xp & 31;
+					playerIndex = (pos << 19) + (skipCount << 11) + (index << 3);
 					final Class131_Sub18 var95 = Class88.method377(skillId);
-					if (var9 != var95.anInt1183) {
-						var95.anInt1183 = var9;
+					if (playerIndex != var95.anInt1183) {
+						var95.anInt1183 = playerIndex;
 						Class131_Sub20_Sub6.method734(var95);
 					}
 
@@ -1238,7 +1264,7 @@ public final class PacketDecoder {
 						skillId = -1;
 
 					xp = client.gameBuffer.method628();
-					currentLevel = client.gameBuffer.readIntV2();
+					pos = client.gameBuffer.readIntV2();
 					var74 = Class88.method377(xp);
 					Class131_Sub20_Sub2 var68;
 					if (!var74.aBool1263) {
@@ -1253,11 +1279,11 @@ public final class PacketDecoder {
 						var74.anInt1172 = skillId;
 						var74.anInt1209 = var68.anInt1376;
 						var74.anInt1210 = var68.anInt1386;
-						var74.anInt1277 = (var68.anInt1384 * 100) / currentLevel;
+						var74.anInt1277 = (var68.anInt1384 * 100) / pos;
 						Class131_Sub20_Sub6.method734(var74);
 					} else {
 						var74.anInt1168 = skillId;
-						var74.anInt1198 = currentLevel;
+						var74.anInt1198 = pos;
 						var68 = Class79_Sub1.method645(skillId, (short) 32211);
 						var74.anInt1209 = var68.anInt1376;
 						var74.anInt1210 = var68.anInt1386;
@@ -1293,30 +1319,30 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 84) {
 					skillId = client.gameBuffer.pos + client.messageSize;
 					xp = client.gameBuffer.readUShort();
-					currentLevel = client.gameBuffer.readUShort();
+					pos = client.gameBuffer.readUShort();
 					if (xp != client.anInt2128) {
 						client.anInt2128 = xp;
 						Class131_Sub20_Sub19_Sub2.method925(false);
 						Class40.method216(client.anInt2128);
 						Class93.method391(client.anInt2128);
 
-						for (var6 = 0; var6 < 100; ++var6)
-							client.aBoolArray2252[var6] = true;
+						for (skipCount = 0; skipCount < 100; ++skipCount)
+							client.aBoolArray2252[skipCount] = true;
 					}
 
 					Class131_Sub7 var22;
-					for (; currentLevel-- > 0; var22.aBool1029 = true) {
-						var6 = client.gameBuffer.readIntV1();
-						var7 = client.gameBuffer.readUShort();
-						var9 = client.gameBuffer.readUByte();
-						var22 = (Class131_Sub7) client.aClass114_2184.method457(var6);
-						if ((null != var22) && (var22.anInt1025 != var7)) {
+					for (; pos-- > 0; var22.aBool1029 = true) {
+						skipCount = client.gameBuffer.readIntV1();
+						index = client.gameBuffer.readUShort();
+						playerIndex = client.gameBuffer.readUByte();
+						var22 = (Class131_Sub7) client.aClass114_2184.method457(skipCount);
+						if ((null != var22) && (var22.anInt1025 != index)) {
 							Class131_Sub6.method553(var22, true);
 							var22 = null;
 						}
 
 						if (null == var22)
-							var22 = Class131_Sub10.method572(var6, var7, var9);
+							var22 = Class131_Sub10.method572(skipCount, index, playerIndex);
 					}
 
 					for (target = (Class131_Sub7) client.aClass114_2184
@@ -1329,13 +1355,13 @@ public final class PacketDecoder {
 					client.aClass114_2225 = new Class114(512);
 
 					while (client.gameBuffer.pos < skillId) {
-						var6 = client.gameBuffer.readIntV1();
-						var7 = client.gameBuffer.readUShort();
-						var9 = client.gameBuffer.readUShort();
+						skipCount = client.gameBuffer.readIntV1();
+						index = client.gameBuffer.readUShort();
+						playerIndex = client.gameBuffer.readUShort();
 						var10 = client.gameBuffer.readIntV1();
 
-						for (var15 = var7; var15 <= var9; ++var15) {
-							var43 = var15 + ((long) var6 << 32);
+						for (var15 = index; var15 <= playerIndex; ++var15) {
+							var43 = var15 + ((long) skipCount << 32);
 							client.aClass114_2225.method461(new InterfaceSetting(var10), var43);
 						}
 					}
@@ -1351,121 +1377,121 @@ public final class PacketDecoder {
 					client.gameBuffer.readOpcode();
 					skillId = client.gameBuffer.readUShort();
 					var58 = client.gameBuffer;
-					currentLevel = var58.pos;
+					pos = var58.pos;
 					GPI.anInt21 = 0;
-					var6 = 0;
+					skipCount = 0;
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.localPlayers; ++index) {
+						playerIndex = GPI.localPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var58, var9);
+									Player1.decodeMovement(var58, playerIndex);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.anInt11; ++var7) {
-						var9 = GPI.anIntArray17[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.localPlayers; ++index) {
+						playerIndex = GPI.localPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Class131_Sub20_Sub18.method866(var58, var9);
+									Player1.decodeMovement(var58, playerIndex);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) != 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var58, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(var58, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
 					var58.bitAccess();
 
-					for (var7 = 0; var7 < GPI.globalPlayerCount; ++var7) {
-						var9 = GPI.globalPlayerIndices[var7];
-						if ((GPI.skipFlags[var9] & 1) == 0)
-							if (var6 > 0) {
-								--var6;
-								GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+					for (index = 0; index < GPI.otherPlayers; ++index) {
+						playerIndex = GPI.globalPlayerIndices[index];
+						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							if (skipCount > 0) {
+								--skipCount;
+								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
 								var10 = var58.readBits(1);
 								if (var10 == 0) {
-									var6 = Class131_Sub20_Sub2.method702(var58);
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
-								} else if (Class61.method297(var58, var9))
-									GPI.skipFlags[var9] = (byte) (GPI.skipFlags[var9] | 2);
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
+								} else if (Class61.method297(var58, playerIndex))
+									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
 
-					var58.method876();
-					if (var6 != 0)
+					var58.byteAccess();
+					if (skipCount != 0)
 						throw new RuntimeException();
 
-					GPI.anInt11 = 0;
-					GPI.globalPlayerCount = 0;
+					GPI.localPlayers = 0;
+					GPI.otherPlayers = 0;
 
-					for (var7 = 1; var7 < 2048; ++var7) {
-						GPI.skipFlags[var7] = (byte) (GPI.skipFlags[var7] >> 1);
-						var84 = client.playerArray[var7];
+					for (index = 1; index < 2048; ++index) {
+						GPI.skipFlags[index] = (byte) (GPI.skipFlags[index] >> 1);
+						var84 = client.playerArray[index];
 						if (var84 != null)
-							GPI.anIntArray17[++GPI.anInt11 - 1] = var7;
+							GPI.localPlayerIndices[++GPI.localPlayers - 1] = index;
 						else
-							GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = var7;
+							GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = index;
 					}
 
-					for (var6 = 0; var6 < GPI.anInt21; ++var6) {
-						var7 = GPI.anIntArray23[var6];
-						var84 = client.playerArray[var7];
+					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
+						index = GPI.anIntArray23[skipCount];
+						var84 = client.playerArray[index];
 						var10 = var58.readUByte();
 						if ((var10 & 8) != 0)
 							var10 += var58.readUByte() << 8;
 
-						Class131_Sub20_Sub16.method840(var58, var7, var84, var10);
+						Class131_Sub20_Sub16.method840(var58, index, var84, var10);
 					}
 
-					if ((var58.pos - currentLevel) != skillId)
-						throw new RuntimeException((var58.pos - currentLevel) + " " + skillId);
+					if ((var58.pos - pos) != skillId)
+						throw new RuntimeException((var58.pos - pos) + " " + skillId);
 
 					client.incomingPacket = -1;
 					return true;
@@ -1491,8 +1517,8 @@ public final class PacketDecoder {
 						var76 = client.gameBuffer.readString();
 						client.gameBuffer.readString();
 
-						for (var7 = 0; var7 < client.anInt2294; ++var7) {
-							final Class36 var16 = client.aClass36Array2295[var7];
+						for (index = 0; index < client.anInt2294; ++index) {
+							final Class36 var16 = client.aClass36Array2295[index];
 							if (var61) {
 								if (var76.equals(var16.aString369)) {
 									var16.aString369 = var73;
@@ -1524,12 +1550,12 @@ public final class PacketDecoder {
 					else if ((skillId != -1) && (skillId != client.anInt2052) && (client.anInt2260 != 0)
 							&& !client.aBool2262) {
 						final Class100_Sub1 var56 = Class44.aClass100_Sub1_446;
-						currentLevel = client.anInt2260;
+						pos = client.anInt2260;
 						Class113.anInt830 = 1;
 						Class50.aClass100_495 = var56;
 						Class24.anInt213 = skillId;
 						Class130.anInt901 = 0;
-						Class113.anInt833 = currentLevel;
+						Class113.anInt833 = pos;
 						Class50.aBool496 = false;
 						Class113.anInt834 = 2;
 					}
@@ -1558,9 +1584,9 @@ public final class PacketDecoder {
 					skillId = client.gameBuffer.readIntV2();
 					var55 = Class88.method377(skillId);
 
-					for (currentLevel = 0; currentLevel < var55.anIntArray1292.length; ++currentLevel) {
-						var55.anIntArray1292[currentLevel] = -1;
-						var55.anIntArray1292[currentLevel] = 0;
+					for (pos = 0; pos < var55.anIntArray1292.length; ++pos) {
+						var55.anIntArray1292[pos] = -1;
+						var55.anIntArray1292[pos] = 0;
 					}
 
 					Class131_Sub20_Sub6.method734(var55);
@@ -1581,25 +1607,25 @@ public final class PacketDecoder {
 
 					final Class131_Sub11 var75 = (Class131_Sub11) Class131_Sub11.aClass114_1074.method457(xp);
 					if (null != var75)
-						for (var7 = 0; var7 < var75.anIntArray1070.length; ++var7) {
-							var75.anIntArray1070[var7] = -1;
-							var75.anIntArray1071[var7] = 0;
+						for (index = 0; index < var75.anIntArray1070.length; ++index) {
+							var75.anIntArray1070[index] = -1;
+							var75.anIntArray1071[index] = 0;
 						}
 
-					var6 = client.gameBuffer.readUShort();
+					skipCount = client.gameBuffer.readUShort();
 
-					for (var7 = 0; var7 < var6; ++var7) {
-						var9 = client.gameBuffer.readULEShortA();
+					for (index = 0; index < skipCount; ++index) {
+						playerIndex = client.gameBuffer.readULEShortA();
 						var10 = client.gameBuffer.getUByteA();
 						if (var10 == 255)
 							var10 = client.gameBuffer.readIntV2();
 
-						if ((var11 != null) && (var7 < var11.anIntArray1292.length)) {
-							var11.anIntArray1292[var7] = var9;
-							var11.anIntArray1154[var7] = var10;
+						if ((var11 != null) && (index < var11.anIntArray1292.length)) {
+							var11.anIntArray1292[index] = playerIndex;
+							var11.anIntArray1154[index] = var10;
 						}
 
-						Class1.method17(xp, var7, var9 - 1, var10);
+						Class1.method17(xp, index, playerIndex - 1, var10);
 					}
 
 					if (null != var11)
@@ -1615,16 +1641,16 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 8) {
 					skillId = client.gameBuffer.readIntV1();
 					xp = client.gameBuffer.readIntV1();
-					currentLevel = client.gameBuffer.readUShort();
-					if (currentLevel == '\uffff')
-						currentLevel = -1;
+					pos = client.gameBuffer.readUShort();
+					if (pos == '\uffff')
+						pos = -1;
 
-					var6 = client.gameBuffer.readUshortA();
-					if (var6 == '\uffff')
-						var6 = -1;
+					skipCount = client.gameBuffer.readUshortA();
+					if (skipCount == '\uffff')
+						skipCount = -1;
 
-					for (var7 = currentLevel; var7 <= var6; ++var7) {
-						key = ((long) skillId << 32) + var7;
+					for (index = pos; index <= skipCount; ++index) {
+						key = ((long) skillId << 32) + index;
 						final Class131 var98 = client.aClass114_2225.method457(key);
 						if (null != var98)
 							var98.method501();
@@ -1652,12 +1678,12 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 241) {
 					skillId = client.gameBuffer.readUByte();
 					xp = client.gameBuffer.readUByte();
-					currentLevel = client.gameBuffer.readUByte();
-					var6 = client.gameBuffer.readUByte();
+					pos = client.gameBuffer.readUByte();
+					skipCount = client.gameBuffer.readUByte();
 					client.aBoolArray2261[skillId] = true;
 					client.anIntArray2273[skillId] = xp;
-					client.anIntArray2274[skillId] = currentLevel;
-					client.anIntArray2275[skillId] = var6;
+					client.anIntArray2274[skillId] = pos;
+					client.anIntArray2275[skillId] = skipCount;
 					client.anIntArray2276[skillId] = 0;
 					client.incomingPacket = -1;
 					return true;
@@ -1667,11 +1693,11 @@ public final class PacketDecoder {
 					var4 = client.gameBuffer.readString();
 					final Object[] var54 = new Object[var4.length() + 1];
 
-					for (currentLevel = var4.length() - 1; currentLevel >= 0; --currentLevel)
-						if (var4.charAt(currentLevel) == 115)
-							var54[1 + currentLevel] = client.gameBuffer.readString();
+					for (pos = var4.length() - 1; pos >= 0; --pos)
+						if (var4.charAt(pos) == 115)
+							var54[1 + pos] = client.gameBuffer.readString();
 						else
-							var54[currentLevel + 1] = new Integer(client.gameBuffer.readIntV1());
+							var54[pos + 1] = new Integer(client.gameBuffer.readIntV1());
 
 					var54[0] = new Integer(client.gameBuffer.readIntV1());
 					final Class131_Sub10 var77 = new Class131_Sub10();
@@ -1761,8 +1787,8 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 166) {
 					skillId = client.gameBuffer.readUShort();
 					xp = client.gameBuffer.readULEShort();
-					currentLevel = client.gameBuffer.method628();
-					var74 = Class88.method377(currentLevel);
+					pos = client.gameBuffer.method628();
+					var74 = Class88.method377(pos);
 					var74.anInt1214 = skillId + (xp << 16);
 					client.incomingPacket = -1;
 					return true;
@@ -1842,8 +1868,8 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 10) {
 					skillId = client.gameBuffer.readUShort();
 					xp = client.gameBuffer.readUByte();
-					currentLevel = client.gameBuffer.readUShort();
-					Class25.method120(skillId, xp, currentLevel);
+					pos = client.gameBuffer.readUShort();
+					Class25.method120(skillId, xp, pos);
 					client.incomingPacket = -1;
 					return true;
 				}
@@ -1859,12 +1885,12 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 92) { // interface
 					skillId = client.gameBuffer.readIntV1();
 					xp = client.gameBuffer.readUShort();
-					currentLevel = client.gameBuffer.getUByteS();
+					pos = client.gameBuffer.getUByteS();
 					target = (Class131_Sub7) client.aClass114_2184.method457(skillId);
 					if (null != target)
 						Class131_Sub6.method553(target, target.anInt1025 != xp);
 
-					Class131_Sub10.method572(skillId, xp, currentLevel);
+					Class131_Sub10.method572(skillId, xp, pos);
 					client.incomingPacket = -1;
 					return true;
 				}
@@ -1886,13 +1912,13 @@ public final class PacketDecoder {
 					if (Class29.anInt263 >= 100) {
 						skillId = (Class78.anInt640 * 128) + 64;
 						xp = 64 + (Class131_Sub20_Sub13.anInt1577 * 128);
-						currentLevel = Class18.method88(skillId, xp, Class39.anInt410) - Class80.anInt664;
-						var6 = skillId - Class139.anInt917;
-						var7 = currentLevel - Class46.anInt452;
-						var9 = xp - Class1.anInt1;
-						var10 = (int) Math.sqrt((var9 * var9) + (var6 * var6));
-						Class75.anInt633 = (int) (Math.atan2(var7, var10) * 325.949D) & 2047;
-						Class131_Sub20_Sub1.anInt1371 = (int) (Math.atan2(var6, var9) * -325.949D) & 2047;
+						pos = Class18.method88(skillId, xp, Class39.anInt410) - Class80.anInt664;
+						skipCount = skillId - Class139.anInt917;
+						index = pos - Class46.anInt452;
+						playerIndex = xp - Class1.anInt1;
+						var10 = (int) Math.sqrt((playerIndex * playerIndex) + (skipCount * skipCount));
+						Class75.anInt633 = (int) (Math.atan2(index, var10) * 325.949D) & 2047;
+						Class131_Sub20_Sub1.anInt1371 = (int) (Math.atan2(skipCount, playerIndex) * -325.949D) & 2047;
 						if (Class75.anInt633 < 128)
 							Class75.anInt633 = 128;
 
@@ -1915,19 +1941,19 @@ public final class PacketDecoder {
 					else
 						var11 = null;
 
-					for (; client.gameBuffer.pos < client.messageSize; Class1.method17(xp, var6, var7 - 1, var9)) {
-						var6 = client.gameBuffer.readCompact();
-						var7 = client.gameBuffer.readUShort();
-						var9 = 0;
-						if (var7 != 0) {
-							var9 = client.gameBuffer.readUByte();
-							if (var9 == 255)
-								var9 = client.gameBuffer.readIntV1();
+					for (; client.gameBuffer.pos < client.messageSize; Class1.method17(xp, skipCount, index - 1, playerIndex)) {
+						skipCount = client.gameBuffer.readCompact();
+						index = client.gameBuffer.readUShort();
+						playerIndex = 0;
+						if (index != 0) {
+							playerIndex = client.gameBuffer.readUByte();
+							if (playerIndex == 255)
+								playerIndex = client.gameBuffer.readIntV1();
 						}
 
-						if ((null != var11) && (var6 >= 0) && (var6 < var11.anIntArray1292.length)) {
-							var11.anIntArray1292[var6] = var7;
-							var11.anIntArray1154[var6] = var9;
+						if ((null != var11) && (skipCount >= 0) && (skipCount < var11.anIntArray1292.length)) {
+							var11.anIntArray1292[skipCount] = index;
+							var11.anIntArray1154[skipCount] = playerIndex;
 						}
 					}
 
@@ -1944,13 +1970,13 @@ public final class PacketDecoder {
 				if (client.incomingPacket == 30) {
 					skillId = client.gameBuffer.readUByte();
 					var2 = client.gameBuffer.readString();
-					currentLevel = client.gameBuffer.getUByteA();
+					pos = client.gameBuffer.getUByteA();
 					if ((skillId >= 1) && (skillId <= 8)) {
 						if (var2.equalsIgnoreCase("null"))
 							var2 = null;
 
 						client.aStringArray2153[skillId - 1] = var2;
-						client.aBoolArray2113[skillId - 1] = currentLevel == 0;
+						client.aBoolArray2113[skillId - 1] = pos == 0;
 					}
 
 					client.incomingPacket = -1;

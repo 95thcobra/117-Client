@@ -59,7 +59,7 @@ public class Class45 {
 					var4, var5, var6, var7);
 			if (null != Class131_Sub18.aClass131_Sub18Array1293) {
 				Class131_Sub20_Sub4.method718(Class131_Sub18.aClass131_Sub18Array1293, -1412584499, var1, var2, var3,
-						var4, Class131_Sub20_Sub18.anInt1637, Class46.anInt453, var7);
+						var4, Player1.anInt1637, Class46.anInt453, var7);
 				Class131_Sub18.aClass131_Sub18Array1293 = null;
 			}
 

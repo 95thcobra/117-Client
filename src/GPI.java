@@ -3,9 +3,9 @@ public class GPI {
 	static byte[] skipFlags = new byte[2048];
 	static byte[] aByteArray22 = new byte[2048];
 	static DataBuffer[] cachedAppearances = new DataBuffer[2048];
-	static int anInt11 = 0;
-	static int[] anIntArray17 = new int[2048];
-	static int globalPlayerCount = 0;
+	static int localPlayers = 0;
+	static int[] localPlayerIndices = new int[2048];
+	static int otherPlayers = 0;
 	static int[] globalPlayerIndices = new int[2048];
 	static int[] cachedRegions = new int[2048];
 	static int[] cachedDirections = new int[2048];
@@ -124,7 +124,7 @@ public class GPI {
 							client.anIntArrayArrayArray2089[var6][var2][var3] = -1;
 					}
 
-			client.gameBuffer.method876();
+			client.gameBuffer.byteAccess();
 			Class131_Sub20_Sub19_Sub2.anIntArrayArray1743 = new int[xteaCount][4];
 
 			for (var6 = 0; var6 < xteaCount; ++var6)

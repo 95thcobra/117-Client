@@ -9,10 +9,10 @@ public class Class5 {
 	static Class5 aClass5_61 = new Class5();
 
 	static final void method25() {
-		final int[] var0 = GPI.anIntArray17;
+		final int[] var0 = GPI.localPlayerIndices;
 
 		int var2;
-		for (var2 = 0; var2 < GPI.anInt11; ++var2) {
+		for (var2 = 0; var2 < GPI.localPlayers; ++var2) {
 			final Player var3 = client.playerArray[var0[var2]];
 			if ((var3 != null) && (var3.anInt1761 > 0)) {
 				--var3.anInt1761;

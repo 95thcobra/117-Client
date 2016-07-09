@@ -2,7 +2,7 @@ import java.awt.Component;
 import java.io.File;
 import java.io.RandomAccessFile;
 
-public class Class131_Sub20_Sub18 extends Class131_Sub20 {
+public class Player1 extends Class131_Sub20 {
 	int anInt1634;
 	int[] anIntArray1635;
 	int[] anIntArray1636;
@@ -36,7 +36,7 @@ public class Class131_Sub20_Sub18 extends Class131_Sub20 {
 		var0.addFocusListener(Class80.aClass80_655);
 	}
 
-	static void method866(final Class131_Sub14_Sub1 var0, final int var1) {
+	static void decodeMovement(final Class131_Sub14_Sub1 var0, final int var1) {
 		final boolean var3 = var0.readBits(1) == 1;
 		if (var3)
 			GPI.anIntArray23[++GPI.anInt21 - 1] = var1;

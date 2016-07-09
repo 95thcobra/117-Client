@@ -63,7 +63,7 @@ public class NpcFlags {
 	static void method24(final Class131_Sub10 var0, final int var1) {
 		final Object[] var2 = var0.anObjectArray1056;
 		final int var3 = ((Integer) var2[0]).intValue();
-		Class131_Sub20_Sub18 var4 = Class94.method394(var3);
+		Player1 var4 = Class94.method394(var3);
 		if (var4 != null) {
 			int var5 = 0;
 			int var6 = 0;
@@ -319,7 +319,7 @@ public class NpcFlags {
 
 						if (var44 == 40) {
 							var14 = var9[var7];
-							final Class131_Sub20_Sub18 var104 = Class94.method394(var14);
+							final Player1 var104 = Class94.method394(var14);
 							var16 = new int[var104.anInt1634];
 							var56 = new String[var104.anInt1638];
 

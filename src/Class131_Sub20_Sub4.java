@@ -120,8 +120,8 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 					return;
 			}
 
-			final int var6 = GPI.anInt11;
-			final int[] var7 = GPI.anIntArray17;
+			final int var6 = GPI.localPlayers;
+			final int[] var7 = GPI.localPlayerIndices;
 			int var4;
 			if (var1 < var6) {
 				var4 = 30;
@@ -362,7 +362,7 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 					if (var12 == client.aClass131_Sub18_2165) {
 						if ((var1 != -1412584499) && !var12.aBool1236) {
 							Class131_Sub18.aClass131_Sub18Array1293 = var0;
-							Class131_Sub20_Sub18.anInt1637 = var6;
+							Player1.anInt1637 = var6;
 							Class46.anInt453 = var7;
 							continue;
 						}
@@ -478,8 +478,8 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 								Class108.method435(Class5.aClass5_63);
 								boolean var57 = false;
 								if (client.anInt2200 >= 0) {
-									var44 = GPI.anInt11;
-									final int[] var47 = GPI.anIntArray17;
+									var44 = GPI.localPlayers;
+									final int[] var47 = GPI.localPlayerIndices;
 
 									for (var38 = 0; var38 < var44; ++var38)
 										if (client.anInt2200 == var47[var38]) {
@@ -704,8 +704,8 @@ public class Class131_Sub20_Sub4 extends Class131_Sub20 {
 								client.anInt2120 = 0;
 								boolean var58 = false;
 								var45 = -1;
-								var53 = GPI.anInt11;
-								final int[] var40 = GPI.anIntArray17;
+								var53 = GPI.localPlayers;
+								final int[] var40 = GPI.localPlayerIndices;
 
 								int var23;
 								for (var23 = 0; var23 < (var53 + client.anInt2230); ++var23) {

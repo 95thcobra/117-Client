@@ -348,8 +348,8 @@ public class Class131_Sub7 extends Class131 {
 							return;
 						}
 
-						var0 = GPI.anInt11;
-						var32 = GPI.anIntArray17;
+						var0 = GPI.localPlayers;
+						var32 = GPI.localPlayerIndices;
 
 						for (var4 = 0; var4 < var0; ++var4) {
 							final Player var23 = client.playerArray[var32[var4]];

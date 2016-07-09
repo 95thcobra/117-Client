@@ -60,10 +60,10 @@ public class Class36 {
 		if (GPI.cachedAppearances[myPlayerIndex] != null)
 			player.method1068(GPI.cachedAppearances[myPlayerIndex]);
 
-		GPI.anInt11 = 0;
-		GPI.anIntArray17[++GPI.anInt11 - 1] = myPlayerIndex;
+		GPI.localPlayers = 0;
+		GPI.localPlayerIndices[++GPI.localPlayers - 1] = myPlayerIndex;
 		GPI.skipFlags[myPlayerIndex] = 0;
-		GPI.globalPlayerCount = 0;
+		GPI.otherPlayers = 0;
 
 		for (int playerIndex = 1; playerIndex < 2048; ++playerIndex) {
 			System.out.println(myPlayerIndex + " is not equal to ? " + playerIndex);
@@ -75,13 +75,13 @@ public class Class36 {
 				GPI.cachedRegions[playerIndex] = var2 + (var11 << 14) + (var10 << 28);
 				GPI.cachedDirections[playerIndex] = 0;
 				GPI.cachedIndices[playerIndex] = -1;
-				GPI.globalPlayerIndices[++GPI.globalPlayerCount - 1] = playerIndex;
+				GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = playerIndex;
 				GPI.skipFlags[playerIndex] = 0;
 				System.out.println("global player count incremented.");
 			}
 		}
 
-		var0.method876();
+		var0.byteAccess();
 	}
 
 	public static void method209() {

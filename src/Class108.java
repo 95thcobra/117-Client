@@ -100,8 +100,8 @@ public class Class108 {
 				&& (client.anInt2258 == (Class131_Sub11.myPlayer.anInt1759 >> 7)))
 			client.anInt2218 = 0;
 
-		final int var4 = GPI.anInt11;
-		final int[] var2 = GPI.anIntArray17;
+		final int var4 = GPI.localPlayers;
+		final int[] var2 = GPI.localPlayerIndices;
 		int var5 = var4;
 		if ((var0 == Class5.aClass5_63) || (Class5.aClass5_58 == var0))
 			var5 = 1;

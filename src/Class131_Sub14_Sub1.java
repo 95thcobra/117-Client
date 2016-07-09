@@ -44,7 +44,7 @@ public final class Class131_Sub14_Sub1 extends DataBuffer {
 		return (data[++pos - 1] - aClass70_1645.method325()) & 255;
 	}
 
-	public void method876() {
+	public void byteAccess() {
 		pos = (anInt1646 + 7) / 8;
 	}
 

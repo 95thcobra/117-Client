@@ -101,7 +101,7 @@ public class Class67 {
 		client.aClass50_2055 = Class50.aClass50_490;
 		client.aClass50_2056 = Class50.aClass50_490;
 		client.anInt2230 = 0;
-		GPI.anInt11 = 0;
+		GPI.localPlayers = 0;
 
 		int var0;
 		for (var0 = 0; var0 < 2048; ++var0) {

@@ -22,8 +22,8 @@ public class Class94 {
 	public static int anInt762 = 0;
 	public static int anInt748 = 0;
 
-	static Class131_Sub20_Sub18 method394(final int var0) {
-		Class131_Sub20_Sub18 var1 = (Class131_Sub20_Sub18) Class131_Sub20_Sub18.aClass121_1641.method482(var0);
+	static Player1 method394(final int var0) {
+		Player1 var1 = (Player1) Player1.aClass121_1641.method482(var0);
 		if (null != var1)
 			return var1;
 		else {
@@ -31,7 +31,7 @@ public class Class94 {
 			if (null == var5)
 				return null;
 			else {
-				var1 = new Class131_Sub20_Sub18();
+				var1 = new Player1();
 				final DataBuffer var2 = new DataBuffer(var5);
 				var2.pos = var2.data.length - 12;
 				final int var6 = var2.readIntV1();
@@ -57,7 +57,7 @@ public class Class94 {
 						var1.anIntArray1636[var3] = var2.readUByte();
 				}
 
-				Class131_Sub20_Sub18.aClass121_1641.method479(var1, var0);
+				Player1.aClass121_1641.method479(var1, var0);
 				return var1;
 			}
 		}

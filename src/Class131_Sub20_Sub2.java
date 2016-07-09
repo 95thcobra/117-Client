@@ -434,7 +434,7 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 		}
 	}
 
-	static int method702(final Class131_Sub14_Sub1 var0) {
+	static int decodeSkipCount(final Class131_Sub14_Sub1 var0) {
 		final int var1 = var0.readBits(2);
 		int var2;
 		if (var1 == 0)
@@ -497,7 +497,7 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 
 		client.aclient2265.method1077();
 		Class29.aCanvas271.setBackground(Color.black);
-		Class131_Sub20_Sub18.method865(Class29.aCanvas271);
+		Player1.method865(Class29.aCanvas271);
 		Class24.method114(Class29.aCanvas271);
 		if (null != Class131_Sub14_Sub1.aClass71_1644)
 			Class131_Sub14_Sub1.aClass71_1644.method331(Class29.aCanvas271, (byte) 40);

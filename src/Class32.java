@@ -26,7 +26,7 @@ public class Class32 {
 		Class131_Sub12.method577();
 		Class131_Sub20_Sub19_Sub4.method955();
 		((Class35) Class131_Sub20_Sub17_Sub1.anInterface3_1784).method201();
-		Class131_Sub20_Sub18.aClass121_1641.method481();
+		Player1.aClass121_1641.method481();
 		Class71.aClass100_Sub1_612.method411();
 		Class84.aClass100_Sub1_696.method411();
 		Class28.aClass100_Sub1_254.method411();

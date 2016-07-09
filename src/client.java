@@ -1543,7 +1543,7 @@ public final class client extends Applet_Sub1 {
 
 						if (null != var40) {
 							var44 = new File(var40, "test.dat");
-							if (!Class131_Sub20_Sub18.method864(var44, true))
+							if (!Player1.method864(var44, true))
 								var40 = null;
 						}
 					}
@@ -1555,7 +1555,7 @@ public final class client extends Applet_Sub1 {
 										Class56.aStringArray506[var16] + Class72.aStringArray615[var15]
 												+ File.separatorChar + "oldschool" + File.separatorChar);
 								if (var17.exists()
-										&& Class131_Sub20_Sub18.method864(new File(var17, "test.dat"), true)) {
+										&& Player1.method864(new File(var17, "test.dat"), true)) {
 									var40 = var17.toString();
 									var10 = true;
 									break label264;
@@ -1618,7 +1618,7 @@ public final class client extends Applet_Sub1 {
 
 						for (int var23 = 0; var23 < var42.length; ++var23) {
 							final File var24 = var42[var23];
-							if (!Class131_Sub20_Sub18.method864(var24, false)) {
+							if (!Player1.method864(var24, false)) {
 								++var3;
 								continue label290;
 							}
@@ -1719,7 +1719,7 @@ public final class client extends Applet_Sub1 {
 			Class80.anIntArray650[520] = 59;
 		}
 
-		Class131_Sub20_Sub18.method865(Class29.aCanvas271);
+		Player1.method865(Class29.aCanvas271);
 		Class24.method114(Class29.aCanvas271);
 
 		Class71_Sub1 var2;

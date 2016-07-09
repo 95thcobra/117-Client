@@ -70,8 +70,8 @@ public class Class78 implements Runnable {
 	}
 
 	static void method352(final int var0, final String var1) {
-		final int var2 = GPI.anInt11;
-		final int[] var3 = GPI.anIntArray17;
+		final int var2 = GPI.localPlayers;
+		final int[] var3 = GPI.localPlayerIndices;
 		boolean var4 = false;
 
 		for (int var6 = 0; var6 < var2; ++var6) {
@@ -254,7 +254,7 @@ public class Class78 implements Runnable {
 						var1 + Class131_Sub11.myPlayer.anIntArray1756[0], var8 == 1);
 			}
 
-			client.gameBuffer.method876();
+			client.gameBuffer.byteAccess();
 
 			for (var5 = 0; var5 < client.anInt2068; ++var5) {
 				var4 = client.anIntArray2025[var5];
