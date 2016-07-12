@@ -58,7 +58,7 @@ public class Class36 {
 		player.anInt1979 = var9 * 1840261741;
 		Class39.anInt410 = var9;
 		if (GPI.cachedAppearances[myPlayerIndex] != null)
-			player.method1068(GPI.cachedAppearances[myPlayerIndex]);
+			player.updateAppearance(GPI.cachedAppearances[myPlayerIndex]);
 
 		GPI.localPlayers = 0;
 		GPI.localPlayerIndices[++GPI.localPlayers - 1] = myPlayerIndex;
@@ -66,7 +66,7 @@ public class Class36 {
 		GPI.otherPlayers = 0;
 
 		for (int playerIndex = 1; playerIndex < 2048; ++playerIndex) {
-			System.out.println(myPlayerIndex + " is not equal to ? " + playerIndex);
+			//System.out.println(myPlayerIndex + " is not equal to ? " + playerIndex);
 			if (myPlayerIndex != playerIndex) {
 				final int var1 = var0.readBits(18);
 				final int var10 = var1 >> 16;
@@ -77,7 +77,7 @@ public class Class36 {
 				GPI.cachedIndices[playerIndex] = -1;
 				GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = playerIndex;
 				GPI.skipFlags[playerIndex] = 0;
-				System.out.println("global player count incremented.");
+				//System.out.println("global player count incremented.");
 			}
 		}
 

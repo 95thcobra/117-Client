@@ -36,17 +36,23 @@ public class Player1 extends Class131_Sub20 {
 		var0.addFocusListener(Class80.aClass80_655);
 	}
 
-	static void decodeMovement(final Class131_Sub14_Sub1 var0, final int var1) {
-		final boolean var3 = var0.readBits(1) == 1;
-		if (var3)
+	// dit is klaar
+	static void updatePlayer(final Class131_Sub14_Sub1 var0, final int var1) {
+		final boolean requiresFlagBasedUpdating = var0.readBits(1) == 1; // 0
+		System.out.println("2. flagupdate: " + requiresFlagBasedUpdating);
+		
+		if (requiresFlagBasedUpdating)
 			GPI.anIntArray23[++GPI.anInt21 - 1] = var1;
 
-		final int var2 = var0.readBits(2);
+		final int updateType = var0.readBits(2); // 0
 		final Player var4 = client.playerArray[var1];
-		if (var2 == 0) {
-			if (var3)
+		if (updateType == 0) { // add to list flag updating    // hierin
+			
+			System.out.printf("3. Is %d gelijkt aan %d ?\n", client.myPlayerIndex, var1);
+			
+			if (requiresFlagBasedUpdating)
 				var4.aBool2002 = false;
-			else if (client.myPlayerIndex == var1)
+			else if (client.myPlayerIndex == var1) // HIER GAAT HET FOUT
 				throw new RuntimeException();
 			else {
 				GPI.cachedRegions[var1] = ((var4.anIntArray1756[0] + Class50.anInt491) >> 6) + (var4.anInt1979 << 28)
@@ -58,15 +64,17 @@ public class Player1 extends Class131_Sub20 {
 
 				GPI.cachedIndices[var1] = var4.anInt1726;
 				client.playerArray[var1] = null;
-				if (var0.readBits(1) != 0)
-					Class61.method297(var0, var1);
+				int idk = var0.readBits(1);
+				System.out.println("4. idk: " + idk);
+				if (idk != 0)
+					Class61.updateFlagsMaybe(var0, var1);
 
 			}
 		} else {
 			int var5;
 			int var8;
 			int var10;
-			if (var2 == 1) {
+			if (updateType == 1) { // walking
 				var5 = var0.readBits(3);
 				var8 = var4.anIntArray1755[0];
 				var10 = var4.anIntArray1756[0];
@@ -96,7 +104,7 @@ public class Player1 extends Class131_Sub20 {
 						|| (var4.anInt1718 >= 11776) || (var4.anInt1759 >= 11776))) {
 					var4.method1073(var8, var10);
 					var4.aBool2002 = false;
-				} else if (var3) {
+				} else if (requiresFlagBasedUpdating) {
 					var4.aBool2002 = true;
 					var4.anInt2003 = var8;
 					var4.anInt1999 = var10;
@@ -105,7 +113,7 @@ public class Player1 extends Class131_Sub20 {
 					var4.method1070(var8, var10, GPI.aByteArray22[var1]);
 				}
 
-			} else if (var2 == 2) {
+			} else if (updateType == 2) { // running
 				var5 = var0.readBits(4);
 				var8 = var4.anIntArray1755[0];
 				var10 = var4.anIntArray1756[0];
@@ -157,7 +165,7 @@ public class Player1 extends Class131_Sub20 {
 
 				if ((var1 != client.myPlayerIndex) || ((var4.anInt1718 >= 1536) && (var4.anInt1759 >= 1536)
 						&& (var4.anInt1718 < 11776) && (var4.anInt1759 < 11776))) {
-					if (var3) {
+					if (requiresFlagBasedUpdating) {
 						var4.aBool2002 = true;
 						var4.anInt2003 = var8;
 						var4.anInt1999 = var10;
@@ -176,7 +184,7 @@ public class Player1 extends Class131_Sub20 {
 				int var7;
 				int var9;
 				int var11;
-				if (var5 == 0) {
+				if (var5 == 0) { // Not moving more than 15 tiles away.
 					var8 = var0.readBits(12);
 					var10 = var8 >> 10;
 					var11 = (var8 >> 5) & 31;
@@ -193,7 +201,7 @@ public class Player1 extends Class131_Sub20 {
 							|| (var4.anInt1718 >= 11776) || (var4.anInt1759 >= 11776))) {
 						var4.method1073(var9, var7);
 						var4.aBool2002 = false;
-					} else if (var3) {
+					} else if (requiresFlagBasedUpdating) {
 						var4.aBool2002 = true;
 						var4.anInt2003 = var9;
 						var4.anInt1999 = var7;
@@ -206,7 +214,7 @@ public class Player1 extends Class131_Sub20 {
 					if (var1 == client.myPlayerIndex)
 						Class39.anInt410 = var4.anInt1979;
 
-				} else {
+				} else { // Moving more than 15 tiles away.
 					var8 = var0.readBits(30);
 					var10 = var8 >> 28;
 					var11 = (var8 >> 14) & 16383;
@@ -218,7 +226,7 @@ public class Player1 extends Class131_Sub20 {
 							|| (var4.anInt1718 >= 11776) || (var4.anInt1759 >= 11776))) {
 						var4.method1073(var9, var7);
 						var4.aBool2002 = false;
-					} else if (var3) {
+					} else if (requiresFlagBasedUpdating) {
 						var4.aBool2002 = true;
 						var4.anInt2003 = var9;
 						var4.anInt1999 = var7;

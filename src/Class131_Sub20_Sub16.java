@@ -2,21 +2,29 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 	static int anInt1625;
 	Class43[] aClass43Array1626;
 
-	static final void method840(final Class131_Sub14_Sub1 var0, final int var1,
-			final Player var2, final int var3) {
+	static final void handleFlags(final Class131_Sub14_Sub1 var0, final int var1,
+			final Player var2, final int needsUpdate) {
 		byte var4 = -1;
 		int var5;
-		if ((var3 & 32) != 0) {
+		
+		System.out.println("UpdateFlags: " + needsUpdate);
+		
+		if ((needsUpdate & 32) != 0) {
+			System.out.println("GOT INTO APPEARANT UPDATING YAAY");
 			var5 = var0.readUByte();
+
 			final byte[] var6 = new byte[var5];
+			System.out.println("buffer size appearance:"+var5);
+			
 			final DataBuffer var7 = new DataBuffer(var6);
 			var0.method604(var6, 0, var5);
 			GPI.cachedAppearances[var1] = var7;
-			var2.method1068(var7);
+			var2.updateAppearance(var7);
 		}
 
 		int var10;
-		if ((var3 & 128) != 0) {
+		if ((needsUpdate & 128) != 0) {
+			System.out.println("NAAY");
 			var5 = var0.readUShort();
 			if (var5 == '\uffff')
 				var5 = -1;
@@ -25,13 +33,13 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			Class36.method206(var2, var5, var10);
 		}
 
-		if ((var3 & 2) != 0) {
+		if ((needsUpdate & 2) != 0) {
 			var2.anInt1726 = var0.readUShort();
 			if (var2.anInt1726 == '\uffff')
 				var2.anInt1726 = -1;
 		}
 
-		if ((var3 & 4) != 0) {
+		if ((needsUpdate & 4) != 0) {
 			var2.aString1705 = var0.readString();
 			if (var2.aString1705.charAt(0) == 126) {
 				var2.aString1705 = var2.aString1705.substring(1);
@@ -45,7 +53,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			var2.anInt1761 = 150;
 		}
 
-		if ((var3 & 16) != 0) {
+		if ((needsUpdate & 16) != 0) {
 			var5 = var0.readUShort();
 			var10 = var0.readUByte();
 			var2.method926(var5, var10, client.anInt2038);
@@ -54,7 +62,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			var2.anInt1715 = var0.readUByte();
 		}
 
-		if ((var3 & 64) != 0) {
+		if ((needsUpdate & 64) != 0) {
 			var2.anInt1728 = var0.readUShort();
 			if (var2.anInt1754 == 0) {
 				var2.anInt1751 = var2.anInt1728;
@@ -62,7 +70,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			}
 		}
 
-		if ((var3 & 1) != 0) {
+		if ((needsUpdate & 1) != 0) {
 			var5 = var0.readUShort();
 			final Class82 var17 = (Class82) Class39.method214(Class42.method221(), var0.readUByte());
 			final boolean var11 = var0.readUByte() == 1;
@@ -104,7 +112,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			var0.pos = var12 + var16;
 		}
 
-		if ((var3 & 8192) != 0) {
+		if ((needsUpdate & 8192) != 0) {
 			var2.anInt1737 = var0.readUShort();
 			var5 = var0.readIntV1();
 			var2.anInt1722 = var5 >> 16;
@@ -118,7 +126,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 				var2.anInt1737 = -1;
 		}
 
-		if ((var3 & 1024) != 0) {
+		if ((needsUpdate & 1024) != 0) {
 			var2.anInt1742 = var0.readByte();
 			var2.anInt1744 = var0.readByte();
 			var2.anInt1719 = var0.readByte();
@@ -143,7 +151,7 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			var2.anInt1758 = 0;
 		}
 
-		if ((var3 & 2048) != 0) {
+		if ((needsUpdate & 2048) != 0) {
 			var5 = var0.readUShort();
 			var10 = var0.readUByte();
 			var2.method926(var5, var10, client.anInt2038);
@@ -152,13 +160,13 @@ public class Class131_Sub20_Sub16 extends Class131_Sub20 {
 			var2.anInt1715 = var0.readUByte();
 		}
 
-		if ((var3 & 256) != 0)
+		if ((needsUpdate & 256) != 0)
 			GPI.aByteArray22[var1] = var0.readByte();
 
-		if ((var3 & 512) != 0)
+		if ((needsUpdate & 512) != 0)
 			var4 = var0.readByte();
 
-		if ((var3 & 4096) != 0)
+		if ((needsUpdate & 4096) != 0)
 			for (var5 = 0; var5 < 3; ++var5)
 				var2.aStringArray1983[var5] = var0.readString();
 

@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
@@ -163,7 +166,7 @@ public final class PacketDecoder {
 
 				int index;
 				int playerIndex;
-				int var10;
+				int needsUpdate;
 				boolean var64;
 				boolean var97;
 				if (client.incomingPacket == 137) {
@@ -206,9 +209,9 @@ public final class PacketDecoder {
 						var72.aByte1103 = var78;
 
 						for (playerIndex = Class23.anInt210 - 1; playerIndex >= 0; --playerIndex) {
-							var10 = Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].aString1104
+							needsUpdate = Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].aString1104
 									.compareTo(var72.aString1104);
-							if (var10 == 0) {
+							if (needsUpdate == 0) {
 								Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].anInt1102 = xp;
 								Class131_Sub20_Sub8.aClass131_Sub13Array1498[playerIndex].aByte1103 = var78;
 								if (var4.equals(Class131_Sub11.myPlayer.aString2004))
@@ -219,7 +222,7 @@ public final class PacketDecoder {
 								return true;
 							}
 
-							if (var10 < 0)
+							if (needsUpdate < 0)
 								break;
 						}
 
@@ -228,9 +231,9 @@ public final class PacketDecoder {
 							return true;
 						}
 
-						for (var10 = Class23.anInt210 - 1; var10 > playerIndex; --var10)
-							Class131_Sub20_Sub8.aClass131_Sub13Array1498[var10
-									+ 1] = Class131_Sub20_Sub8.aClass131_Sub13Array1498[var10];
+						for (needsUpdate = Class23.anInt210 - 1; needsUpdate > playerIndex; --needsUpdate)
+							Class131_Sub20_Sub8.aClass131_Sub13Array1498[needsUpdate
+									+ 1] = Class131_Sub20_Sub8.aClass131_Sub13Array1498[needsUpdate];
 
 						if (Class23.anInt210 == 0)
 							Class131_Sub20_Sub8.aClass131_Sub13Array1498 = new Class131_Sub13[100];
@@ -429,13 +432,13 @@ public final class PacketDecoder {
 					}
 
 					var97 = false;
-					var10 = Class23.anInt210;
+					needsUpdate = Class23.anInt210;
 
-					while (var10 > 0) {
+					while (needsUpdate > 0) {
 						var97 = true;
-						--var10;
+						--needsUpdate;
 
-						for (var15 = 0; var15 < var10; ++var15)
+						for (var15 = 0; var15 < needsUpdate; ++var15)
 							if (var81[var15].aString1104.compareTo(var81[1 + var15].aString1104) > 0) {
 								final Class131_Sub13 var93 = var81[var15];
 								var81[var15] = var81[1 + var15];
@@ -481,12 +484,13 @@ public final class PacketDecoder {
 
 				Class131_Sub14_Sub1 buf;
 				Player var84;
-				
+
 				// PLAYER SYNC
 				if (client.incomingPacket == 64) {
-					
-					System.out.println("PACKET 64 PLAYER COUNT: " + GPI.otherPlayers);
-				
+
+					System.out.println("LOCALPLAYERS: " + GPI.localPlayers);
+					System.out.println("OTHER PLAYERS: " + GPI.otherPlayers);
+
 					buf = client.gameBuffer;
 					xp = client.messageSize;
 					pos = buf.pos;
@@ -495,27 +499,41 @@ public final class PacketDecoder {
 					buf.bitAccess();
 
 					// START ENCODE CONTEXT PLAYER
-					
-					for (index = 0; index < GPI.localPlayers; ++index) { // localplayers = players the player can view.
+
+					File file = new File("C:/Users/Corsair/Desktop/117 project/playerupdateEdge.txt");
+
+					// if file doesnt exists, then create it
+					if (!file.exists()) {
+						file.createNewFile();
+					}
+
+					FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+					BufferedWriter bw = new BufferedWriter(fw);
+
+					// Local player updating
+					System.out.println("Localplayers1: " + GPI.localPlayers);
+					for (index = 0; index < GPI.localPlayers; ++index) { // localplayers
 						playerIndex = GPI.localPlayerIndices[index];
-						
-						System.out.println("is this 0?"+(GPI.skipFlags[playerIndex] & 1));
-						
-						// Movement?
+
 						if ((GPI.skipFlags[playerIndex] & 1) == 0) {
-							System.out.println("var6:"+skipCount);
+							System.out.println("var6:" + skipCount);
 							if (skipCount > 0) {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = buf.readBits(1);// This is 1 if player is moving, 0 if not.
-								System.out.println("The var 10:"+var10);
-								
-								if (var10 == 0) { // Skip flag
-									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf); // 0
+								needsUpdate = buf.readBits(1); // 1
+
+								System.out.println("1. needsupdate: " + needsUpdate);
+
+								bw.write("----\n");
+								bw.write("Update player1 : [1," + needsUpdate + "]\n");
+
+								if (needsUpdate == 0) { // Skip flag
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf, bw); // 0
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(buf, playerIndex);
+									Player1.updatePlayer(buf, playerIndex); // hier
+																			// in
 							}
 						}
 					}
@@ -527,19 +545,27 @@ public final class PacketDecoder {
 					}
 					buf.bitAccess();
 
+					// second local player updating HIER GAAT IE NIET MEER
+					// DOORHEEN (y)
+					System.out.println("Localplayers2: " + GPI.localPlayers);
 					for (index = 0; index < GPI.localPlayers; ++index) {
 						playerIndex = GPI.localPlayerIndices[index];
 						if ((GPI.skipFlags[playerIndex] & 1) != 0)
 							if (skipCount > 0) {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-							} else {	
-								var10 = buf.readBits(1);						
-								if (var10 == 0) {
-									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+							} else {
+								needsUpdate = buf.readBits(1);
+
+								System.out.println("10. seconds needs update");
+								// System.out.println("----\n");
+								bw.write("Update player2 : [1," + needsUpdate + "]\n");
+
+								if (needsUpdate == 0) {
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf, bw);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(buf, playerIndex);
+									Player1.updatePlayer(buf, playerIndex);
 							}
 					}
 
@@ -550,24 +576,31 @@ public final class PacketDecoder {
 					}
 					buf.bitAccess();
 
-		               int countOther1 = 0;
-					for (index = 0; index < GPI.otherPlayers; ++index) {
+					// Outside 1  DOESNT DO SKIPPED PLAYERS 
+					System.out.println("outside1 amt: " + GPI.otherPlayers);
+					for (index = 0; index < GPI.otherPlayers; ++index) { // HIER KOMT NIKS DOOR HEEN ALLES SKIP
 						playerIndex = GPI.globalPlayerIndices[index];
-						if ((GPI.skipFlags[playerIndex] & 1) != 0)
+
+						//System.out.printf("Playerindex: %d, skipflags&1: %d\n", playerIndex, (GPI.skipFlags[playerIndex] & 1));
+
+						if ((GPI.skipFlags[playerIndex] & 1) != 0) {
+
+							System.out.printf("Index %d, skip %d\n", index, skipCount);
+
 							if (skipCount > 0) {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-							   	 countOther1++;
-								//System.out.println("EXPECTING1 var10");
-								var10 = buf.readBits(1);
-								if (var10 == 0) {
-									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+								needsUpdate = buf.readBits(1);
+								bw.write("Outside players1 : [1," + needsUpdate + "]\n");
+								if (needsUpdate == 0) {
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf, bw);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(buf, playerIndex))
+								} else if (Class61.updateFlagsMaybe(buf, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
-					}  System.out.println("total1: " + countOther1);
+						}
+					}
 
 					buf.byteAccess();
 					if (skipCount != 0) {
@@ -576,25 +609,26 @@ public final class PacketDecoder {
 					}
 					buf.bitAccess();
 
-				      int countOther2 = 0;
+					// Outside 2  NOW DOES SKIPPED PLAYERS
+					System.out.println("outside2 amt: " + GPI.otherPlayers);
 					for (index = 0; index < GPI.otherPlayers; ++index) {
 						playerIndex = GPI.globalPlayerIndices[index];
 						if ((GPI.skipFlags[playerIndex] & 1) == 0)
+							System.out.printf("50. playerindex: %d, skip: %d\n",playerIndex, (GPI.skipFlags[playerIndex] & 1));
 							if (skipCount > 0) {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								countOther2++;
-								//System.out.println("EXPECTING2 var10");
-								var10 = buf.readBits(1);
-								if (var10 == 0) {
-									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf);
+								needsUpdate = buf.readBits(1);
+								bw.write("Outside players2 : [1," + needsUpdate + "]\n");
+								if (needsUpdate == 0) {
+									skipCount = Class131_Sub20_Sub2.decodeSkipCount(buf, bw);
+									System.out.println("Skipcount = " + skipCount);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(buf, playerIndex))
+								} else if (Class61.updateFlagsMaybe(buf, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
-					  System.out.println("total2:"+countOther2);
 
 					buf.byteAccess();
 					if (skipCount != 0) {
@@ -613,27 +647,33 @@ public final class PacketDecoder {
 							GPI.globalPlayerIndices[++GPI.otherPlayers - 1] = index;
 					}
 
+					// nu dit...
+					System.out.println("GPI.anInt21: " + GPI.anInt21); // 1
+					// PLAYER UPDATE FLAGS!!!!
 					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
 						index = GPI.anIntArray23[skipCount];
 						var84 = client.playerArray[index];
-						var10 = buf.readUByte();
-						if ((var10 & 8) != 0)
-							var10 += buf.readUByte() << 8;
-
-						Class131_Sub20_Sub16.method840(buf, index, var84, var10);
+						needsUpdate = buf.readUByte(); // Flags // 32
+						System.out.println("Needs update: " + needsUpdate);
+						
+						if ((needsUpdate & 8) != 0)
+							needsUpdate += buf.readUByte() << 8;
+						
+						//needsupdate is still 32
+						Class131_Sub20_Sub16.handleFlags(buf, index, var84, needsUpdate);
 					}
 
-					System.out.println("xp:"+xp);
-					System.out.println("(var60.pos - currentLevel))" +(buf.pos - pos));
+					System.out.println("xp:" + xp);
+					System.out.println("(var60.pos - currentLevel))" + (buf.pos - pos));
 					if (xp != (buf.pos - pos)) {
 						System.out.println("crashes here 30.");
 						throw new RuntimeException((buf.pos - pos) + " " + xp);
 					}
-					
+
 					client.incomingPacket = -1;
 					return true;
 				}
-				
+
 				// END OF PLAYER UPDATING
 
 				System.out.println("Incoming packet: " + client.incomingPacket);
@@ -922,12 +962,12 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(var58, playerIndex);
+									Player1.updatePlayer(var58, playerIndex);
 							}
 					}
 
@@ -944,12 +984,12 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(var58, playerIndex);
+									Player1.updatePlayer(var58, playerIndex);
 							}
 					}
 
@@ -966,11 +1006,11 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(var58, playerIndex))
+								} else if (Class61.updateFlagsMaybe(var58, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
@@ -988,11 +1028,11 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(var58, playerIndex))
+								} else if (Class61.updateFlagsMaybe(var58, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
@@ -1016,11 +1056,11 @@ public final class PacketDecoder {
 					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
 						index = GPI.anIntArray23[skipCount];
 						var84 = client.playerArray[index];
-						var10 = var58.readUByte();
-						if ((var10 & 8) != 0)
-							var10 += var58.readUByte() << 8;
+						needsUpdate = var58.readUByte();
+						if ((needsUpdate & 8) != 0)
+							needsUpdate += var58.readUByte() << 8;
 
-						Class131_Sub20_Sub16.method840(var58, index, var84, var10);
+						Class131_Sub20_Sub16.handleFlags(var58, index, var84, needsUpdate);
 					}
 
 					if (skillId != (var58.pos - pos))
@@ -1358,11 +1398,11 @@ public final class PacketDecoder {
 						skipCount = client.gameBuffer.readIntV1();
 						index = client.gameBuffer.readUShort();
 						playerIndex = client.gameBuffer.readUShort();
-						var10 = client.gameBuffer.readIntV1();
+						needsUpdate = client.gameBuffer.readIntV1();
 
 						for (var15 = index; var15 <= playerIndex; ++var15) {
 							var43 = var15 + ((long) skipCount << 32);
-							client.aClass114_2225.method461(new InterfaceSetting(var10), var43);
+							client.aClass114_2225.method461(new InterfaceSetting(needsUpdate), var43);
 						}
 					}
 
@@ -1389,12 +1429,12 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(var58, playerIndex);
+									Player1.updatePlayer(var58, playerIndex);
 							}
 					}
 
@@ -1411,12 +1451,12 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 								} else
-									Player1.decodeMovement(var58, playerIndex);
+									Player1.updatePlayer(var58, playerIndex);
 							}
 					}
 
@@ -1433,11 +1473,11 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(var58, playerIndex))
+								} else if (Class61.updateFlagsMaybe(var58, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
@@ -1455,11 +1495,11 @@ public final class PacketDecoder {
 								--skipCount;
 								GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							} else {
-								var10 = var58.readBits(1);
-								if (var10 == 0) {
+								needsUpdate = var58.readBits(1);
+								if (needsUpdate == 0) {
 									skipCount = Class131_Sub20_Sub2.decodeSkipCount(var58);
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
-								} else if (Class61.method297(var58, playerIndex))
+								} else if (Class61.updateFlagsMaybe(var58, playerIndex))
 									GPI.skipFlags[playerIndex] = (byte) (GPI.skipFlags[playerIndex] | 2);
 							}
 					}
@@ -1483,11 +1523,11 @@ public final class PacketDecoder {
 					for (skipCount = 0; skipCount < GPI.anInt21; ++skipCount) {
 						index = GPI.anIntArray23[skipCount];
 						var84 = client.playerArray[index];
-						var10 = var58.readUByte();
-						if ((var10 & 8) != 0)
-							var10 += var58.readUByte() << 8;
+						needsUpdate = var58.readUByte();
+						if ((needsUpdate & 8) != 0)
+							needsUpdate += var58.readUByte() << 8;
 
-						Class131_Sub20_Sub16.method840(var58, index, var84, var10);
+						Class131_Sub20_Sub16.handleFlags(var58, index, var84, needsUpdate);
 					}
 
 					if ((var58.pos - pos) != skillId)
@@ -1616,16 +1656,16 @@ public final class PacketDecoder {
 
 					for (index = 0; index < skipCount; ++index) {
 						playerIndex = client.gameBuffer.readULEShortA();
-						var10 = client.gameBuffer.getUByteA();
-						if (var10 == 255)
-							var10 = client.gameBuffer.readIntV2();
+						needsUpdate = client.gameBuffer.getUByteA();
+						if (needsUpdate == 255)
+							needsUpdate = client.gameBuffer.readIntV2();
 
 						if ((var11 != null) && (index < var11.anIntArray1292.length)) {
 							var11.anIntArray1292[index] = playerIndex;
-							var11.anIntArray1154[index] = var10;
+							var11.anIntArray1154[index] = needsUpdate;
 						}
 
-						Class1.method17(xp, index, playerIndex - 1, var10);
+						Class1.method17(xp, index, playerIndex - 1, needsUpdate);
 					}
 
 					if (null != var11)
@@ -1916,8 +1956,8 @@ public final class PacketDecoder {
 						skipCount = skillId - Class139.anInt917;
 						index = pos - Class46.anInt452;
 						playerIndex = xp - Class1.anInt1;
-						var10 = (int) Math.sqrt((playerIndex * playerIndex) + (skipCount * skipCount));
-						Class75.anInt633 = (int) (Math.atan2(index, var10) * 325.949D) & 2047;
+						needsUpdate = (int) Math.sqrt((playerIndex * playerIndex) + (skipCount * skipCount));
+						Class75.anInt633 = (int) (Math.atan2(index, needsUpdate) * 325.949D) & 2047;
 						Class131_Sub20_Sub1.anInt1371 = (int) (Math.atan2(skipCount, playerIndex) * -325.949D) & 2047;
 						if (Class75.anInt633 < 128)
 							Class75.anInt633 = 128;
@@ -1941,7 +1981,8 @@ public final class PacketDecoder {
 					else
 						var11 = null;
 
-					for (; client.gameBuffer.pos < client.messageSize; Class1.method17(xp, skipCount, index - 1, playerIndex)) {
+					for (; client.gameBuffer.pos < client.messageSize; Class1.method17(xp, skipCount, index - 1,
+							playerIndex)) {
 						skipCount = client.gameBuffer.readCompact();
 						index = client.gameBuffer.readUShort();
 						playerIndex = 0;

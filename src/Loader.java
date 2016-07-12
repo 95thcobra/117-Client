@@ -65,7 +65,7 @@ public class Loader implements AppletStub {
 		final Class<?> client = Class.forName("client");
 		final Applet instance = (Applet) client.getConstructor().newInstance();
 		
-		final JFrame frame = new JFrame("FrizDeob | #117");
+		final JFrame frame = new JFrame("OSRS #117");
 		frame.add(instance);
 		frame.setVisible(true);
 		frame.setSize(781, 541);

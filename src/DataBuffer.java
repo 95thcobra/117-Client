@@ -117,6 +117,7 @@ public class DataBuffer extends Class131 {
 	}
 
 	public int readUShort() {
+		//System.out.println("datalength:"+data.length +", pos:"+pos);
 		pos += 2;
 		return ((data[pos - 2] & 255) << 8) + (data[pos - 1] & 255);
 	}

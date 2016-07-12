@@ -28,7 +28,7 @@ public class Class61 {
 			return new byte[var0];
 	}
 
-	static boolean method297(final Class131_Sub14_Sub1 var0, final int var1) {
+	static boolean updateFlagsMaybe(final Class131_Sub14_Sub1 var0, final int var1) {
 		final int var2 = var0.readBits(2);
 		int var4;
 		int var5;
@@ -38,7 +38,7 @@ public class Class61 {
 		int var10;
 		if (var2 == 0) {
 			if (var0.readBits(1) != 0)
-				method297(var0, var1);
+				updateFlagsMaybe(var0, var1);
 
 			var5 = var0.readBits(6);
 			var6 = var0.readBits(6);
@@ -52,7 +52,7 @@ public class Class61 {
 				final Player var3 = client.playerArray[var1] = new Player();
 				var3.anInt1981 = var1;
 				if (null != GPI.cachedAppearances[var1])
-					var3.method1068(GPI.cachedAppearances[var1]);
+					var3.updateAppearance(GPI.cachedAppearances[var1]);
 
 				var3.anInt1751 = GPI.cachedDirections[var1];
 				var3.anInt1726 = GPI.cachedIndices[var1];

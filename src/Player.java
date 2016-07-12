@@ -26,11 +26,14 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 	boolean aBool1997;
 	boolean aBool2002;
 
-	final void method1068(final DataBuffer var1) {
+	final void updateAppearance(final DataBuffer var1) {
 		var1.pos = 0;
 		final int var8 = var1.readUByte();
+		System.out.println("var1="+var8);
 		anInt2000 = var1.readByte();
+		System.out.println("var2="+anInt2000);
 		anInt1982 = var1.readByte();
+		System.out.println("var3="+anInt1982);
 		int var2 = -1;
 		anInt2001 = 0;
 		final int[] var4 = new int[12];
@@ -39,6 +42,7 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 		int var7;
 		for (int var5 = 0; var5 < 12; ++var5) {
 			var6 = var1.readUByte();
+			System.out.println("var6:"+var6);
 			if (var6 == 0)
 				var4[var5] = 0;
 			else {
@@ -67,42 +71,53 @@ public final class Player extends Class131_Sub20_Sub19_Sub2 {
 			var3[var6] = var7;
 		}
 
-		anInt1707 = var1.readUShort();
+		anInt1707 = var1.readUShort(); 
+		System.out.println("shorts:"+anInt1707);
 		if (anInt1707 == '\uffff')
 			anInt1707 = -1;
 
 		anInt1708 = var1.readUShort();
+		System.out.println("shorts:"+anInt1708);
 		if (anInt1708 == '\uffff')
 			anInt1708 = -1;
 
 		anInt1725 = anInt1708;
 		anInt1710 = var1.readUShort();
+		System.out.println("shorts:"+anInt1710);
 		if (anInt1710 == '\uffff')
 			anInt1710 = -1;
 
 		anInt1711 = var1.readUShort();
+		System.out.println("shorts:"+anInt1711);
 		if (anInt1711 == '\uffff')
 			anInt1711 = -1;
 
 		anInt1712 = var1.readUShort();
+		System.out.println("shorts:"+anInt1712);
 		if (anInt1712 == '\uffff')
 			anInt1712 = -1;
 
 		anInt1713 = var1.readUShort();
+		System.out.println("shorts:"+anInt1713);
 		if (anInt1713 == '\uffff')
 			anInt1713 = -1;
 
 		anInt1714 = var1.readUShort();
+		System.out.println("shorts:"+anInt1714);
 		if (anInt1714 == '\uffff')
 			anInt1714 = -1;
 
 		aString2004 = var1.readString();
+		System.out.println("playername: " + aString2004);
 		if (this == Class131_Sub11.myPlayer)
 			RuntimeException_Sub1.aString1951 = aString2004;
 
 		anInt1984 = var1.readUByte();
+		System.out.println(anInt1984);
 		anInt1985 = var1.readUShort();
+		System.out.println(anInt1985);
 		aBool1990 = var1.readUByte() == 1;
+		System.out.println(aBool1990);
 		if ((client.anInt2030 == 0) && (client.playerRights >= 2))
 			aBool1990 = false;
 

@@ -1,5 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 	static Class100 aClass100_1374;
@@ -434,8 +436,12 @@ public class Class131_Sub20_Sub2 extends Class131_Sub20 {
 		}
 	}
 
-	static int decodeSkipCount(final Class131_Sub14_Sub1 var0) {
+	static int decodeSkipCount(final Class131_Sub14_Sub1 var0,BufferedWriter...bw) throws IOException {
 		final int var1 = var0.readBits(2);
+		//System.out.println("decodeskip: " + var1);
+		
+		if (bw.length > 0)
+		bw[0].write("Skipcount : [2,"+var1+"]\n");
 		int var2;
 		if (var1 == 0)
 			var2 = 0;
