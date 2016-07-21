@@ -663,10 +663,10 @@ public final class PacketDecoder {
 						Class131_Sub20_Sub16.handleFlags(buf, index, var84, needsUpdate);
 					}
 
-					System.out.println("xp:" + xp);
-					System.out.println("(var60.pos - currentLevel))" + (buf.pos - pos));
+					//System.out.println("xp:" + xp);
+					//System.out.println("(var60.pos - currentLevel))" + (buf.pos - pos));
 					if (xp != (buf.pos - pos)) {
-						System.out.println("crashes here 30.");
+						System.out.printf("Bit position too high! Is %d, should be %d\n", xp, (buf.pos - pos));
 						throw new RuntimeException((buf.pos - pos) + " " + xp);
 					}
 
